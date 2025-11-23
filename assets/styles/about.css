@@ -1,0 +1,144 @@
+/* ============================
+   ABOUT PAGE STYLES
+   ============================ */
+
+.pf-section--about .pf-panel {
+  background: linear-gradient(180deg, #f7f9fb 0%, #e7edf3 100%);
+}
+
+.about-hero p {
+  max-width: 780px;
+  margin-bottom: 0;
+}
+
+.bio-card {
+  overflow: hidden;
+}
+
+.bio-grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.avatar {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 6px solid #e8edf2;
+  background: #ffffff;
+  box-shadow: var(--shadow-2);
+}
+
+.paperclip {
+  position: absolute;
+  top: -18px;
+  right: -24px;
+  width: 72px;
+  height: 72px;
+  opacity: 0.85;
+  transform: rotate(10deg);
+}
+
+.bio-grid p {
+  margin-top: 0;
+}
+
+.ranks {
+  margin: 20px 0;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #fdfefe 0%, #eef2f6 100%);
+  border: 1px solid #c7ced6;
+  box-shadow: var(--shadow-1);
+}
+
+.ranks h3 {
+  margin: 0 0 12px;
+  letter-spacing: 0.04em;
+}
+
+.ranks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.ranks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ranks li::before {
+  content: "✦";
+  color: var(--task-400);
+  line-height: 1.4;
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.hi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.hi {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid #c7ced6;
+  background: linear-gradient(180deg, #f9fafc 0%, #edf1f5 100%);
+  box-shadow: var(--shadow-1);
+}
+
+.hi h3 {
+  margin: 0 0 8px;
+}
+
+.hi p {
+  margin: 0;
+}
+
+.address-card .address-band {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .bio-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .paperclip {
+    right: -8px;
+  }
+
+  .ranks {
+    text-align: left;
+  }
+
+  .cta-row {
+    justify-content: center;
+  }
+}
