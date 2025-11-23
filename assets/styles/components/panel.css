@@ -1,0 +1,83 @@
+/* ===========================
+   panel.css
+   - Base panel container styling
+   - Provides visible panel backgrounds
+   - Works with .card for double-layer effect
+   =========================== */
+
+/* Base panel - provides the visible panel background and border */
+.panel {
+  position: relative;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin: var(--space-8) 0;
+  overflow: hidden;
+}
+
+/* Panel content wrapper */
+.panel-content {
+  position: relative;
+  padding: var(--space-6);
+}
+
+/* Panel hover effect */
+.panel:hover {
+  border-color: var(--accent-primary-soft);
+  box-shadow: 
+    0 8px 16px var(--shadow-color-medium),
+    0 2px 4px var(--shadow-color-soft);
+  transition: all var(--transition-normal);
+}
+
+/* Back panel for double-layer Paper-Fu effect */
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary-soft) 0%,
+    rgba(31, 94, 161, 0.05) 50%,
+    rgba(31, 94, 161, 0.02) 100%
+  );
+  border-radius: var(--radius-lg);
+  z-index: -1;
+  transform: translate(3px, 3px);
+  transition: transform var(--transition-normal);
+}
+
+.panel:hover::before {
+  transform: translate(5px, 5px);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .panel {
+  background: var(--bg-layer-2);
+  border-color: var(--panel-outline);
+}
+
+[data-theme="dark"] .panel:hover {
+  border-color: var(--accent-primary-soft);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure proper spacing when panels are stacked */
+.panel + .panel {
+  margin-top: var(--space-8);
+}
+
+/* Panel section variants */
+.panel-section {
+  margin: var(--space-8) 0;
+}
+
+.panel-section:first-child {
+  margin-top: 0;
+}
+
+.panel-section:last-child {
+  margin-bottom: 0;
+}

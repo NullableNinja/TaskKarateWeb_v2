@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <title>Task Karate School – La Crosse, WI</title>
+  <meta name="description" content="Karate for kids, teens, and adults in the La Crosse area. Build confidence, learn practical self-defense, and have a blast at Task Karate School."/>
+
+  <link rel="icon" href="assets/images/logo/Logo.png"/>
+
+  <!-- CSS: Global Framework + Page Overrides -->
+  <link rel="stylesheet" href="assets/styles/main.css">
+  <link rel="stylesheet" href="assets/styles/index.css">
+</head>
+
+<body>
+  <!-- Background -->
+  <div class="bg-geo" aria-hidden="true"></div>
+
+  <!-- Header loaded via partials -->
+  <div id="site-header"></div>
+
+  <!-- Scroll Progress -->
+  <div class="navbar-progress" id="scrollProgress"></div>
+
+  <main>
+
+    <!-- ============================================================
+         HERO SECTION - Image in Paper-Fu panel (not full-width)
+         ============================================================ -->
+    <section id="hero" class="pf-section pf-section--home">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card hero-panel">
+            <div class="hero-panel-inner">
+              <div class="hero-image-wrapper">
+                <img
+                  src="./images/hero/Cover_Image.jpg"
+                  alt="Task Karate students celebrating on the mats"
+                  class="hero-image"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="hero-overlay">
+                  <div class="hero-location-text">
+                    Task Karate School • La Crosse
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         INTRO SECTION - Stacked Paper-Fu panel
+         ============================================================ -->
+    <section id="intro" class="pf-section pf-section--home">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <div>
+              <span class="eyebrow">La Crosse • Friendly • Practical</span>
+
+              <h1 class="heading-1 mt-3">One Dojo. One Teacher. A Lifetime of Martial Arts.</h1>
+
+              <p class="mt-4">
+                At Task Karate School, you don't get lost in the crowd — you train directly with
+                <strong>Mr. Randy Thomson</strong>, a martial artist with over 30 years of experience.
+                With help from dedicated assistants, he personally guides every class in karate, sparring,
+                weapons, and Eskrima. Kids, teens, and adults alike build confidence, discipline,
+                and real-world skills in a positive, family-style dojo.
+              </p>
+
+              <div class="flex gap-3 mt-5 flex-wrap">
+                <a class="btn" href="#programs">Explore Programs</a>
+                <a class="btn btn-secondary" href="#trialPop">Start Free Trial</a>
+                <a class="btn btn-outline" href="#photos">See the Vibes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- ============================================================
+     PROGRAMS SECTION — CLEAN SLATE (Option A Layout)
+     ============================================================ -->
+<section id="programs" class="pf-section pf-section--home">
+  <div class="container">
+    <div class="pf-stack">
+      <div class="pf-layer bottom"></div>
+      <div class="pf-layer top pf-panel card">
+        
+        <span class="eyebrow">Programs</span>
+        <h2 class="heading-2">Something for every age and energy level</h2>
+        <p class="muted">Choose a program to learn more.</p>
+
+        <div class="programs-layout">
+
+          <!-- LEFT: TABS -->
+          <div class="programs-tabs">
+            <div class="tabs-list" role="tablist" aria-label="Programs">
+              <button class="tab btn btn-outline is-active"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="panel-kids"
+                      id="btn-kids">Kids Karate</button>
+
+              <button class="tab btn btn-outline"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="panel-teens"
+                      id="btn-teens">Teens &amp; Adults</button>
+
+              <button class="tab btn btn-outline"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="panel-eskrima"
+                      id="btn-eskrima">IS3 • Eskrima</button>
+
+              <button class="tab btn btn-outline"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="panel-weapons"
+                      id="btn-weapons">Weapons</button>
+            </div>
+          </div>
+
+          <!-- RIGHT: CONTENT -->
+          <div class="programs-content">
+
+            <!-- Kids -->
+            <div class="tab-panel" id="panel-kids" role="tabpanel" aria-labelledby="btn-kids">
+              <h3 class="program-title">Kids Karate</h3>
+              <p class="program-desc">
+                Ages 5–12. Classes blend fun drills with serious life skills—focus, listening,
+                confidence, responsibility, and respect. Kids learn discipline through positive structure,
+                develop coordination, and earn stripes and belts the traditional way: with effort,
+                attitude, and consistency.
+              </p>
+              <img src="./images/programs/Kids_Program.png"
+                   alt="Kids Karate program"
+                   class="program-img" />
+            </div>
+
+            <!-- Teens & Adults -->
+            <div class="tab-panel hidden" id="panel-teens" role="tabpanel" aria-labelledby="btn-teens">
+              <h3 class="program-title">Teens &amp; Adults</h3>
+              <p class="program-desc">
+                A practical blend of striking, self-defense, pad work, conditioning, and controlled 
+                partner drills. Teens and adults get a full-body workout, build confidence, reduce stress,
+                and develop real-world skills without the ego or intensity of a full-contact school.
+              </p>
+              <img src="./images/programs/Teen_Adult_Program.png"
+                   alt="Teens and adults karate program"
+                   class="program-img" />
+            </div>
+
+            <!-- IS3 Eskrima -->
+            <div class="tab-panel hidden" id="panel-eskrima" role="tabpanel" aria-labelledby="btn-eskrima">
+              <h3 class="program-title">IS3 • Eskrima</h3>
+              <p class="program-desc">
+                Inayan System III (IS3) is a Filipino martial art rooted in the seven styles passed down 
+                from Mangisursuro Mike Inay and refined by Suro Emanuel Hart. Students learn timing, 
+                footwork, weapon handling, flow, and transitions between long, mid, and close range.
+              </p>
+              <img src="./images/programs/IS3_Program.png"
+                   alt="IS3 Eskrima program"
+                   class="program-img" />
+            </div>
+
+            <!-- Weapons -->
+            <div class="tab-panel hidden" id="panel-weapons" role="tabpanel" aria-labelledby="btn-weapons">
+              <h3 class="program-title">Weapons</h3>
+              <p class="program-desc">
+                Structured practice with bo staff, nunchaku, escrima sticks, and traditional 
+                training tools. Students build coordination, control, and distance awareness using safe
+                padded or wooden trainers before progressing to more advanced techniques.
+              </p>
+              <img src="./images/programs/Weapons_Program.png"
+                   alt="Weapons training program"
+                   class="program-img" />
+            </div>
+
+          </div>
+        </div> <!-- /programs-layout -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- ============================================================
+         PHOTOS SECTION - Life on the Mats (3 rotating panels later)
+         ============================================================ -->
+    <section id="photos" class="pf-section pf-section--home">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Photos</span>
+            <h2 class="heading-2">Life on the Mats</h2>
+            <p class="muted">
+              Smiles, sweat, high-fives, and bowing in—peek at a typical week at Task Karate.
+            </p>
+
+            <div class="photo-grid mt-6">
+              <figure class="photo-tile">
+                <img
+                  src="Cover_Image.jpg"
+                  alt="Big group celebrating on the mats"
+                  class="photo-img image-hover-lift"
+                />
+                <figcaption class="photo-caption">Belt promotions &amp; celebration days</figcaption>
+              </figure>
+
+              <figure class="photo-tile">
+                <img
+                  src="kids-karate.jpg"
+                  alt="Kids lined up in stance"
+                  class="photo-img image-hover-lift"
+                />
+                <figcaption class="photo-caption">Kids classes learning focus and basics</figcaption>
+              </figure>
+
+              <figure class="photo-tile">
+                <img
+                  src="teens-adults.jpg"
+                  alt="Teens and adults drilling techniques"
+                  class="photo-img image-hover-lift"
+                />
+                <figcaption class="photo-caption">Teens &amp; adults working drills and pad work</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT SECTION
+         ============================================================ -->
+    <section id="contact" class="pf-section pf-section--home">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Contact</span>
+            <h3 class="heading-3">Say hello (we're nice)</h3>
+            <p class="muted">
+              Got questions about classes, belts, or whether a black gi really makes you invisible at night?
+              <em>(Spoiler: kinda.)</em> Shoot us an email or give us a ring—we're fast, friendly, and only
+              shout "HI-YAH!" at the right times.
+            </p>
+
+            <div class="contact-tiles mt-4">
+              <a class="contact-tile email" href="mailto:taskkarate@gmail.com" aria-label="Send an email">
+                <div class="tile-icon">📧</div>
+                <div class="tile-text">
+                  <div class="tile-title">Drop us a line</div>
+                  <div class="tile-sub">taskkarate@gmail.com</div>
+                </div>
+              </a>
+
+              <a class="contact-tile phone" href="tel:+16087818275" aria-label="Call Task Karate">
+                <div class="tile-icon">📞</div>
+                <div class="tile-text">
+                  <div class="tile-title">Give us a ring</div>
+                  <div class="tile-sub">1-608-781-TASK (8275)</div>
+                </div>
+              </a>
+
+                <a class="contact-tile location"
+                  href="https://www.google.com/maps/place/1501+St+Andrew+St+Suite+212,+La+Crosse,+WI+54603/"
+                  target="_blank" rel="noopener"
+                  aria-label="Open Task Karate in Google Maps">
+                <div class="tile-icon">📍</div>
+                <div class="tile-text">
+                  <div class="tile-title">Visit the dojo</div>
+                  <div class="tile-sub">1501 St&nbsp;Andrew St Suite&nbsp;212, La&nbsp;Crosse, WI&nbsp;54603</div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- ============================================================
+     MAP SECTION
+     ============================================================ -->
+<section id="map" class="pf-section pf-section--home">
+  <div class="container">
+    <div class="pf-stack">
+      <div class="pf-layer bottom"></div>
+      <div class="pf-layer top pf-panel card">
+        
+        <span class="eyebrow">Visit</span>
+        <h2 class="heading-2">Find us in La Crosse</h2>
+        <p class="muted">1501 St&nbsp;Andrew St Suite&nbsp;212, La&nbsp;Crosse, WI&nbsp;54603</p>
+
+        <div class="mt-4 map-pin-wrapper">
+          <img
+            src="./images/icons/pin.png"
+            alt="Map pin"
+            class="map-pin"
+            style="height:36px; width:36px; margin-bottom:0.75rem;"
+          />
+        </div>
+
+        <!-- Map Wrapper w/ Scroll Protection -->
+        <div class="map-wrapper mt-3">
+          <div class="map-overlay" id="mapShield"></div>
+
+          <iframe
+            title="Task Karate Map"
+            width="100%"
+            height="380"
+            frameborder="0"
+            scrolling="no"
+            loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-91.283%2C43.83%2C-91.20%2C43.89&layer=mapnik&marker=43.856%2C-91.230"
+          ></iframe>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </main>
+
+  <!-- Footer via partials -->
+  <div id="site-footer"></div>
+
+  <!-- Back to Top -->
+  <div class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
+    <span class="icon icon-arrow-up icon-white"></span>
+  </div>
+
+  <!-- Trial Popover -->
+  <aside id="trialPop" class="popover" role="dialog" aria-live="polite" hidden>
+    <button class="btn btn-outline btn-small" data-close aria-label="Close">×</button>
+    <div class="title">Two-Week Free Trial</div>
+    <p class="muted">No cost, no obligation. Call or email and say "two-week trial."</p>
+    <div class="flex gap-2 mt-3">
+      <a class="btn" href="tel:+16087818275">Call</a>
+      <a class="btn btn-outline" href="mailto:taskkarate@gmail.com">Email</a>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       JAVASCRIPT (Existing structure, paths unchanged)
+       ============================================================ -->
+  <script src="./assets/js/partials.js"></script>
+  <script src="./assets/js/notifications.js"></script>
+  <script src="./assets/js/footer.js"></script>
+
+  <!-- Page-specific behavior -->
+  <script src="./assets/js/index_tabs.js"></script>
+  <script src="./assets/js/theme_toggle.js"></script>
+  <script src="./assets/js/mobile_navigation_bar.js"></script>
+  <script src="./assets/js/scroll-progress.js"></script>
+  <script src="./assets/js/back_to_top.js"></script>
+  <script src="./assets/js/trial_popover.js"></script>
+  <script src="./assets/js/map_interaction.js"></script>
+  <!-- slideshow.js intentionally NOT loaded yet; to be added once implemented -->
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+/* ===========================
+   index.css — Home Page Overrides
+   =========================== */
+
+/* =========================================
+   GLOBAL SPACING TIGHTENING FOR HOME PAGE
+   ========================================= */
+.pf-section--home {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .pf-section--home {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Maintain Task-Karate Blue Background */
+body {
+  background-color: #050814 !important;
+}
+
+/* ===========================
+   HERO SECTION — NEW PANEL STYLE
+   =========================== */
+
+.hero-container,
+.hero-panel,
+.hero-panel-inner {
+  all: unset;
+}
+
+.hero-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+@media (max-width: 768px) {
+  .hero-image {
+    height: 300px;
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.25rem 1.75rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+
+.hero-location-text {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   INTRO SECTION
+   =========================== */
+#intro {
+  padding: var(--space-6) 0;
+}
+
+/* ============================================================
+   PROGRAMS SECTION — CLEAN SLATE LAYOUT (Option A)
+   ============================================================ */
+
+.programs-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 900px) {
+  .programs-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 3rem;
+  }
+}
+
+/* ----------------------------
+   Tabs Column
+   ---------------------------- */
+.programs-tabs .tabs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.programs-tabs .tab {
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+/* Active styling remains consistent with global theme */
+#programs .tab.is-active {
+  background: var(--accent-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-primary-soft);
+}
+
+/* ----------------------------
+   Content Column
+   ---------------------------- */
+.programs-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-panel:not(.hidden) {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------
+   Typography within content
+   ---------------------------- */
+.program-title {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(1.8rem, 2.3vw, 2.4rem);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.program-desc {
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 700px;
+  color: var(--color-text);
+  margin-bottom: 1.75rem;
+}
+
+/* ----------------------------
+   Program Image (uniform aspect ratio, faces preserved)
+   ---------------------------- */
+.program-img {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: 320px; /* uniform tile height */
+  object-fit: cover;
+  object-position: top; /* <── the important change */
+  
+  margin: 0 auto;
+  border-radius: 18px;
+
+  box-shadow: 0 10px 28px var(--shadow-color-medium);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.program-img:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 36px var(--shadow-color-hard);
+}
+
+@media (max-width: 600px) {
+  .program-img {
+    height: 240px;
+  }
+}
+
+
+
+
+
+/* ===========================
+   LIFE ON THE MATS — 3-TILE GRID
+   =========================== */
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .photo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.photo-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.photo-img {
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.photo-caption {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* ===========================
+   CONTACT SECTION — NEW ADDRESS + GRADIENT TILE
+   =========================== */
+
+.contact-tile.location {
+  background: linear-gradient(135deg, var(--accent-primary-soft) 0%, var(--accent-primary) 100%);
+  color: white;
+  border: none;
+}
+
+.contact-tile.location .tile-title,
+.contact-tile.location .tile-sub {
+  color: white;
+}
+
+/* ===========================
+   MAP SECTION — PIN IMPROVEMENT
+   =========================== */
+
+.map-pin-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.map-pin {
+  width: 36px;
+  height: 36px;
+}
+
+/* ===========================
+   SPACING FIXES BETWEEN SECTIONS
+   =========================== */
+
+.pf-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .pf-section {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* ===========================
+   SLIDESHOW PLACEHOLDER (until built)
+   =========================== */
+
+.photo-slideshow {
+  display: none !important;
+}
+
+/* ===========================
+   RESPONSIVE TWEAKS
+   =========================== */
+
+@media (max-width: 768px) {
+  .hero-location-text {
+    font-size: 1.8rem;
+  }
+}

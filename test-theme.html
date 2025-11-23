@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Karate UI - Comprehensive Element Showcase</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Master CSS File (imports all modules) -->
+  <link rel="stylesheet" href="assets/styles/main.css" />
+</head>
+
+<body>
+  <!-- Background -->
+  <div class="bg-geo" aria-hidden="true"></div>
+
+  <!-- Navigation - Loaded via partials.js -->
+  <div id="site-header"></div>
+
+  <!-- Scroll Progress Indicator with Belt Rank Colors -->
+  <div class="navbar-progress" id="scrollProgress"></div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- CONTACT -->
+    <section id="contact" class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Contact</span>
+            <h3>Say hello (we're nice)</h3>
+            <p class="muted">
+              Got questions about classes, belts, or whether a black gi really makes you invisible at night?
+              <em>(Spoiler: kinda.)</em> Shoot us an email or give us a ring—we're fast, friendly, and only
+              shout "HI-YAH!" at the right times.
+            </p>
+
+            <div class="contact-tiles">
+              <a class="contact-tile email" href="mailto:taskkarate@gmail.com"
+                 aria-label="Send an email to Task Karate">
+                <div class="tile-icon">📧</div>
+                <div class="tile-text">
+                  <div class="tile-title">Drop us a line</div>
+                  <div class="tile-sub">taskkarate@gmail.com</div>
+                </div>
+              </a>
+
+              <a class="contact-tile phone" href="tel:+16087818275"
+                 aria-label="Call Task Karate now">
+                <div class="tile-icon">📞</div>
+                <div class="tile-text">
+                  <div class="tile-title">Give us a call</div>
+                  <div class="tile-sub">1-608-781-TASK (8275)</div>
+                </div>
+              </a>
+
+              <a class="contact-tile location"
+                 href="https://maps.app.goo.gl/Uc8TzriQ8Zm6M8Gv5"
+                 target="_blank"
+                 rel="noopener"
+                 aria-label="Open Task Karate in Google Maps">
+                <div class="tile-icon">📍</div>
+                <div class="tile-text">
+                  <div class="tile-title">Visit the dojo</div>
+                  <div class="tile-sub">515 Black River Ave, La Crosse, WI</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYERED PANELS DEMONSTRATION -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Paper-Fu Layering</span>
+            <h3 class="heading-2">Stacked Panel System</h3>
+            <p class="muted">
+              This demonstrates the true Paper-Fu layered effect with multiple cards stacked on top of each
+              other, each with random placement and rotation. Notice how the background cards create depth
+              and visual interest while maintaining the organic, hand-stacked aesthetic.
+            </p>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <div class="pf-inner-card">
+                <h4>Layer 1</h4>
+                <p class="text-sm muted">Maximum depth with dramatic offset</p>
+              </div>
+              <div class="pf-inner-card">
+                <h4>Layer 2</h4>
+                <p class="text-sm muted">Strong shadow with rotation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE PAPER-FU STACK DEMO -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Paper-Fu v3 Core</span>
+            <h2 class="heading-2">Standard Double-Layer Stack</h2>
+            <p class="muted">
+              This is the cleanest representation of the new Paper-Fu Stack system. One bottom layer and one
+              top layer, controlled offsets, unified shadows, and consistent surfaces.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <div class="pf-panel pf-panel-accent">
+                <h4 class="heading-5">Accent Panel</h4>
+                <p>Perfect for callouts, highlights, or special content blocks.</p>
+              </div>
+
+              <div class="pf-panel pf-panel-dark">
+                <h4 class="heading-5">Dark Panel</h4>
+                <p>Great for high-contrast sections or premium-feel content.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS SHOWCASE -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Button Variants</span>
+            <h2 class="heading-2">All Button Types</h2>
+            <p class="muted">Complete showcase of all button styles and sizes with improved proportions.</p>
+
+            <div class="space-y-6">
+              <!-- Primary Buttons -->
+              <div>
+                <h4 class="heading-6 mb-4">Primary Buttons</h4>
+                <div class="flex gap-4 flex-wrap">
+                  <button class="btn">Default Primary</button>
+                  <button class="btn btn-small">Small Primary</button>
+                  <button class="btn btn-large">Large Primary</button>
+                  <button class="btn" disabled>Disabled Primary</button>
+                </div>
+              </div>
+
+              <!-- Secondary Buttons -->
+              <div>
+                <h4 class="heading-6 mb-4">Secondary Buttons</h4>
+                <div class="flex gap-4 flex-wrap">
+                  <button class="btn btn-secondary">Default Secondary</button>
+                  <button class="btn btn-secondary btn-small">Small Secondary</button>
+                  <button class="btn btn-secondary btn-large">Large Secondary</button>
+                  <button class="btn btn-secondary" disabled>Disabled Secondary</button>
+                </div>
+              </div>
+
+              <!-- Outline Buttons -->
+              <div>
+                <h4 class="heading-6 mb-4">Outline Buttons</h4>
+                <div class="flex gap-4 flex-wrap">
+                  <button class="btn btn-outline">Default Outline</button>
+                  <button class="btn btn-outline btn-small">Small Outline</button>
+                  <button class="btn btn-outline btn-large">Large Outline</button>
+                  <button class="btn btn-outline" disabled>Disabled Outline</button>
+                </div>
+              </div>
+
+              <!-- Special Buttons -->
+              <div>
+                <h4 class="heading-6 mb-4">Special Variants</h4>
+                <div class="flex gap-4 flex-wrap">
+                  <button class="btn btn-success">Success</button>
+                  <button class="btn btn-danger">Danger</button>
+                  <button class="btn btn-warning">Warning</button>
+                  <button class="btn btn-info">Info</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM SHOWCASE -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Forms</span>
+            <h2 class="heading-2">Student Enrollment Form</h2>
+            <p class="muted">
+              Demo of full form styling, including labels, inputs, selects, and validation states.
+            </p>
+
+            <form class="space-y-6 mt-6">
+              <!-- Row 1 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="form-label">Student Name</label>
+                  <input type="text" class="form-input" placeholder="First and last name" />
+                </div>
+                <div>
+                  <label class="form-label">Age</label>
+                  <input type="number" class="form-input" placeholder="Age" />
+                </div>
+              </div>
+
+              <!-- Row 2 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="form-label">Guardian Email</label>
+                  <input type="email" class="form-input" placeholder="you@example.com" />
+                </div>
+                <div>
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" class="form-input" placeholder="(555) 555-5555" />
+                </div>
+              </div>
+
+              <!-- Row 3 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="form-label">Program Interest</label>
+                  <select class="form-select">
+                    <option>Select a program...</option>
+                    <option>Karate Kids</option>
+                    <option>Teen Karate</option>
+                    <option>Adult Martial Arts</option>
+                    <option>Private Lessons</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label">Belt Rank</label>
+                  <select class="form-select">
+                    <option>Select belt rank...</option>
+                    <option>White Belt</option>
+                    <option>Gold Belt</option>
+                    <option>Orange Belt</option>
+                    <option>Green Belt</option>
+                    <option>Purple Belt</option>
+                    <option>Blue Belt</option>
+                    <option>Red Belt</option>
+                    <option>Brown Belt</option>
+                    <option>Black Belt</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Row 4 -->
+              <div>
+                <label class="form-label">Goals / Notes</label>
+                <textarea class="form-textarea"
+                          placeholder="Tell us about your goals, experience, or anything we should know."></textarea>
+              </div>
+
+              <!-- Actions -->
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Submit Enrollment</button>
+                <button type="button" class="btn btn-outline">Clear Form</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DROPDOWN/SELECT ELEMENTS -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Selection Elements</span>
+            <h2 class="heading-2">Dropdowns & Select Boxes</h2>
+            <p class="muted">Showcase of select menus and related components.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <div class="space-y-4">
+                <div>
+                  <label class="form-label">Program</label>
+                  <select class="form-select">
+                    <option>Select a program...</option>
+                    <option>Karate Kids</option>
+                    <option>Teen Karate</option>
+                    <option>Adult Martial Arts</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label">Class Time</label>
+                  <select class="form-select">
+                    <option>Select a time...</option>
+                    <option>4:30 PM</option>
+                    <option>5:30 PM</option>
+                    <option>6:30 PM</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <label class="form-label">Experience Level</label>
+                  <select class="form-select">
+                    <option>Brand New</option>
+                    <option>Some Experience</option>
+                    <option>Advanced</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label">Preferred Instructor</label>
+                  <select class="form-select">
+                    <option>No Preference</option>
+                    <option>Mr. T</option>
+                    <option>Other Instructor</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOGGLES, CHECKBOXES, RADIOS -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Toggle & Choice Inputs</span>
+            <h2 class="heading-2">Switches, Radios & Checkboxes</h2>
+            <p class="muted">Examples of styled boolean and multi-choice controls.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <!-- Radios -->
+              <div class="space-y-4">
+                <h4 class="heading-6 mb-2">Radio Group</h4>
+
+                <label class="form-radio">
+                  <input type="radio" name="plan" checked />
+                  <span class="radio-indicator"></span>
+                  <span>Trial Class</span>
+                </label>
+
+                <label class="form-radio">
+                  <input type="radio" name="plan" />
+                  <span class="radio-indicator"></span>
+                  <span>Month-to-Month</span>
+                </label>
+
+                <label class="form-radio">
+                  <input type="radio" name="plan" />
+                  <span class="radio-indicator"></span>
+                  <span>12-Month Membership</span>
+                </label>
+              </div>
+
+              <!-- Checkboxes -->
+              <div class="space-y-4">
+                <h4 class="heading-6 mb-2">Checkboxes</h4>
+
+                <label class="form-checkbox">
+                  <input type="checkbox" checked />
+                  <span class="checkbox-indicator"></span>
+                  <span>Receive email updates</span>
+                </label>
+
+                <label class="form-checkbox">
+                  <input type="checkbox" />
+                  <span class="checkbox-indicator"></span>
+                  <span>Include me in photos/videos</span>
+                </label>
+
+                <label class="form-checkbox">
+                  <input type="checkbox" />
+                  <span class="checkbox-indicator"></span>
+                  <span>I agree to the waiver</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL VARIATIONS (WASHI DEMO ONLY) -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">WASHI Panel System</span>
+            <h2 class="heading-2">Enhanced Panel Variations</h2>
+            <p class="muted">5 distinct WASHI levels with true layered stacked panels.</p>
+
+            <div class="grid grid-cols-auto gap-6">
+              <!-- WASHI 1 -->
+              <div class="card pf-washi-1">
+                <h4 class="heading-5">WASHI 1</h4>
+                <p class="text-sm muted">2 stacked panels with subtle rotation</p>
+              </div>
+
+              <!-- WASHI 2 -->
+              <div class="card pf-washi-2">
+                <h4 class="heading-5">WASHI 2</h4>
+                <p class="text-sm muted">3 stacked panels, gentle askew offset</p>
+              </div>
+
+              <!-- WASHI 3 -->
+              <div class="card pf-washi-3">
+                <h4 class="heading-5">WASHI 3</h4>
+                <p class="text-sm muted">3 panels with more dramatic stagger</p>
+              </div>
+
+              <!-- WASHI 4 -->
+              <div class="card pf-washi-4">
+                <h4 class="heading-5">WASHI 4</h4>
+                <p class="text-sm muted">4 panels, pronounced depth & angle</p>
+              </div>
+
+              <!-- WASHI 5 -->
+              <div class="card pf-washi-5">
+                <h4 class="heading-5">WASHI 5</h4>
+                <p class="text-sm muted">Maximum layering and stacked energy</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTIFICATION SYSTEM DEMO -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Notifications</span>
+            <h2 class="heading-2">Paper-Fu Notification System</h2>
+            <p class="muted">
+              These buttons trigger the global notification system from
+              <code>notifications.js</code>. Use these examples when wiring up real events.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <div class="space-y-3">
+                <h4 class="heading-6">Toast Notifications</h4>
+                <button class="btn btn-success"
+                        onclick="window.notify.success('Student enrolled successfully!', 'Success')">
+                  Show Success Toast
+                </button>
+                <button class="btn btn-danger"
+                        onclick="window.notify.error('Something went wrong processing the form.', 'Error')">
+                  Show Error Toast
+                </button>
+                <button class="btn btn-warning"
+                        onclick="window.notify.warning('Don’t forget to complete all required fields.', 'Warning')">
+                  Show Warning Toast
+                </button>
+                <button class="btn btn-info"
+                        onclick="window.notify.info('New curriculum schedule is available.', 'Info')">
+                  Show Info Toast
+                </button>
+              </div>
+
+              <div class="space-y-3">
+                <h4 class="heading-6">Popup Notifications</h4>
+                <button class="btn btn-primary"
+                        onclick="window.notifications.confirm('Do you want to save these changes?', 'Confirm Changes')">
+                  Show Confirm Dialog
+                </button>
+                <button class="btn btn-outline"
+                        onclick="window.notifications.alert('Your trial has been extended 7 days.', 'Good News')">
+                  Show Alert Dialog
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY & UTILITIES -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Typography & Utilities</span>
+            <h2 class="heading-2">Headings, Text, and Utility Classes</h2>
+            <p class="muted">
+              This section shows how headings, paragraphs, muted text, and small labels work together,
+              along with spacing helpers like <code>.mt-*</code>, <code>.mb-*</code>, and
+              <code>.space-y-*</code>.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              <div class="space-y-3">
+                <h1 class="heading-1">Heading 1</h1>
+                <h2 class="heading-2">Heading 2</h2>
+                <h3 class="heading-3">Heading 3</h3>
+                <h4 class="heading-4">Heading 4</h4>
+                <h5 class="heading-5">Heading 5</h5>
+                <h6 class="heading-6">Heading 6</h6>
+              </div>
+              <div class="space-y-3">
+                <p>Normal paragraph text, used for body copy and general content throughout the site.</p>
+                <p class="muted">
+                  Muted paragraph text, used for supporting details or explanatory copy.
+                </p>
+                <p class="eyebrow">Eyebrow label, used for categories or small section labels.</p>
+                <p class="text-sm">Small text, for fine print or secondary labels.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACKGROUND & VISUAL DEMO -->
+    <section class="pf-section">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Background System</span>
+            <h2 class="heading-2">Nebula / Geo Background Demo</h2>
+            <p class="muted">
+              This demonstrates the <code>.bg-geo</code> background layer and how it works beneath
+              Paper-Fu cards. The intent is to keep the focus on the content while still providing
+              visual interest and brand flavor.
+            </p>
+            <p class="muted">
+              Adjust opacity, blur, and color grading in <code>background.css</code> for different moods
+              without overwhelming the main panels. The goal is visual depth, not visual noise.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer - Loaded via partials.js -->
+  <div id="site-footer"></div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
+    <span class="icon icon-arrow-up icon-white"></span>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="assets/js/partials.js"></script>
+  <script src="assets/js/notifications.js"></script>
+  <script src="assets/js/footer.js"></script>
+
+  <script>
+    // Mouse movement reaction for main panels
+    document.addEventListener('DOMContentLoaded', function () {
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        // Skip floating cards and special cases
+        if (
+          card.closest('.stacked-cards-background') ||
+          card.parentElement.querySelector('.card') !== card
+        ) {
+          return;
+        }
+
+        card.classList.add('interactive-card');
+
+        card.addEventListener('mousemove', function (e) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 120;
+          const rotateY = (centerX - x) / 120;
+
+          card.style.transform =
+            `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-1px) scale(1.002)`;
+        });
+
+        card.addEventListener('mouseleave', function () {
+          card.style.transform = '';
+        });
+      });
+
+      console.log('🎯 Panel interactivity initialized');
+    });
+
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeToggleState();
+    }
+
+    function updateThemeToggleState() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+      const toggle = document.querySelector('.theme-toggle input[type="checkbox"]');
+      if (toggle) {
+        toggle.checked = isDark;
+      }
+
+      document.body.classList.toggle('theme-dark', isDark);
+      document.body.classList.toggle('theme-light', !isDark);
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeToggleState();
+
+    // Mobile Menu Toggle (if present)
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', function () {
+        this.classList.toggle('active');
+        if (navLinks) {
+          navLinks.classList.toggle('active');
+        }
+      });
+    }
+
+    // Scroll Progress Indicator with Belt Rank Colors
+    function updateScrollProgress() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight =
+        document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = Math.min(scrollTop / scrollHeight, 1);
+
+      const progressBar = document.getElementById('scrollProgress');
+      if (progressBar) {
+        progressBar.style.width = scrollPercent * 100 + '%';
+
+        let beltColor;
+        if (scrollPercent < 0.125) {
+          beltColor = '#fef9c3'; // White-ish
+        } else if (scrollPercent < 0.25) {
+          beltColor = '#facc15'; // Gold
+        } else if (scrollPercent < 0.375) {
+          beltColor = '#fb923c'; // Orange
+        } else if (scrollPercent < 0.5) {
+          beltColor = '#22c55e'; // Green
+        } else if (scrollPercent < 0.625) {
+          beltColor = '#a855f7'; // Purple
+        } else if (scrollPercent < 0.75) {
+          beltColor = '#3b82f6'; // Blue
+        } else if (scrollPercent < 0.875) {
+          beltColor = '#ef4444'; // Red
+        } else if (scrollPercent < 0.95) {
+          beltColor = '#92400e'; // Brown
+        } else {
+          beltColor = '#111827'; // Black
+        }
+
+        progressBar.style.background = beltColor;
+      }
+    }
+
+    window.addEventListener('scroll', updateScrollProgress);
+    window.addEventListener('resize', updateScrollProgress);
+    document.addEventListener('DOMContentLoaded', updateScrollProgress);
+
+    // Back to Top
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Show/hide back to top button
+    window.addEventListener('scroll', function () {
+      const backToTop = document.querySelector('.back-to-top');
+      if (!backToTop) return;
+
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    console.log('Task Karate UI System - Ready');
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function (e) {
+      const navbar = document.querySelector('.navbar');
+      if (!navbar || !navLinks) return;
+
+      if (!navbar.contains(e.target) && navLinks.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

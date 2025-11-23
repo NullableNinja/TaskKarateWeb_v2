@@ -1,0 +1,68 @@
+/* ===========================
+   theme.css
+   - Light/Dark theme variables
+   - All other CSS uses these vars
+   =========================== */
+
+/* LIGHT THEME (default) */
+html[data-theme="light"] {
+  /* Backgrounds */
+  --bg-primary:       #f5f5f7;
+  --bg-secondary:     #ffffff;
+  --bg-tertiary:      #e9edf5;
+
+  /* Text */
+  --text-primary:     #111827;
+  --text-secondary:   #4b5563;
+  --text-tertiary:    #6b7280;
+
+  /* Accent */
+  --accent-primary:       var(--task-blue);
+  --accent-primary-light: #3b7bd0;
+  --accent-primary-soft:  rgba(31, 94, 161, 0.08);
+  --accent-primary-strong:#184578;
+
+  /* Borders */
+  --border-color:     rgba(15, 23, 42, 0.12);
+
+  /* Misc */
+  --panel-outline:    rgba(15, 23, 42, 0.06);
+}
+
+/* DARK THEME */
+html[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-primary:       #0b0d12;
+  --bg-secondary:     #111827;
+  --bg-tertiary:      #1f2937;
+
+  /* Text */
+  --text-primary:     #e5e7eb;
+  --text-secondary:   #9ca3af;
+  --text-tertiary:    #6b7280;
+
+  /* Accent */
+  --accent-primary:       var(--task-blue);
+  --accent-primary-light: #2f7dd2;
+  --accent-primary-soft:  rgba(59, 130, 246, 0.18);
+  --accent-primary-strong:#93c5fd;
+
+  /* Borders */
+  --border-color:     rgba(148, 163, 184, 0.35);
+
+  /* Misc */
+  --panel-outline:    rgba(148, 163, 184, 0.18);
+}
+
+/* Background helper */
+.bg-geo {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at top left, rgba(31, 94, 161, 0.25), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(31, 94, 161, 0.15), transparent 55%),
+    linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+  opacity: 0.9;
+  pointer-events: none;
+}

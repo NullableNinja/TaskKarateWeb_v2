@@ -1,0 +1,99 @@
+/* ===========================================
+   background/background.css — Task Karate Paper-Fu background
+   Extracted directly from base.css so it matches live site.
+   =========================================== */
+
+body {
+  /* Ensure the overall page feels deep blue, not gray */
+  background-color: #050814;
+}
+
+/* === Canonical .bg-geo from original Task Karate site === */
+
+.bg-geo {
+  position: fixed;
+  inset: -10vmax;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-geo::before,
+.bg-geo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  animation: subtleFloat 20s ease-in-out infinite;
+}
+
+.bg-geo::before {
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0 30%,
+      rgba(36, 77, 120, 0.18) 30% 60%,
+      transparent 60%
+    ),
+    linear-gradient(
+      -35deg,
+      transparent 0 45%,
+      rgba(20, 54, 88, 0.22) 45% 72%,
+      transparent 72%
+    ),
+    radial-gradient(
+      1200px 700px at 20% 15%,
+      rgba(34, 72, 112, 0.20),
+      transparent 60%
+    ),
+    radial-gradient(
+      1000px 600px at 85% 90%,
+      rgba(8, 26, 41, 0.35),
+      transparent 65%
+    );
+  filter: saturate(0.9);
+  animation-delay: 0s;
+}
+
+.bg-geo::after {
+  background:
+    linear-gradient(
+      200deg,
+      transparent 0 40%,
+      rgba(16, 45, 80, 0.18) 40% 66%,
+      transparent 66%
+    ),
+    linear-gradient(
+      30deg,
+      transparent 0 50%,
+      rgba(8, 32, 52, 0.18) 50% 78%,
+      transparent 78%
+    ),
+    radial-gradient(
+      1400px 800px at 50% -10%,
+      rgba(10, 36, 60, 0.35),
+      transparent 70%
+    );
+  mix-blend-mode: screen;
+  opacity: 0.35;
+  transform: translateY(6vh);
+  animation-delay: -10s;
+}
+
+@keyframes subtleFloat {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.35;
+  }
+  25% {
+    transform: translateY(-2vh) translateX(1vw);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(1vh) translateX(-1vw);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-1vh) translateX(0.5vw);
+    opacity: 0.38;
+  }
+}

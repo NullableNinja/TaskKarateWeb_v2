@@ -1,0 +1,75 @@
+/* ============================================================
+   theme-components.css — Additive UI components
+   NOTE: Does NOT override .card, .btn, .eyebrow from base.css
+============================================================ */
+
+/* ---------- Theme Toggle (for UI catalog & future use) ---------- */
+
+.theme-toggle {
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: background 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.theme-toggle-slider {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+}
+
+/* Stub state class for JS later if you want */
+.theme-toggle.is-on {
+  background: rgba(31, 94, 161, 0.85);
+}
+
+.theme-toggle.is-on .theme-toggle-slider {
+  transform: translateX(22px);
+}
+
+/* ---------- Icon Grid (for catalog demos) ---------- */
+
+.icons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.icon-item span {
+  font-size: 1.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.icon-item span:hover {
+  transform: scale(1.15) translateY(-2px);
+  color: var(--task-400);
+}
