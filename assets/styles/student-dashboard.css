@@ -62,20 +62,53 @@
   z-index: 5;
 
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
   gap: 24px;
 
-  padding: 20px 32px;
+  padding: 12px 32px;
+  max-height: 80px;
   background: radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.24), transparent 55%),
               linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.9));
 
   border-bottom: 1px solid var(--panel-border);
   backdrop-filter: blur(16px);
-  overflow: visible;
+  overflow: hidden;
   
   /* Ensure no overlap with navigation */
   margin-top: 0;
+  
+  /* Smooth transition for collapse/expand */
+  transition: all 0.3s ease;
+  
+  /* Add cursor pointer to indicate clickable */
+  cursor: pointer;
+}
+
+/* Expanded state on hover */
+.dashboard-root .hub-header:hover {
+  max-height: 200px;
+  padding: 20px 32px;
+}
+
+/* Hero sections should adapt to collapsed state */
+.dashboard-root .hub-header .hero-info {
+  transition: opacity 0.3s ease;
+}
+
+.dashboard-root .hub-header:not(:hover) .hero-info p {
+  opacity: 0.7;
+}
+
+.dashboard-root .hub-header:not(:hover) .hero-avatar {
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-root .hub-header:hover .hero-avatar {
+  width: 60px;
+  height: 60px;
 }
 
 /* Subtle glow wash on top of header */
@@ -714,6 +747,89 @@
   margin-top: 6px;
   font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+/* ==========================================================
+   DETAILED PROGRESS METERS (for Status tab)
+   ========================================================== */
+
+.detailed-progress-meters {
+  margin-top: 24px;
+}
+
+.detailed-progress-meters .promo-box {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 16px;
+  padding: 16px 20px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.detailed-progress-meters .promo-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), transparent);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.detailed-progress-meters .promo-label {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tk-blue);
+}
+
+.detailed-progress-meters .promo-meter {
+  height: 8px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.detailed-progress-meters .promo-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+.detailed-progress-meters .promo-detail {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.detailed-progress-meters .xp-meter {
+  height: 6px;
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 3px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.detailed-progress-meters .xp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+}
+
+.detailed-progress-meters .xp-label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #f59e0b;
+  font-weight: 600;
 }
 
 /* Training stat cards inside status panel */
@@ -1428,6 +1544,32 @@
   100% {
     transform: translate3d(0, 110vh, 0) rotateZ(360deg);
     opacity: 0;
+  }
+}
+
+/* Birthday Callout Styles */
+.birthday-callout {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(234, 179, 8, 0.1));
+  border: 2px solid rgba(245, 158, 11, 0.4);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fbbf24;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+  animation: birthday-pulse 2s ease-in-out infinite;
+}
+
+@keyframes birthday-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px rgba(245, 158, 11, 0.4);
   }
 }
 

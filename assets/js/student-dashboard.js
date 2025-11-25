@@ -1556,6 +1556,9 @@
           🎉 Happy Birthday, ${s.name.split(" ")[0]}! Thanks for spending part of your special day with us at the dojo.
         </div>
       `;
+      
+      // Trigger birthday celebration
+      checkAndCelebrateBirthday(s);
     }
 
     container.innerHTML = `
@@ -1634,6 +1637,45 @@
           </div>
           <div class="progress-text">${progressText}</div>
         </div>
+
+        <!-- DETAILED PROGRESS METERS (moved from header) -->
+        ${s.rankType === "degree" ? `
+        <div class="detailed-progress-meters">
+          <div class="promo-box">
+            <p class="promo-label">Degree Progress</p>
+            
+            <!-- Degree Years Meter -->
+            <div class="promo-meter">
+              <div class="promo-fill" style="width: ${(s.yearsAtRank / s.yearsRequired) * 100}%;"></div>
+            </div>
+            <p class="promo-detail">${s.yearsAtRank} of ${s.yearsRequired} years completed</p>
+            
+            <!-- XP Meter -->
+            <div class="xp-meter">
+              <div class="xp-fill" style="width: ${Math.min((s.totalClasses / 1000) * 100, 100)}%;"></div>
+            </div>
+            <p class="xp-label">Experience: ${s.totalClasses} classes trained</p>
+          </div>
+        </div>
+        ` : `
+        <div class="detailed-progress-meters">
+          <div class="promo-box">
+            <p class="promo-label">Stripe Progress</p>
+            
+            <!-- Stripe Classes Meter -->
+            <div class="promo-meter">
+              <div class="promo-fill" style="width: ${(s.classesSinceStripe / s.classesPerStripe) * 100}%;"></div>
+            </div>
+            <p class="promo-detail">${s.classesSinceStripe} of ${s.classesPerStripe} classes to next stripe</p>
+            
+            <!-- XP Meter -->
+            <div class="xp-meter">
+              <div class="xp-fill" style="width: ${Math.min((s.totalClasses / 100) * 100, 100)}%;"></div>
+            </div>
+            <p class="xp-label">Experience: ${s.totalClasses} classes trained</p>
+          </div>
+        </div>
+        `}
       </section>
 
       <!-- TRAINING STATS PANEL -->
