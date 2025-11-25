@@ -40,6 +40,11 @@
   let newsModal = null;
   let newsModalContent = null;
 
+  // Achievement modal references
+  let achievementModalBackdrop = null;
+  let achievementModal = null;
+  let achievementModalContent = null;
+
   // -------------------------------------------------------
   // [2] ENTRYPOINT
   // -------------------------------------------------------
@@ -58,6 +63,9 @@
     
     // Build news modal shell
     buildNewsModalShell();
+    
+    // Build achievement modal shell
+    buildAchievementModalShell();
 
     // Resolve session from localStorage
     const session = loadSession();
@@ -231,6 +239,103 @@
     if (!newsModalBackdrop) return;
     newsModalBackdrop.classList.remove("is-open");
     dashboardRoot.classList.remove("news-modal-open");
+  }
+
+  // -------------------------------------------------------
+  // [5] ACHIEVEMENT MODAL SYSTEM
+  // -------------------------------------------------------
+  
+  function buildAchievementModalShell() {
+    achievementModalBackdrop = document.createElement("div");
+    achievementModalBackdrop.className = "news-modal-backdrop"; // Reuse news modal styles
+    
+    achievementModal = document.createElement("article");
+    achievementModal.className = "news-modal achievement-modal"; // Add achievement-specific class
+    
+    achievementModalContent = document.createElement("div");
+    achievementModalContent.className = "news-modal-content";
+    
+    achievementModal.appendChild(achievementModalContent);
+    achievementModalBackdrop.appendChild(achievementModal);
+    document.body.appendChild(achievementModalBackdrop);
+    
+    // Close handlers
+    achievementModalBackdrop.addEventListener("click", (evt) => {
+      if (evt.target === achievementModalBackdrop) {
+        closeAchievementModal();
+      }
+    });
+    
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape" && achievementModalBackdrop.classList.contains("is-open")) {
+        closeAchievementModal();
+      }
+    });
+  }
+  
+  function openAchievementModal(item, type) {
+    if (!achievementModal || !achievementModalContent) return;
+    
+    if (type === "badge") {
+      achievementModalContent.innerHTML = `
+        <header class="news-modal-header">
+          <h2 class="news-modal-title">${item.name || "Achievement Badge"}</h2>
+          <button class="news-modal-close" aria-label="Close">&times;</button>
+        </header>
+        <div class="news-modal-content">
+          <div class="achievement-icon-display">
+            ${getBadgeSvg(item.level || "Bronze", item.category || "General")}
+          </div>
+          <div class="achievement-details">
+            <div class="achievement-level">${item.level || "Bronze"} Badge</div>
+            <div class="achievement-category">${item.category || "General"}</div>
+            <div class="achievement-description">${item.description || "A special achievement unlocked at Task Karate."}</div>
+          </div>
+        </div>
+        <div class="news-modal-meta">
+          <span>Category: ${item.category || "General"}</span>
+          <span>Level: ${item.level || "Bronze"}</span>
+        </div>
+      `;
+    } else if (type === "goldstar") {
+      achievementModalContent.innerHTML = `
+        <header class="news-modal-header">
+          <h2 class="news-modal-title">${item.event || "Gold Star Achievement"}</h2>
+          <button class="news-modal-close" aria-label="Close">&times;</button>
+        </header>
+        <div class="news-modal-content">
+          <div class="goldstar-icon-display">
+            ${getGoldStarSvg()}
+          </div>
+          <div class="achievement-details">
+            <div class="goldstar-event">${item.event || "Special Event"}</div>
+            <div class="goldstar-category">${item.category || "Event"}</div>
+            <div class="goldstar-date">${item.date || "Recent"}</div>
+            <div class="goldstar-location">${item.location || "TASK Karate"}</div>
+            <div class="goldstar-note">${item.note || "Outstanding performance and dedication!"}</div>
+          </div>
+        </div>
+        <div class="news-modal-meta">
+          <span>Event: ${item.category || "General"}</span>
+          <span>Date: ${item.date || "Recent"}</span>
+        </div>
+      `;
+    }
+    
+    // Add close button handler
+    const closeBtn = achievementModal.querySelector(".news-modal-close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeAchievementModal);
+    }
+    
+    achievementModalBackdrop.classList.add("is-open");
+    dashboardRoot.classList.add("achievement-modal-open");
+  }
+  
+  function closeAchievementModal() {
+    if (!achievementModalBackdrop) return;
+    achievementModalBackdrop.classList.remove("is-open");
+    dashboardRoot.classList.remove("achievement-modal-open");
   }
 
   // -------------------------------------------------------
@@ -1570,6 +1675,130 @@
             </p>
           </div>
         </div>
+
+        <!-- FUN METRICS SECTION -->
+        <div class="fun-metrics-section">
+          <h3 class="fun-metrics-title">🎮 Your Training Stats</h3>
+          <div class="fun-metrics-grid">
+            <div class="fun-metric-card">
+              <div class="fun-metric-icon">🥋</div>
+              <div class="fun-metric-label">Favorite Move</div>
+              <div class="fun-metric-value">${s.funStats?.favoriteTechnique || "Front Kick"}</div>
+            </div>
+
+            <div class="fun-metric-card">
+              <div class="fun-metric-icon">🎯</div>
+              <div class="fun-metric-label">Training Goals</div>
+              <div class="fun-metric-value">${s.funStats?.trainingGoals || 0} Active</div>
+            </div>
+
+            <div class="fun-metric-card">
+              <div class="fun-metric-icon">⭐</div>
+              <div class="fun-metric-label">Perfect Days</div>
+              <div class="fun-metric-value">${s.funStats?.perfectDays || 0}</div>
+            </div>
+
+            <div class="fun-metric-card">
+              <div class="fun-metric-icon">🙌</div>
+              <div class="fun-metric-label">High Fives</div>
+              <div class="fun-metric-value">${s.funStats?.highFives || 0}</div>
+            </div>
+
+            <div class="fun-metric-card">
+              <div class="fun-metric-icon">👥</div>
+              <div class="fun-metric-label">Dojo Friends</div>
+              <div class="fun-metric-value">${s.funStats?.dojoFriends || 0}</div>
+            </div>
+
+            <div class="fun-metric-card">
+              <div class="fun-metric-icon">🏆</div>
+              <div class="fun-metric-label">Forms Mastered</div>
+              <div class="fun-metric-value">${s.funStats?.formsMastered || 0}</div>
+            </div>
+
+            <div class="fun-metric-card">
+              <div class="fun-metric-icon">📅</div>
+              <div class="fun-metric-label">Perfect Attendance</div>
+              <div class="fun-metric-value">${s.funStats?.perfectAttendance ? "✅ Yes!" : "Keep Trying!"}</div>
+            </div>
+
+            <div class="fun-metric-card">
+              <div class="fun-metric-icon">⚡</div>
+              <div class="fun-metric-label">Energy Level</div>
+              <div class="fun-metric-value">${s.funStats?.energyLevel || "Ready!"}</div>
+            </div>
+          </div>
+
+          <div class="motivation-bar">
+            <div class="motivation-label">Motivation Score</div>
+            <div class="motivation-meter">
+              <div class="motivation-fill" style="width: ${s.funStats?.motivationScore || 85}%;"></div>
+            </div>
+            <div class="motivation-value">${s.funStats?.motivationScore || 85}/100</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FUN METRICS PANEL -->
+      <section class="panel panel--fun-metrics">
+        <h2 class="panel-title">🎯 Training Fun Stats</h2>
+        <p class="panel-subtitle">Your personal training highlights and achievements!</p>
+
+        <div class="fun-metrics-grid">
+          <div class="fun-metric-card">
+            <div class="fun-metric-icon">🥋</div>
+            <div class="fun-metric-value">${s.funStats?.favoriteTechnique || "Front Kick"}</div>
+            <div class="fun-metric-label">Favorite Technique</div>
+          </div>
+          
+          <div class="fun-metric-card">
+            <div class="fun-metric-icon">🎯</div>
+            <div class="fun-metric-value">${s.funStats?.trainingGoals || 0}</div>
+            <div class="fun-metric-label">Goals Set</div>
+          </div>
+          
+          <div class="fun-metric-card">
+            <div class="fun-metric-icon">⭐</div>
+            <div class="fun-metric-value">${s.funStats?.perfectDays || 0}</div>
+            <div class="fun-metric-label">Perfect Days</div>
+          </div>
+          
+          <div class="fun-metric-card">
+            <div class="fun-metric-icon">🙌</div>
+            <div class="fun-metric-value">${s.funStats?.highFives || 0}</div>
+            <div class="fun-metric-label">High Fives Given</div>
+          </div>
+          
+          <div class="fun-metric-card">
+            <div class="fun-metric-icon">👥</div>
+            <div class="fun-metric-value">${s.funStats?.dojoFriends || 0}</div>
+            <div class="fun-metric-label">Dojo Friends</div>
+          </div>
+          
+          <div class="fun-metric-card">
+            <div class="fun-metric-icon">📜</div>
+            <div class="fun-metric-value">${s.funStats?.formsMastered || 0}</div>
+            <div class="fun-metric-label">Forms Mastered</div>
+          </div>
+          
+          <div class="fun-metric-card">
+            <div class="fun-metric-icon">🔥</div>
+            <div class="fun-metric-value">${s.funStats?.energyLevel || "Ready!"}</div>
+            <div class="fun-metric-label">Energy Level</div>
+          </div>
+          
+          <div class="fun-metric-card">
+            <div class="fun-metric-icon">💪</div>
+            <div class="fun-metric-value">${s.funStats?.motivationScore || 100}%</div>
+            <div class="fun-metric-label">Motivation Score</div>
+          </div>
+        </div>
+        
+        ${s.funStats?.perfectAttendance ? `
+          <div class="perfect-attendance-banner">
+            🏆 Perfect Attendance Champion! You haven't missed a class!
+          </div>
+        ` : ""}
       </section>
 
       <!-- GEAR PLACEHOLDER -->
@@ -1968,13 +2197,13 @@
 
     // Generate custom SVG badges based on level
     const badgeHtml = badges.length
-      ? badges.map((b) => {
+      ? badges.map((b, index) => {
           const level = b.level || "Bronze";
           const levelClass = `badge-level--${level.toLowerCase()}`;
           const badgeIcon = getBadgeSvg(b.level || "Bronze", b.category || "General");
           
           return `
-        <div class="badge-card ${levelClass}">
+        <div class="badge-card ${levelClass} achievement-clickable" data-badge-index="${index}">
           <div class="badge-icon">
             ${badgeIcon}
           </div>
@@ -1989,9 +2218,9 @@
 
     // Generate gold star cards with custom SVG
     const starHtml = stars.length
-      ? stars.map((g) => {
+      ? stars.map((g, index) => {
           return `
-        <div class="goldstar-card">
+        <div class="goldstar-card achievement-clickable" data-star-index="${index}">
           <div class="goldstar-icon">
             ${getGoldStarSvg()}
           </div>
@@ -2048,6 +2277,27 @@
     `;
 
     wireInstructorEditButtons();
+
+    // Wire achievement card clicks
+    const badgeCards = container.querySelectorAll(".badge-card.achievement-clickable");
+    badgeCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const index = parseInt(card.dataset.badgeIndex, 10);
+        if (!isNaN(index) && badges[index]) {
+          openAchievementModal(badges[index], "badge");
+        }
+      });
+    });
+
+    const starCards = container.querySelectorAll(".goldstar-card.achievement-clickable");
+    starCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const index = parseInt(card.dataset.starIndex, 10);
+        if (!isNaN(index) && stars[index]) {
+          openAchievementModal(stars[index], "goldstar");
+        }
+      });
+    });
   }
 
   // -------------------------------------------------------

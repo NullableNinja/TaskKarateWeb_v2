@@ -30,6 +30,9 @@
   <!-- FX Root (confetti, animations injected by JS) -->
   <div id="fx-root"></div>
 
+  <!-- Navigation Bar -->
+  <div id="site-header"></div>
+
 
   <!-- **********************************************************************
        [3] DASHBOARD HEADER AREA
@@ -208,8 +211,17 @@
 
   <!-- **********************************************************************
        [7] SCRIPTS
-       The dashboard runs entirely from this single JS file.
+       Navigation bar loading + dashboard functionality
        ********************************************************************** -->
+  <script>
+    // Load navigation bar from partials
+    fetch('./partials/navigation-bar.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+      })
+      .catch(error => console.error('Error loading navigation:', error));
+  </script>
   <script src="./assets/js/student-dashboard.js"></script>
 
 </body>

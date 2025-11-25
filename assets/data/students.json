@@ -15,6 +15,17 @@
       "birthday": "2013-03-15",
       "nextStripeLabel": "Green w/ 2nd Stripe",
       "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Roundhouse Kick",
+        "trainingGoals": 3,
+        "perfectDays": 12,
+        "highFives": 47,
+        "dojoFriends": 8,
+        "formsMastered": 2,
+        "perfectAttendance": true,
+        "energyLevel": "High",
+        "motivationScore": 92
+      },
       "badges": [
         {
           "name": "First Class!",
@@ -99,6 +110,17 @@
       "birthday": "2012-08-09",
       "nextStripeLabel": "Brown w/ 2nd Stripe",
       "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Spinning Hook Kick",
+        "trainingGoals": 5,
+        "perfectDays": 23,
+        "highFives": 89,
+        "dojoFriends": 12,
+        "formsMastered": 4,
+        "perfectAttendance": false,
+        "energyLevel": "Super High",
+        "motivationScore": 95
+      },
       "badges": [
         {
           "name": "Double Session Day",
