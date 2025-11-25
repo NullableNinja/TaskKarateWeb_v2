@@ -1,7 +1,8 @@
 // =========================================================
-// Task Karate – Student Hub
+// Task Karate – Student Hub (Comprehensive Overhaul)
 // Xbox × Punch-Out!! Style Dashboard (no modules)
 // Includes Instructor Mode + Slide-In Editor Panel
+// + Message Threading + Birthday Celebration + News Modals
 // =========================================================
 
 (function () {
@@ -16,7 +17,8 @@
     students: [],
     news: [],
     activeStudent: null,
-    activeThreadKey: null // buddy name for the active message thread
+    activeBuddyId: null,
+    activeThreadId: null
   };
 
   // Root-level DOM references
@@ -33,6 +35,11 @@
   let editorBodyEl = null;
   let editorCloseBtn = null;
 
+  // News modal references
+  let newsModalBackdrop = null;
+  let newsModal = null;
+  let newsModalContent = null;
+
   // -------------------------------------------------------
   // [2] ENTRYPOINT
   // -------------------------------------------------------
@@ -48,6 +55,9 @@
 
     // Build the global slide-in editor shell
     buildEditorShell();
+    
+    // Build news modal shell
+    buildNewsModalShell();
 
     // Resolve session from localStorage
     const session = loadSession();
@@ -85,6 +95,9 @@
         return;
       }
 
+      // Check for birthday and trigger celebration
+      checkAndTriggerBirthday(state.activeStudent);
+
       // Header + stat capsule
       renderHeader(state.activeStudent);
       renderCapsuleStats();
@@ -105,7 +118,123 @@
   }
 
   // -------------------------------------------------------
-  // [3] SESSION HELPERS
+  // [3] BIRTHDAY CELEBRATION SYSTEM
+  // -------------------------------------------------------
+  
+  function checkAndTriggerBirthday(student) {
+    if (!student || !student.birthday) return;
+
+    const today = new Date();
+    const birthday = new Date(student.birthday);
+    
+    // Check if today is the birthday (month and day match)
+    const isBirthdayToday = 
+      today.getMonth() === birthday.getMonth() && 
+      today.getDate() === birthday.getDate();
+
+    if (!isBirthdayToday) return;
+
+    // Check if we've already celebrated this session
+    const celebrationKey = `tkBirthdayCelebrated_${student.id}`;
+    const alreadyCelebrated = sessionStorage.getItem(celebrationKey);
+    
+    if (alreadyCelebrated) return;
+
+    // Trigger celebration
+    triggerConfetti();
+    sessionStorage.setItem(celebrationKey, "true");
+  }
+
+  function triggerConfetti() {
+    const colors = ["#facc15", "#38bdf8", "#22c55e", "#ef4444", "#a855f7", "#f97316"];
+    const confettiCount = 50;
+    
+    for (let i = 0; i < confettiCount; i++) {
+      setTimeout(() => {
+        const piece = document.createElement("div");
+        piece.className = "confetti-piece";
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = Math.random() * 0.5 + "s";
+        piece.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        
+        document.getElementById("fx-root").appendChild(piece);
+        
+        // Remove piece after animation
+        setTimeout(() => piece.remove(), 4000);
+      }, i * 30);
+    }
+  }
+
+  // -------------------------------------------------------
+  // [4] NEWS MODAL SYSTEM
+  // -------------------------------------------------------
+  
+  function buildNewsModalShell() {
+    newsModalBackdrop = document.createElement("div");
+    newsModalBackdrop.className = "news-modal-backdrop";
+    
+    newsModal = document.createElement("article");
+    newsModal.className = "news-modal";
+    
+    newsModalContent = document.createElement("div");
+    newsModalContent.className = "news-modal-content";
+    
+    newsModal.appendChild(newsModalContent);
+    newsModalBackdrop.appendChild(newsModal);
+    document.body.appendChild(newsModalBackdrop);
+    
+    // Close handlers
+    newsModalBackdrop.addEventListener("click", (evt) => {
+      if (evt.target === newsModalBackdrop) {
+        closeNewsModal();
+      }
+    });
+    
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape" && newsModalBackdrop.classList.contains("is-open")) {
+        closeNewsModal();
+      }
+    });
+  }
+  
+  function openNewsModal(article) {
+    if (!newsModal || !newsModalContent) return;
+    
+    newsModalContent.innerHTML = `
+      <header class="news-modal-header">
+        <h2 class="news-modal-title">${article.title || "News Article"}</h2>
+        <button class="news-modal-close" aria-label="Close">&times;</button>
+      </header>
+      <div class="news-modal-content">
+        <div class="news-modal-tag">${article.tag || "General"}</div>
+        <p class="news-modal-date">${article.date || "Recent"}</p>
+        <div class="news-modal-text">${article.fullText || article.summary || "No content available."}</div>
+      </div>
+      <div class="news-modal-meta">
+        <span>Category: ${article.tag || "General"}</span>
+        <span>Published: ${article.date || "Recent"}</span>
+      </div>
+    `;
+    
+    // Add close button handler
+    const closeBtn = newsModal.querySelector(".news-modal-close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeNewsModal);
+    }
+    
+    newsModalBackdrop.classList.add("is-open");
+    dashboardRoot.classList.add("news-modal-open");
+  }
+  
+  function closeNewsModal() {
+    if (!newsModalBackdrop) return;
+    newsModalBackdrop.classList.remove("is-open");
+    dashboardRoot.classList.remove("news-modal-open");
+  }
+
+  // -------------------------------------------------------
+  // [5] SESSION HELPERS
   // -------------------------------------------------------
   function loadSession() {
     try {
@@ -119,7 +248,7 @@
   }
 
   // -------------------------------------------------------
-  // [4] LOGOUT
+  // [6] LOGOUT
   // -------------------------------------------------------
   function setupLogout() {
     const logoutBtn = document.getElementById("logoutBtn");
@@ -132,7 +261,7 @@
   }
 
   // -------------------------------------------------------
-  // [5] INSTRUCTOR MODE (TOGGLE + BANNER)
+  // [7] INSTRUCTOR MODE (TOGGLE + BANNER)
   // -------------------------------------------------------
 
   /**
@@ -178,13 +307,6 @@
       instructorMode = !instructorMode;
       setInstructorMode(instructorMode);
     });
-
-    // (Optional future) persist instructor mode per session:
-    // const saved = localStorage.getItem("tkInstructorMode");
-    // if (saved === "true") {
-    //   instructorMode = true;
-    //   setInstructorMode(true);
-    // }
   }
 
   /**
@@ -215,13 +337,10 @@
         detail: { active }
       })
     );
-
-    // Optional: persist later
-    // localStorage.setItem("tkInstructorMode", active ? "true" : "false");
   }
 
   // -------------------------------------------------------
-  // [6] SLIDE-IN EDITOR PANEL (RIGHT SIDE)
+  // [8] SLIDE-IN EDITOR PANEL (RIGHT SIDE)
   // -------------------------------------------------------
 
   /**
@@ -351,7 +470,7 @@
 
       // TRAINING TAB EDITORS
       case "training-assignments":
-        openPlaceholderEditor("Edit Assignments", "Assignments editor coming soon.");
+        openAssignmentsEditor();
         break;
       case "training-practice":
         openPlaceholderEditor("Edit Practice Deck", "Practice deck editor coming soon.");
@@ -362,7 +481,7 @@
         openPlaceholderEditor("Manage Buddies", "Buddy assignment tools coming soon.");
         break;
       case "messages-thread":
-        openPlaceholderEditor("Review Messages", "Message moderation tools coming soon.");
+        openMessageReviewEditor();
         break;
 
       // ACHIEVEMENTS TAB EDITORS
@@ -829,8 +948,217 @@
     });
   }
 
+  /**
+   * NEW: Assignments Editor for Training Tab
+   */
+  function openAssignmentsEditor() {
+    const s = state.activeStudent;
+    if (!s) return;
+
+    const assignments = Array.isArray(s.assignments) ? s.assignments : [];
+    
+    const assignmentsListHtml = assignments.length
+      ? assignments.map((a, i) => `
+          <div class="assignment-item" data-index="${i}">
+            <div class="assignment-header">
+              <strong>${a.title || "Untitled Assignment"}</strong>
+              <button type="button" class="btn-remove-assignment" data-index="${i}">Remove</button>
+            </div>
+            <div class="assignment-details">
+              <p><small>Focus: ${a.focus || "General practice"}</small></p>
+              <p><small>Due: ${a.due || "No due date"}</small></p>
+              ${a.notes ? `<p><small>Notes: ${a.notes}</small></p>` : ""}
+            </div>
+          </div>
+        `).join("")
+      : "<p class=&quot;muted&quot;>No assignments assigned yet.</p>";
+
+    openEditor({
+      title: "Manage Assignments",
+      contentHtml: `
+        <form id="assignmentsForm" class="editor-form" autocomplete="off">
+          <div class="assignments-list">
+            <h4>Current Assignments</h4>
+            ${assignmentsListHtml}
+          </div>
+          
+          <div class="new-assignment">
+            <h4>Add New Assignment</h4>
+            <div class="form-row">
+              <label class="form-label" for="newAssignmentTitle">Title</label>
+              <input
+                id="newAssignmentTitle"
+                type="text"
+                class="form-input"
+                placeholder="Assignment title..."
+                required
+              />
+            </div>
+            
+            <div class="form-row">
+              <label class="form-label" for="newAssignmentFocus">Focus</label>
+              <input
+                id="newAssignmentFocus"
+                type="text"
+                class="form-input"
+                placeholder="Practice focus area..."
+              />
+            </div>
+            
+            <div class="form-row">
+              <label class="form-label" for="newAssignmentNotes">Notes</label>
+              <textarea
+                id="newAssignmentNotes"
+                class="form-input"
+                placeholder="Additional notes or instructions..."
+                rows="3"
+              ></textarea>
+            </div>
+            
+            <div class="form-row">
+              <label class="form-label" for="newAssignmentDue">Due</label>
+              <input
+                id="newAssignmentDue"
+                type="text"
+                class="form-input"
+                placeholder="e.g., Next Class, This Week"
+              />
+            </div>
+          </div>
+
+          <div class="editor-actions">
+            <button
+              type="button"
+              class="btn btn--ghost"
+              id="assignmentsCancel"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="btn btn--primary"
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
+      `
+    });
+
+    const form = document.getElementById("assignmentsForm");
+    const cancelBtn = document.getElementById("assignmentsCancel");
+
+    if (cancelBtn) {
+      cancelBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeEditor();
+      });
+    }
+
+    // Handle remove buttons
+    const removeButtons = form.querySelectorAll(".btn-remove-assignment");
+    removeButtons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const index = parseInt(btn.dataset.index, 10);
+        if (!isNaN(index)) {
+          assignments.splice(index, 1);
+          openAssignmentsEditor(); // Refresh the editor
+        }
+      });
+    });
+
+    if (!form) return;
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const titleInput = document.getElementById("newAssignmentTitle");
+      const focusInput = document.getElementById("newAssignmentFocus");
+      const notesInput = document.getElementById("newAssignmentNotes");
+      const dueInput = document.getElementById("newAssignmentDue");
+
+      // Add new assignment if title is provided
+      if (titleInput && titleInput.value.trim()) {
+        const newAssignment = {
+          title: titleInput.value.trim(),
+          focus: focusInput ? focusInput.value.trim() : "",
+          notes: notesInput ? notesInput.value.trim() : "",
+          due: dueInput ? dueInput.value.trim() : ""
+        };
+
+        if (!Array.isArray(s.assignments)) {
+          s.assignments = [];
+        }
+        s.assignments.push(newAssignment);
+      }
+
+      // Update the student's assignments
+      s.assignments = assignments;
+
+      // Re-render training tab
+      renderTraining();
+
+      closeEditor();
+    });
+  }
+
+  /**
+   * Message Review Editor for instructors
+   */
+  function openMessageReviewEditor() {
+    const s = state.activeStudent;
+    if (!s) return;
+
+    const messages = Array.isArray(s.messages) ? s.messages : [];
+    
+    const messagesListHtml = messages.length
+      ? messages.map((m) => `
+          <div class="message-review-item">
+            <div class="message-meta">
+              <strong>From: ${getStudentNameById(m.fromId) || m.fromId || "Unknown"}</strong>
+              <span>To: ${getStudentNameById(m.toId) || m.toId || "Unknown"}</span>
+              <span>${formatMessageTime(m.timestamp)}</span>
+            </div>
+            <div class="message-text">"${m.text}"</div>
+            <div class="message-status">Read: ${m.read ? "Yes" : "No"}</div>
+          </div>
+        `).join("")
+      : "<p class=&quot;muted&quot;>No messages for this student.</p>";
+
+    openEditor({
+      title: "Review Messages",
+      contentHtml: `
+        <div class="message-review">
+          <h4>Message History for ${s.name}</h4>
+          <div class="messages-list">
+            ${messagesListHtml}
+          </div>
+          
+          <div class="editor-actions">
+            <button
+              type="button"
+              class="btn btn--primary"
+              id="messageReviewClose"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      `
+    });
+
+    const closeBtn = document.getElementById("messageReviewClose");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeEditor();
+      });
+    }
+  }
+
   // -------------------------------------------------------
-  // [7] UTILS
+  // [9] UTILS
   // -------------------------------------------------------
   function pickAvatarColor(student) {
     if (student && student.avatarColor) {
@@ -923,8 +1251,38 @@
     }
   }
 
+  function getStudentNameById(studentId) {
+    if (!studentId) return null;
+    const student = state.students.find(s => s.id === studentId);
+    return student ? student.name : null;
+  }
+
+  function calculateUnreadCount(student, buddyId) {
+    if (!student || !buddyId) return 0;
+    
+    const messages = Array.isArray(student.messages) ? student.messages : [];
+    
+    return messages.filter(msg => 
+      msg.fromId === buddyId && 
+      msg.toId === student.id && 
+      msg.read === false
+    ).length;
+  }
+
+  function markMessagesAsRead(student, buddyId) {
+    if (!student || !buddyId) return;
+    
+    const messages = Array.isArray(student.messages) ? student.messages : [];
+    
+    messages.forEach(msg => {
+      if (msg.fromId === buddyId && msg.toId === student.id) {
+        msg.read = true;
+      }
+    });
+  }
+
   // -------------------------------------------------------
-  // [8] HEADER + CAPSULE
+  // [10] HEADER + CAPSULE
   // -------------------------------------------------------
   function renderHeader(student) {
     const initialsEl = document.getElementById("heroInitials");
@@ -1033,7 +1391,7 @@
   }
 
   // -------------------------------------------------------
-  // [9] TABS
+  // [11] TABS
   // -------------------------------------------------------
   function setupTabs() {
     const tabs = document.querySelectorAll(".hub-tab");
@@ -1069,7 +1427,7 @@
   }
 
   // -------------------------------------------------------
-  // [10] STATUS TAB (WITH INSTRUCTOR-ONLY EDIT CHIPS)
+  // [12] STATUS TAB (WITH INSTRUCTOR-ONLY EDIT CHIPS)
   // -------------------------------------------------------
   function renderStatus() {
     const container = document.getElementById("hubContent");
@@ -1079,10 +1437,28 @@
     const progressPercent = calculateProgressPercent(s);
     const progressText = getProgressText(s);
 
+    // Check for birthday
+    let birthdayCallout = "";
+    const today = new Date();
+    const birthday = new Date(s.birthday);
+    const isBirthdayToday = 
+      today.getMonth() === birthday.getMonth() && 
+      today.getDate() === birthday.getDate();
+    
+    if (isBirthdayToday) {
+      birthdayCallout = `
+        <div class="birthday-callout">
+          🎉 Happy Birthday, ${s.name.split(" ")[0]}! Thanks for spending part of your special day with us at the dojo.
+        </div>
+      `;
+    }
+
     container.innerHTML = `
       <!-- =========================================================
            STATUS TAB — CHARACTER PANEL
            ========================================================= -->
+
+      ${birthdayCallout}
 
       <!-- ABOUT PANEL -->
       <section class="panel panel--about">
@@ -1223,7 +1599,7 @@
   }
 
   // -------------------------------------------------------
-  // [11] TRAINING TAB
+  // [13] TRAINING TAB
   // -------------------------------------------------------
   function renderTraining() {
     const container = document.getElementById("hubContent");
@@ -1314,7 +1690,7 @@
   }
 
   // -------------------------------------------------------
-  // [12] MESSAGES TAB — THREADED INBOX STYLE
+  // [14] MESSAGES TAB — THREADED INBOX STYLE
   // -------------------------------------------------------
   function renderMessages() {
     const container = document.getElementById("hubContent");
@@ -1324,12 +1700,9 @@
     const buddies = Array.isArray(s.buddies) ? s.buddies : [];
 
     // If we have buddies and no active thread yet, default to the first buddy.
-    if (!state.activeThreadKey && buddies.length > 0) {
-      state.activeThreadKey = buddies[0].name;
+    if (!state.activeBuddyId && buddies.length > 0) {
+      state.activeBuddyId = buddies[0].name;
     }
-
-    const store = loadMessageStore(s);
-    const threads = store.threads || {};
 
     const buddyListHtml = buddies.length
       ? buddies
@@ -1337,11 +1710,20 @@
             const key = b.name;
             const beltColor = getBeltColorFromRank(b.rank || "");
             const initials = getInitialsFromName(b.name);
-            const thread = threads[key] || [];
-            const last = thread.length ? thread[thread.length - 1] : null;
+            
+            // Calculate unread count
+            const unreadCount = calculateUnreadCount(s, key);
+            
+            // Get last message preview
+            const messages = Array.isArray(s.messages) ? s.messages : [];
+            const buddyMessages = messages.filter(m => 
+              (m.fromId === s.id && m.toId === key) || 
+              (m.toId === s.id && m.fromId === key)
+            );
+            const last = buddyMessages.length ? buddyMessages[buddyMessages.length - 1] : null;
             const preview = last ? last.text : "No messages yet";
 
-            const isActive = state.activeThreadKey === key;
+            const isActive = state.activeBuddyId === key;
 
             return `
               <button
@@ -1364,13 +1746,14 @@
                     ${preview}
                   </div>
                 </div>
+                ${unreadCount > 0 ? `<div class="buddy-unread">${unreadCount}</div>` : ""}
               </button>
             `;
           })
           .join("")
       : `<p class="muted text-sm">No buddies assigned yet. Pair up in class to unlock messaging.</p>`;
 
-    const activeKey = state.activeThreadKey;
+    const activeKey = state.activeBuddyId;
     let threadViewHtml = "";
 
     if (!activeKey || !buddies.length) {
@@ -1383,14 +1766,23 @@
       `;
     } else {
       const buddy = buddies.find((b) => b.name === activeKey);
-      const threadMessages = threads[activeKey] || [];
       const beltColor = getBeltColorFromRank(buddy ? buddy.rank || "" : "");
       const initials = getInitialsFromName(activeKey);
+
+      // Get threaded messages
+      const messages = Array.isArray(s.messages) ? s.messages : [];
+      const threadMessages = messages.filter(m => 
+        (m.fromId === s.id && m.toId === activeKey) || 
+        (m.toId === s.id && m.fromId === activeKey)
+      );
+
+      // Mark messages as read when opening thread
+      markMessagesAsRead(s, activeKey);
 
       const messagesHtml = threadMessages.length
         ? threadMessages
             .map((m) => {
-              const isMe = m.from === "self";
+              const isMe = m.fromId === s.id;
               const fromLabel = isMe ? "You" : activeKey;
               const timeLabel = formatMessageTime(m.timestamp);
 
@@ -1503,8 +1895,8 @@
       if (!key) return;
 
       row.addEventListener("click", () => {
-        state.activeThreadKey = key;
-        renderMessages();
+        state.activeBuddyId = key;
+        renderMessages(); // Re-render to show active thread and mark as read
       });
     });
 
@@ -1519,26 +1911,33 @@
         const text = input.value.trim();
         if (!text) return;
 
-        const storeAfter = loadMessageStore(s);
-        const threadsAfter = storeAfter.threads || {};
         const nowIso = new Date().toISOString();
-
-        if (!threadsAfter[activeKey]) {
-          threadsAfter[activeKey] = [];
-        }
-
-        threadsAfter[activeKey].push({
-          from: "self",
+        const newMessage = {
+          fromId: s.id,
+          toId: activeKey,
           text,
-          timestamp: nowIso
-        });
+          timestamp: nowIso,
+          read: false
+        };
 
-        storeAfter.threads = threadsAfter;
-        saveMessageStore(s, storeAfter);
+        // Add to current student's messages
+        if (!Array.isArray(s.messages)) {
+          s.messages = [];
+        }
+        s.messages.push(newMessage);
+
+        // Also add to recipient's messages if they exist
+        const recipient = state.students.find(st => st.id === activeKey);
+        if (recipient) {
+          if (!Array.isArray(recipient.messages)) {
+            recipient.messages = [];
+          }
+          recipient.messages.push({...newMessage, read: false});
+        }
 
         input.value = "";
 
-        // Re-render messages tab to refresh preview + thread
+        // Re-render messages tab to refresh thread
         renderMessages();
 
         // After re-render, scroll to bottom of thread
@@ -1556,7 +1955,7 @@
   }
 
   // -------------------------------------------------------
-  // [13] ACHIEVEMENTS TAB
+  // [15] ACHIEVEMENTS TAB — OVERHAUL WITH CUSTOM SVG
   // -------------------------------------------------------
   function renderAchievements() {
     const container = document.getElementById("hubContent");
@@ -1567,31 +1966,43 @@
     const badges = Array.isArray(s.badges) ? s.badges : [];
     const stars = Array.isArray(s.goldStars) ? s.goldStars : [];
 
+    // Generate custom SVG badges based on level
     const badgeHtml = badges.length
-      ? badges
-          .map(
-            (b) => `
-        <div class="badge-card">
+      ? badges.map((b) => {
+          const level = b.level || "Bronze";
+          const levelClass = `badge-level--${level.toLowerCase()}`;
+          const badgeIcon = getBadgeSvg(b.level || "Bronze", b.category || "General");
+          
+          return `
+        <div class="badge-card ${levelClass}">
+          <div class="badge-icon">
+            ${badgeIcon}
+          </div>
           <div class="badge-title">${b.name}</div>
           <div class="badge-category">${b.category}</div>
+          <div class="badge-progress">${level} Badge</div>
         </div>
-      `
-          )
-          .join("")
+      `;
+        })
+      .join("")
       : `<p class="muted">No badges earned yet. Keep training!</p>`;
 
+    // Generate gold star cards with custom SVG
     const starHtml = stars.length
-      ? stars
-          .map(
-            (g) => `
+      ? stars.map((g) => {
+          return `
         <div class="goldstar-card">
-          <strong>${g.event}</strong>
+          <div class="goldstar-icon">
+            ${getGoldStarSvg()}
+          </div>
+          <div class="goldstar-title">${g.event}</div>
           <div class="goldstar-meta">${g.category}</div>
           <div class="goldstar-meta">${g.date}</div>
+          <div class="goldstar-meta">${g.location || "TASK Karate"}</div>
         </div>
-      `
-          )
-          .join("")
+      `;
+        })
+      .join("")
       : `<p class="muted">No gold stars yet. Participate in events to earn them!</p>`;
 
     container.innerHTML = `
@@ -1600,8 +2011,8 @@
            ========================================================= -->
 
       <section class="panel">
-        <h2 class="panel-title">Badges</h2>
-        <p class="panel-subtitle">Special achievements you’ve unlocked at Task Karate.</p>
+        <h2 class="panel-title">Achievement Badges</h2>
+        <p class="panel-subtitle">Milestone achievements you've unlocked at Task Karate.</p>
 
         <!-- Instructor-only: manage badges -->
         <div class="instructor-only">
@@ -1640,7 +2051,7 @@
   }
 
   // -------------------------------------------------------
-  // [14] NEWS TAB
+  // [16] NEWS TAB — MODAL POPUP SYSTEM
   // -------------------------------------------------------
   function renderNews() {
     const container = document.getElementById("hubContent");
@@ -1649,17 +2060,20 @@
     const news = state.news || [];
 
     const html = news.length
-      ? news
-          .map(
-            (n) => `
-        <article class="news-card">
+      ? news.map((n) => {
+          const fullText = n.fullText || n.summary + "\n\nThis is where additional details about the news article would appear. Students and parents can click to read more about upcoming events, schedule changes, or important announcements from the dojo.";
+          
+          return `
+        <article class="news-card" data-news='${JSON.stringify(n).replace(/'/g, "&apos;")}'>
+          <div class="news-tag">${n.tag || "General"}</div>
           <h3 class="news-title">${n.title}</h3>
-          <p class="muted">${n.summary}</p>
           <p class="news-date">${n.date}</p>
+          <p class="news-summary">${n.summary}</p>
+          <div class="news-read-more">Click to read more →</div>
         </article>
-      `
-          )
-          .join("")
+      `;
+        })
+      .join("")
       : `<p class="muted">No dojo news available.</p>`;
 
     container.innerHTML = `
@@ -1687,10 +2101,72 @@
     `;
 
     wireInstructorEditButtons();
+
+    // Wire news card clicks
+    const newsCards = container.querySelectorAll(".news-card");
+    newsCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        try {
+          const newsData = JSON.parse(card.dataset.news);
+          openNewsModal(newsData);
+        } catch (e) {
+          console.warn("Error parsing news data:", e);
+        }
+      });
+    });
   }
 
   // -------------------------------------------------------
-  // [15] PROGRESS HELPERS
+  // [17] BADGE SVG GENERATORS
+  // -------------------------------------------------------
+  
+  function getBadgeSvg(level, category) {
+    const colors = {
+      Bronze: ["#cd7f32", "#8b5a2b"],
+      Silver: ["#c0c0c0", "#808080"],
+      Gold: ["#ffd700", "#daa520"],
+      Platinum: ["#e5e4e2", "#b0b0b0"]
+    };
+
+    const [primaryColor, secondaryColor] = colors[level] || colors.Bronze;
+
+    const icons = {
+      Attendance: '<path d="M12 2l2 4h4l-3.5 2.5L15 14l-3-2.5-3 2.5 2.5-5.5L8 6h4z"/>',
+      Forms: '<path d="M9 3h6l1 2h3v16H5V5h3l1-2zm0 6h6v2H9V9zm0 4h6v2H9v-2z"/>',
+      Effort: '<path d="M12 2l3 5 5 .7-3.6 3.5.9 5.1L12 14.8 6.7 16.3l.9-5.1L4 7.7 9 7l3-5z"/>',
+      Community: '<path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>',
+      Role: '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>',
+      General: '<path d="M12 2l3 5 5 .7-3.6 3.5.9 5.1L12 14.8 6.7 16.3l.9-5.1L4 7.7 9 7l3-5z"/>'
+    };
+
+    const icon = icons[category] || icons.General;
+
+    return `
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="${primaryColor}" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" fill="${secondaryColor}" opacity="0.3"/>
+        <circle cx="12" cy="12" r="9" fill="${primaryColor}" opacity="0.6"/>
+        ${icon}
+      </svg>
+    `;
+  }
+
+  function getGoldStarSvg() {
+    return `
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="#facc15" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#f59e0b" stroke-width="1" fill="url(#goldGradient)"/>
+        <defs>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#fde047;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#facc15;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+      </svg>
+    `;
+  }
+
+  // -------------------------------------------------------
+  // [18] PROGRESS HELPERS
   // -------------------------------------------------------
   function calculateProgressPercent(s) {
     if (s.rankType === "degree") {

@@ -42,12 +42,14 @@
         }
       ],
       "buddies": [
-        { "name": "Logan Perez", "rank": "Purple Belt", "streak": 11, "status": "On the mats" },
-        { "name": "Aiden Walker", "rank": "Blue Belt", "streak": 7, "status": "Cheering you on" }
+        { "name": "Logan Perez", "rank": "Brown Belt", "streak": 11, "status": "On the mats" },
+        { "name": "Naomi Wu", "rank": "Purple Belt", "streak": 7, "status": "Cheering you on" }
       ],
       "messages": [
-        { "from": "Coach Jamie", "text": "Nice snap on your front kicks tonight!", "timestamp": "Today" },
-        { "from": "Logan", "text": "Congrats on landing the roundhouse combo!", "timestamp": "2d" }
+        { "fromId": "logan-perez", "toId": "emma-thompson", "text": "Congrats on landing the roundhouse combo!", "timestamp": "2025-11-23T15:30:00Z", "read": false },
+        { "fromId": "emma-thompson", "toId": "logan-perez", "text": "Thanks! Your front kicks were looking sharp too", "timestamp": "2025-11-23T15:35:00Z", "read": true },
+        { "fromId": "naomi-wu", "toId": "emma-thompson", "text": "Nice work on the form practice today!", "timestamp": "2025-11-24T16:00:00Z", "read": false },
+        { "fromId": "ann-yehle", "toId": "emma-thompson", "text": "Great focus in class today. Keep it up!", "timestamp": "2025-11-25T10:15:00Z", "read": false }
       ],
       "assignments": [
         {
@@ -127,7 +129,8 @@
         { "name": "Emma Thompson", "rank": "Green Belt", "streak": 11, "status": "Locked in" }
       ],
       "messages": [
-        { "from": "Sensei", "text": "Your footwork is looking sharp.", "timestamp": "3d" }
+        { "fromId": "emma-thompson", "toId": "logan-perez", "text": "Thanks! Your front kicks were looking sharp too", "timestamp": "2025-11-23T15:35:00Z", "read": true },
+        { "fromId": "ann-yehle", "toId": "logan-perez", "text": "Your footwork is looking sharp.", "timestamp": "2025-11-22T14:20:00Z", "read": true }
       ],
       "assignments": [],
       "practice": [],
@@ -169,8 +172,12 @@
           "description": "You began learning Me Young and can perform the opening section."
         }
       ],
-      "buddies": [],
-      "messages": [],
+      "buddies": [
+        { "name": "Emma Thompson", "rank": "Green Belt", "streak": 11, "status": "Training partner" }
+      ],
+      "messages": [
+        { "fromId": "naomi-wu", "toId": "emma-thompson", "text": "Nice work on the form practice today!", "timestamp": "2025-11-24T16:00:00Z", "read": false }
+      ],
       "assignments": [],
       "practice": [],
       "goldStars": [],
@@ -222,8 +229,15 @@
           "description": "You help classes run smoothly from bow-in to bow-out."
         }
       ],
-      "buddies": [],
-      "messages": [],
+      "buddies": [
+        { "name": "Emma Thompson", "rank": "Green Belt", "streak": 11, "status": "Student" },
+        { "name": "Logan Perez", "rank": "Brown Belt", "streak": 11, "status": "Student" },
+        { "name": "Naomi Wu", "rank": "Purple Belt", "streak": 7, "status": "Student" }
+      ],
+      "messages": [
+        { "fromId": "ann-yehle", "toId": "emma-thompson", "text": "Great focus in class today. Keep it up!", "timestamp": "2025-11-25T10:15:00Z", "read": false },
+        { "fromId": "ann-yehle", "toId": "logan-perez", "text": "Your footwork is looking sharp.", "timestamp": "2025-11-22T14:20:00Z", "read": true }
+      ],
       "assignments": [],
       "practice": [],
       "goldStars": [
