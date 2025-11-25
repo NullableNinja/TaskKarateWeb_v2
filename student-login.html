@@ -25,6 +25,9 @@
   <!-- Background Geometry Field -->
   <div class="bg-geo" aria-hidden="true"></div>
 
+  <!-- Navigation Bar -->
+  <div id="site-header"></div>
+
   <!-- ============================================================
        [4] MAIN LAYOUT CONTAINER
        ============================================================ -->
@@ -159,9 +162,17 @@
 
   <!-- ============================================================
        [8] SCRIPTS
-       auth-guard.js → Handles preventing logged-in students from returning here
-       student-login.js → Handles tile search, tile selection, modal, PIN
+       Navigation bar loading + authentication + login functionality
        ============================================================ -->
+  <script>
+    // Load navigation bar from partials
+    fetch('./partials/navigation-bar.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+      })
+      .catch(error => console.error('Error loading navigation:', error));
+  </script>
   <script src="./assets/js/auth-guard.js"></script>
   <script src="./assets/js/student-login.js"></script>
 
