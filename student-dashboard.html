@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<!-- ======================================================================
+     TASK KARATE — STUDENT HUB (Dashboard)
+     Clean Rebuild • Fully Commented • Version 2025.11
+     ====================================================================== -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Karate – Student Hub</title>
+
+  <!-- ============================================================
+       [1] CORE STYLES
+       main.css      – global / reset / layout
+       student-dashboard.css – dashboard visuals
+       ============================================================ -->
+  <link rel="stylesheet" href="./assets/styles/main.css" />
+  <link rel="stylesheet" href="./assets/styles/student-dashboard.css" />
+</head>
+
+<!-- ======================================================================
+     [2] BODY ROOT
+     dashboard-root gives us theme variables + Paper-Fu baseline
+     ====================================================================== -->
+<body class="dashboard-root">
+
+  <!-- Background Layer (geometric Paper-Fu pattern) -->
+  <div class="bg-geo"></div>
+
+  <!-- FX Root (confetti, animations injected by JS) -->
+  <div id="fx-root"></div>
+
+
+  <!-- **********************************************************************
+       [3] DASHBOARD HEADER AREA
+       Includes:
+       • Avatar + Name + Rank
+       • Stripe/Degree Progress Meter
+       • XP Meter
+       • Logout Button
+       • Instructor Mode Toggle (hidden unless assistant/instructor)
+       ********************************************************************** -->
+<!-- **********************************************************************
+     [3] DASHBOARD HEADER AREA — CLEAN + CORRECT
+     ********************************************************************** -->
+<header class="hub-header">
+
+  <!-- ---------------------------------------
+       LEFT: Student Identity Block
+       --------------------------------------- -->
+  <div class="hero-left">
+    <div class="hero-avatar" id="heroInitials">AA</div>
+
+    <div class="hero-info">
+      <h1 class="hero-name" id="heroName">Student Name</h1>
+      <p class="hero-rank" id="heroRank">Rank</p>
+      <p class="hero-role" id="heroRole"><!-- Filled by JS --></p>
+    </div>
+  </div>
+
+  <!-- ---------------------------------------
+       CENTER: Progress Meters (Belt + XP)
+       --------------------------------------- -->
+  <div class="hero-center">
+    <div class="promo-box">
+      <p class="promo-label" id="promoLabel">Stripe Progress</p>
+
+      <!-- Belt Stripe / Degree Meter -->
+      <div class="promo-meter">
+        <div class="promo-fill" id="promoFill"></div>
+      </div>
+
+      <p class="promo-detail" id="promoDetail"></p>
+
+      <!-- XP Meter -->
+      <div class="xp-meter">
+        <div class="xp-fill" id="xpFill"></div>
+      </div>
+      <p class="xp-label" id="xpLabel"></p>
+    </div>
+  </div>
+
+  <!-- ---------------------------------------
+       RIGHT: Logout + Instructor Mode
+       --------------------------------------- -->
+  <div class="header-right">
+    <!-- Logout -->
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <!-- Instructor Mode Toggle -->
+    <div id="instructorToggleWrapper" class="instructor-toggle-wrapper hidden">
+      <label class="toggle-label">Instructor Mode</label>
+      <div id="instructorToggle" class="toggle-switch">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+  </div>
+
+</header>
+  <!-- END HEADER -->
+
+
+  <!-- **********************************************************************
+       [4] FLOATING STUDENT STAT CAPSULE
+       Always visible under header.
+       Shows attendance + streak + IS3 + belts earned.
+       ********************************************************************** -->
+  <section class="stat-capsule" id="statCapsule">
+
+    <div class="stat-item">
+      <p class="stat-label">Total Classes</p>
+      <p class="stat-value" id="capsuleTotalClasses">0</p>
+    </div>
+
+    <div class="stat-item">
+      <p class="stat-label">This Month</p>
+      <p class="stat-value" id="capsuleMonthClasses">0</p>
+    </div>
+
+    <div class="stat-item">
+      <p class="stat-label">Streak</p>
+      <p class="stat-value" id="capsuleStreak">0 days</p>
+    </div>
+
+    <div class="stat-item">
+      <p="stat-label">Belts Earned</p>
+      <p class="stat-value" id="capsuleBelts">0</p>
+    </div>
+
+    <div class="stat-item">
+      <p class="stat-label">IS3 Rank</p>
+      <p class="stat-value" id="capsuleIS3">—</p>
+    </div>
+
+  </section>
+  <!-- END CAPSULE -->
+
+
+  <!-- **********************************************************************
+       [5] TAB NAVIGATION BAR
+       Xbox-style segmented menu
+       Tabs trigger render functions in student-dashboard.js
+       ********************************************************************** -->
+  <nav class="hub-tabs" aria-label="Student hub sections">
+
+    <!-- STATUS TAB -->
+    <button class="hub-tab hub-tab--status is-active" type="button" data-tab="status">
+      <span class="hub-tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
+          <path d="M12 3L5 6v5c0 4.06 2.67 7.79 7 9 4.33-1.21 7-4.94 7-9V6l-7-3z"></path>
+        </svg>
+      </span>
+      <span class="hub-tab-label">Status</span>
+    </button>
+
+    <!-- TRAINING TAB -->
+    <button class="hub-tab hub-tab--training" type="button" data-tab="training">
+      <span class="hub-tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
+          <path d="M9 3h6l1 2h3v16H5V5h3l1-2zm0 6h6v2H9V9zm0 4h6v2H9v-2z"></path>
+        </svg>
+      </span>
+      <span class="hub-tab-label">Training</span>
+    </button>
+
+    <!-- MESSAGES TAB -->
+    <button class="hub-tab hub-tab--messages" type="button" data-tab="messages">
+      <span class="hub-tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
+          <path d="M4 4h16v10H7l-3 3V4z"></path>
+        </svg>
+      </span>
+      <span class="hub-tab-label">Messages</span>
+    </button>
+
+    <!-- ACHIEVEMENTS TAB -->
+    <button class="hub-tab hub-tab--achievements" type="button" data-tab="achievements">
+      <span class="hub-tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
+          <path d="M12 2l3 5 5 .7-3.6 3.5.9 5.1L12 14.8 6.7 16.3l.9-5.1L4 7.7 9 7l3-5z"></path>
+        </svg>
+      </span>
+      <span class="hub-tab-label">Achievements</span>
+    </button>
+
+    <!-- NEWS TAB -->
+    <button class="hub-tab hub-tab--news" type="button" data-tab="news">
+      <span class="hub-tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
+          <path d="M4 5h16v14H5a1 1 0 0 1-1-1V5zm3 3v2h5V8H7zm0 4v2h5v-2H7zm8-4h3v6h-3V8z"></path>
+        </svg>
+      </span>
+      <span class="hub-tab-label">News</span>
+    </button>
+
+  </nav>
+  <!-- END TABS -->
+
+
+  <!-- **********************************************************************
+       [6] MAIN CONTENT AREA
+       JS fills this container dynamically based on selected tab
+       ********************************************************************** -->
+  <main id="hubContent" class="hub-content">
+    <!-- Dynamic content rendered here -->
+  </main>
+
+
+  <!-- **********************************************************************
+       [7] SCRIPTS
+       The dashboard runs entirely from this single JS file.
+       ********************************************************************** -->
+  <script src="./assets/js/student-dashboard.js"></script>
+
+</body>
+</html>

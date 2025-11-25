@@ -419,3 +419,77 @@ html[data-theme="light"] .time-pill {
   visibility: visible !important;
   z-index: 999999999 !important;
 }
+
+/* ============================================================
+   MODAL POLISH — DOJO DELUXE EDITION
+   ============================================================ */
+
+/* Smooth fade + backdrop blur */
+#classModal.modal.is-open {
+  animation: modalFade 0.25s ease-out forwards;
+  backdrop-filter: blur(6px);
+}
+
+/* Prevent jump when opening */
+#classModal.modal {
+  transition: opacity 0.25s ease-out;
+}
+
+/* Content animation — scale + lift */
+.modal-content {
+  transform: scale(0.92) translateY(10px);
+  opacity: 0;
+  animation: modalPop 0.25s ease-out forwards;
+}
+
+/* Belt-color top glow */
+.modal-content::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    #5b4dd8,
+    #22c55e,
+    #facc15,
+    #ef4444,
+    #92400e,
+    #020617
+  );
+  opacity: 0.45;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Close button polish */
+.close {
+  font-size: 2.1rem;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.close:hover {
+  color: var(--text-primary);
+  transform: scale(1.15);
+}
+
+/* Animations */
+@keyframes modalFade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes modalPop {
+  0% {
+    transform: scale(0.92) translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,255 @@
+/* ============================
+   ABOUT PAGE STYLES (THEME-AWARE)
+   ============================ */
+
+/* ------------------------------
+   GENERAL PANEL FIX
+   ------------------------------ */
+
+.pf-section--about .pf-panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-2);
+}
+
+/* ------------------------------
+   HERO
+   ------------------------------ */
+
+.about-hero p {
+  max-width: 780px;
+  margin-bottom: 0;
+}
+
+/* ------------------------------
+   BIO GRID
+   ------------------------------ */
+
+.bio-card {
+  overflow: hidden;
+}
+
+.bio-grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.avatar {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 6px solid var(--border-subtle);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-2);
+}
+
+.paperclip {
+  position: absolute;
+  top: -18px;
+  right: -24px;
+  width: 72px;
+  height: 72px;
+  opacity: 0.85;
+  transform: rotate(10deg);
+  stroke: rgba(0,0,0,0.5);
+}
+
+/* ------------------------------
+   BIO TEXT
+   ------------------------------ */
+
+.bio-grid p {
+  margin-top: 0;
+}
+
+/* ------------------------------
+   RANKS BOX (Fix gradient in dark mode)
+   ------------------------------ */
+
+.ranks {
+  margin: 20px 0;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-1);
+}
+
+html[data-theme="light"] .ranks {
+  background: linear-gradient(180deg, #fdfefe 0%, #eef2f6 100%);
+}
+
+.ranks h3 {
+  margin: 0 0 12px;
+  letter-spacing: 0.04em;
+}
+
+.ranks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.ranks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ranks li::before {
+  content: "✦";
+  color: var(--task-400);
+  line-height: 1.4;
+}
+
+/* ------------------------------
+   CTA ROW
+   ------------------------------ */
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* ------------------------------
+   "What We Teach" Feature Boxes
+   ------------------------------ */
+
+.hi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.hi {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-tertiary);
+  box-shadow: var(--shadow-1);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .hi {
+  background: linear-gradient(180deg, #f9fafc 0%, #edf1f5 100%);
+}
+
+.hi h3 {
+  margin: 0 0 8px;
+}
+
+.hi p {
+  margin: 0;
+}
+
+/* ------------------------------
+   ADDRESS AREA
+   ------------------------------ */
+
+.address-card .address-band {
+  margin: 0;
+}
+
+.addr-icon {
+  width: 28px;
+  height: 28px;
+  stroke: var(--text-primary);
+  stroke-width: 2;
+  fill: none;
+}
+
+.addr-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ------------------------------
+   RESPONSIVE
+   ------------------------------ */
+
+@media (max-width: 900px) {
+  .bio-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .paperclip {
+    right: -8px;
+  }
+
+  .ranks {
+    text-align: left;
+  }
+
+  .cta-row {
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   ABOUT PAGE — FIX PANEL SPACING + THEME SUPPORT
+   ============================================================ */
+
+/* Tighten spacing similar to schedule page */
+.pf-section--about {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+/* Fix the inner container spacing */
+.pf-section--about .container {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+/* Fix pf-stack spacing */
+.pf-section--about .pf-stack {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* Panel design now theme-aware (NO fixed gradients) */
+.pf-section--about .pf-panel {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-2);
+  color: var(--text-primary);
+}
+
+/* Ranks box */
+.ranks {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-1);
+  color: var(--text-primary);
+}
+
+/* What We Teach cards */
+.hi {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-1);
+  color: var(--text-primary);
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- ============================================================
+       [1] META + BASE CONFIG
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Karate – Student Login</title>
+
+  <!-- ============================================================
+       [2] CORE STYLESHEETS
+       NOTE: student-dashboard.css ALSO contains login tile + modal styles
+       when the BODY has .student-login-page
+       ============================================================ -->
+  <link rel="stylesheet" href="./assets/styles/main.css" />
+  <link rel="stylesheet" href="./assets/styles/student-login.css" />
+</head>
+
+<!-- ============================================================
+     [3] BODY CLASS — REQUIRED FOR LOGIN THEME
+     ============================================================ -->
+<body class="student-login-page">
+
+  <!-- Background Geometry Field -->
+  <div class="bg-geo" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       [4] MAIN LAYOUT CONTAINER
+       ============================================================ -->
+  <main class="pf-section">
+    <div class="container">
+      <div class="login-shell">
+
+        <!-- ============================================================
+             [5] LOGIN HEADER
+             ============================================================ -->
+        <header class="login-header">
+          <div>
+            <p class="eyebrow">Task Karate · La Crosse</p>
+            <h1 class="heading-2">Select Your Profile</h1>
+            <p class="muted text-sm">
+              Search your name, tap your tile, then enter your PIN to enter the dojo hub.
+            </p>
+          </div>
+        </header>
+
+        <!-- ============================================================
+             [6] LOGIN BODY
+             Handles:
+             - Searching students
+             - Showing tiles
+             - Clicking "Enter Dojo" (opens modal)
+             ============================================================ -->
+        <section class="login-body">
+          <form id="loginForm" class="login-form" autocomplete="off">
+
+            <!-- SEARCH FIELD -->
+            <div class="form-row">
+              <label for="studentSearchInput" class="form-label">Search for your name</label>
+              <input
+                id="studentSearchInput"
+                type="text"
+                class="form-input"
+                placeholder="Start typing your first or last name…"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- MATCH RESULTS (TILES INJECTED BY JS) -->
+            <div id="studentResults" class="login-results" aria-live="polite">
+              <!-- JS renders tiles here -->
+            </div>
+
+            <!-- ENTER DOJO BUTTON → triggers modal -->
+            <button
+              id="enterDojoBtn"
+              class="btn btn--primary btn--full"
+              type="button"
+            >
+              Enter Dojo
+            </button>
+
+            <!-- Inline error text -->
+            <p
+              id="loginStatus"
+              class="login-status muted text-sm"
+              aria-live="polite"
+            ></p>
+          </form>
+
+          <!-- HELP TEXT -->
+          <aside class="login-hint">
+            <p class="text-xs muted">
+              <strong>Need help?</strong> Ask an instructor if you're not sure which profile or PIN to use.
+            </p>
+          </aside>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       [7] PIN MODAL (Option A — Compact Console Modal)
+       Shown only after selecting a tile and tapping Enter Dojo
+       ============================================================ -->
+  <div
+    id="pinModal"
+    class="pin-modal-backdrop"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pinModalTitle"
+  >
+    <div class="pin-modal">
+      <header class="pin-modal-header">
+        <h2 id="pinModalTitle">Enter PIN</h2>
+        <p class="muted text-sm" id="pinModalStudentName">
+          For: <span>Student Name</span>
+        </p>
+      </header>
+
+      <form id="pinForm" class="pin-form" autocomplete="off">
+        <label for="pinModalInput" class="form-label">PIN</label>
+        <input
+          id="pinModalInput"
+          type="password"
+          inputmode="numeric"
+          maxlength="6"
+          class="form-input"
+          placeholder="Enter your 4–6 digit PIN…"
+          autocomplete="off"
+        />
+
+        <p
+          id="pinModalStatus"
+          class="login-status muted text-sm"
+          aria-live="polite"
+        ></p>
+
+        <div class="pin-actions">
+          <button
+            type="button"
+            id="pinCancelBtn"
+            class="btn btn--ghost"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn--primary"
+          >
+            Enter Dojo
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       [8] SCRIPTS
+       auth-guard.js → Handles preventing logged-in students from returning here
+       student-login.js → Handles tile search, tile selection, modal, PIN
+       ============================================================ -->
+  <script src="./assets/js/auth-guard.js"></script>
+  <script src="./assets/js/student-login.js"></script>
+
+</body>
+</html>

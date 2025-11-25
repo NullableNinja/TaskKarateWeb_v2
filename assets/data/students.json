@@ -1,0 +1,411 @@
+{
+  "students": [
+    {
+      "id": "emma-thompson",
+      "name": "Emma Thompson",
+      "rank": "Green Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 8,
+      "classesSinceStripe": 5,
+      "totalClasses": 62,
+      "uniformSize": "Youth Medium",
+      "beltSize": "Size 2",
+      "pin": "1042",
+      "beltSince": "2024-06-01",
+      "birthday": "2013-03-15",
+      "nextStripeLabel": "Green w/ 2nd Stripe",
+      "roles": ["student"],
+      "badges": [
+        {
+          "name": "First Class!",
+          "category": "Attendance",
+          "level": "Bronze",
+          "progress": 1,
+          "target": 1,
+          "description": "You completed your very first class at TASK."
+        },
+        {
+          "name": "Back Again",
+          "category": "Attendance",
+          "level": "Bronze",
+          "progress": 2,
+          "target": 2,
+          "description": "You trained at least twice this week."
+        },
+        {
+          "name": "Warmup Warrior",
+          "category": "Effort",
+          "level": "Silver",
+          "progress": 3,
+          "target": 4,
+          "description": "Ready to go on time for warmups all month."
+        }
+      ],
+      "buddies": [
+        { "name": "Logan Perez", "rank": "Purple Belt", "streak": 11, "status": "On the mats" },
+        { "name": "Aiden Walker", "rank": "Blue Belt", "streak": 7, "status": "Cheering you on" }
+      ],
+      "messages": [
+        { "from": "Coach Jamie", "text": "Nice snap on your front kicks tonight!", "timestamp": "Today" },
+        { "from": "Logan", "text": "Congrats on landing the roundhouse combo!", "timestamp": "2d" }
+      ],
+      "assignments": [
+        {
+          "title": "Front Kick Snap & Return",
+          "focus": "Chamber, snap, and rechamber with balance",
+          "notes": "3 sets of 10 each leg. Pause at the chamber to feel your balance.",
+          "due": "Next Class"
+        },
+        {
+          "title": "Escape from Grab – Outside Block",
+          "focus": "Clear the grab, block, counter with control",
+          "notes": "Slow it down and breathe. Hit the follow-up punch on a focus mitt.",
+          "due": "This Week"
+        }
+      ],
+      "practice": [
+        {
+          "title": "Green Belt Combo 2",
+          "description": "Jab, cross, rear roundhouse into backfist finish.",
+          "focus": "Smooth transitions between strikes",
+          "link": "#"
+        },
+        {
+          "title": "Self-Defense Set 3",
+          "description": "Inside block, elbow shield, knee strike, control to the wall.",
+          "focus": "Keep elbows tight and stance rooted",
+          "link": "#"
+        }
+      ],
+      "goldStars": [],
+      "friends": ["logan-perez", "naomi-wu"],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+    {
+      "id": "logan-perez",
+      "name": "Logan Perez",
+      "rank": "Brown Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 12,
+      "classesSinceStripe": 4,
+      "totalClasses": 148,
+      "uniformSize": "Adult Small",
+      "beltSize": "Size 4",
+      "pin": "8833",
+      "beltSince": "2023-09-15",
+      "birthday": "2012-08-09",
+      "nextStripeLabel": "Brown w/ 2nd Stripe",
+      "roles": ["student"],
+      "badges": [
+        {
+          "name": "Double Session Day",
+          "category": "Attendance",
+          "level": "Bronze",
+          "progress": 1,
+          "target": 1,
+          "description": "You trained in two classes on the same day."
+        },
+        {
+          "name": "Streak Squad",
+          "category": "Attendance",
+          "level": "Silver",
+          "progress": 3,
+          "target": 3,
+          "description": "You trained three weeks in a row without missing your main class."
+        },
+        {
+          "name": "Focus Mode",
+          "category": "Effort",
+          "level": "Gold",
+          "progress": 1,
+          "target": 1,
+          "description": "You stayed focused the whole class without a reminder."
+        }
+      ],
+      "buddies": [
+        { "name": "Emma Thompson", "rank": "Green Belt", "streak": 11, "status": "Locked in" }
+      ],
+      "messages": [
+        { "from": "Sensei", "text": "Your footwork is looking sharp.", "timestamp": "3d" }
+      ],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": ["emma-thompson"],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+    {
+      "id": "naomi-wu",
+      "name": "Naomi Wu",
+      "rank": "Purple Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 10,
+      "classesSinceStripe": 3,
+      "totalClasses": 94,
+      "uniformSize": "Youth Large",
+      "beltSize": "Size 3",
+      "pin": "5291",
+      "beltSince": "2024-03-10",
+      "birthday": "2013-11-05",
+      "nextStripeLabel": "Purple w/ 2nd Stripe",
+      "roles": ["student"],
+      "badges": [
+        {
+          "name": "First Class!",
+          "category": "Attendance",
+          "level": "Bronze",
+          "progress": 1,
+          "target": 1,
+          "description": "You completed your very first class at TASK."
+        },
+        {
+          "name": "Form Explorer: Me Young",
+          "category": "Forms",
+          "level": "Bronze",
+          "progress": 1,
+          "target": 3,
+          "description": "You began learning Me Young and can perform the opening section."
+        }
+      ],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": ["emma-thompson"],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+    {
+      "id": "ann-yehle",
+      "name": "Ann Yehle",
+      "displayName": "Ms. Yehle",
+      "rank": "3rd Degree Black Belt",
+      "rankType": "degree",
+      "classesPerStripe": null,
+      "classesSinceStripe": null,
+      "totalClasses": 1200,
+      "uniformSize": "Size 5",
+      "beltSize": "Size 5",
+      "pin": "1234",
+      "beltSince": "2021-06-01",
+      "birthday": "2025-11-25",
+      "yearsRequired": 3,
+      "yearsAtRank": 3,
+      "nextStripeLabel": "4th Degree Black Belt",
+      "roles": ["assistant", "instructor"],
+      "badges": [
+        {
+          "name": "Assistant Instructor",
+          "category": "Role",
+          "level": "Gold",
+          "progress": 1,
+          "target": 1,
+          "description": "You help lead classes and guide students at TASK."
+        },
+        {
+          "name": "Demo Crew",
+          "category": "Community",
+          "level": "Gold",
+          "progress": 1,
+          "target": 1,
+          "description": "You’ve helped with demonstrations for students and families."
+        },
+        {
+          "name": "Class Shepherd",
+          "category": "Role",
+          "level": "Gold",
+          "progress": 1,
+          "target": 1,
+          "description": "You help classes run smoothly from bow-in to bow-out."
+        }
+      ],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [
+        {
+          "event": "Winter Training Camp",
+          "category": "Event Support",
+          "location": "TASK Karate",
+          "date": "2023-12-10",
+          "note": "Lead instructor for kids + adults."
+        },
+        {
+          "event": "Summer Skills Week",
+          "category": "Event Support",
+          "location": "La Crosse",
+          "date": "2024-06-22",
+          "note": "Organized drills and coached students all week."
+        }
+      ],
+      "friends": ["grace-loizzi", "joseph-mattison", "anne-markos"],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+    {
+      "id": "grace-loizzi",
+      "name": "Grace Loizzi",
+      "displayName": "Grace L.",
+      "rank": "2nd Degree Black Belt",
+      "rankType": "degree",
+      "classesPerStripe": null,
+      "classesSinceStripe": null,
+      "totalClasses": 620,
+      "uniformSize": "Size 4",
+      "beltSize": "Size 4",
+      "pin": "3333",
+      "beltSince": "2023-03-01",
+      "birthday": "2005-05-12",
+      "yearsRequired": 2,
+      "yearsAtRank": 1.5,
+      "nextStripeLabel": "3rd Degree Black Belt",
+      "roles": ["assistant"],
+      "badges": [
+        {
+          "name": "Assistant Instructor",
+          "category": "Role",
+          "level": "Gold",
+          "progress": 1,
+          "target": 1,
+          "description": "You help lead classes and support students on the floor."
+        },
+        {
+          "name": "Buddy Week Buddy",
+          "category": "Community",
+          "level": "Silver",
+          "progress": 1,
+          "target": 1,
+          "description": "You brought a friend to train at Buddy Week."
+        }
+      ],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": ["ann-yehle", "anne-markos"],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+    {
+      "id": "joseph-mattison",
+      "name": "Joseph Mattison",
+      "displayName": "Joseph M.",
+      "rank": "2nd Degree Black Belt",
+      "rankType": "degree",
+      "classesPerStripe": null,
+      "classesSinceStripe": null,
+      "totalClasses": 540,
+      "uniformSize": "Size 4",
+      "beltSize": "Size 4",
+      "pin": "4444",
+      "beltSince": "2023-09-15",
+      "birthday": "2007-01-20",
+      "yearsRequired": 2,
+      "yearsAtRank": 1.1,
+      "nextStripeLabel": "3rd Degree Black Belt",
+      "roles": ["assistant"],
+      "badges": [
+        {
+          "name": "Assistant Instructor",
+          "category": "Role",
+          "level": "Gold",
+          "progress": 1,
+          "target": 1,
+          "description": "You help with classes and support students on the floor."
+        },
+        {
+          "name": "Challenge Accepted",
+          "category": "Community",
+          "level": "Silver",
+          "progress": 1,
+          "target": 1,
+          "description": "You completed a dojo challenge week."
+        }
+      ],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": ["ann-yehle"],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+    {
+      "id": "anne-markos",
+      "name": "Anne Markos",
+      "displayName": "Ms. Markos",
+      "rank": "4th Degree Black Belt",
+      "rankType": "degree",
+      "classesPerStripe": null,
+      "classesSinceStripe": null,
+      "totalClasses": 1800,
+      "uniformSize": "Size 5",
+      "beltSize": "Size 5",
+      "pin": "5555",
+      "beltSince": "2019-09-01",
+      "birthday": "1978-08-08",
+      "yearsRequired": 4,
+      "yearsAtRank": 5,
+      "nextStripeLabel": "Master Rank",
+      "roles": ["instructor"],
+      "badges": [
+        {
+          "name": "Dojo Journey Guide",
+          "category": "Role",
+          "level": "Gold",
+          "progress": 1,
+          "target": 1,
+          "description": "You guide students on their long-term training journey."
+        },
+        {
+          "name": "Event Adventurer",
+          "category": "Community",
+          "level": "Gold",
+          "progress": 3,
+          "target": 3,
+          "description": "You’ve supported multiple special events at the dojo."
+        }
+      ],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": ["ann-yehle", "grace-loizzi"],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    }
+  ],
+  "news": [
+    {
+      "title": "Winter Gear Orders",
+      "tag": "Studio",
+      "summary": "Hoodies and joggers orders close on Friday. Samples are at the front desk.",
+      "date": "Nov 14"
+    },
+    {
+      "title": "Holiday Schedule",
+      "tag": "Closures",
+      "summary": "No classes on Nov 23–24 for Thanksgiving. Open mat Saturday at 10am!",
+      "date": "Nov 10"
+    },
+    {
+      "title": "Buddy Week",
+      "tag": "Community",
+      "summary": "Bring a friend to class for free next week. Earn an extra badge check-in.",
+      "date": "Nov 8"
+    },
+    {
+      "title": "Testing Reminder",
+      "tag": "Testing",
+      "summary": "Kids testing is the last Saturday of the month. Watch for invite cards.",
+      "date": "Nov 6"
+    }
+  ]
+}

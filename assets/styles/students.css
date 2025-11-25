@@ -1,0 +1,299 @@
+/* ===========================
+   students.css
+   Dedicated styling for the Students resources page
+   Theme-aware + Paper-Fu spacing tweaks
+   =========================== */
+
+/* ---------------------------------
+   0. SECTION SPACING FOR STUDENTS
+   --------------------------------- */
+
+.pf-section.pf-section--students {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.pf-section--students .container {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.pf-section--students .pf-stack {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* Tighten panel padding a bit vs default */
+.pf-section--students .pf-panel {
+  padding: clamp(18px, 4vw, 32px);
+}
+
+/* ---------------------------------
+   1. HERO BLOCK
+   --------------------------------- */
+
+.students-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.students-hero__callout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.microcopy {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------
+   2. TAPED CARD
+   --------------------------------- */
+
+.taped-card {
+  position: relative;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-2);
+  padding: clamp(16px, 3vw, 22px);
+  overflow: hidden;
+}
+
+.taped-card::before,
+.taped-card::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.55)
+  );
+  box-shadow: 0 2px 4px var(--shadow-color-soft);
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.taped-card::before {
+  top: 10px;
+  left: 18px;
+  transform: rotate(-8deg);
+}
+
+.taped-card::after {
+  top: 10px;
+  right: 18px;
+  transform: rotate(6deg);
+}
+
+.taped-card__tape {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    180deg,
+    rgba(31, 94, 161, 0.05),
+    rgba(31, 94, 161, 0.12)
+  );
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.taped-card__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.taped-card .btn {
+  white-space: nowrap;
+}
+
+/* ---------------------------------
+   3. RULES LIST
+   --------------------------------- */
+
+.rule-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.rule-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color-light);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.rule-number {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  font-weight: 800;
+}
+
+/* ---------------------------------
+   4. BELT GRID
+   --------------------------------- */
+
+.belt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.belt-btn {
+  color: #ffffff;
+  border: none;
+  box-shadow: var(--shadow-2);
+}
+
+/* White belt needs readable text in both themes */
+.belt-white {
+  background: linear-gradient(135deg, #ffffff, #e5e7eb);
+  color: var(--text-primary);
+}
+
+.belt-gold {
+  background: linear-gradient(135deg, #facc15, #fbbf24);
+}
+
+.belt-orange {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+}
+
+.belt-green {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.belt-purple {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.belt-blue {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.belt-red {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.belt-brown {
+  background: linear-gradient(135deg, #92400e, #b45309);
+}
+
+.belt-black {
+  background: linear-gradient(135deg, #020617, #0f172a);
+}
+
+/* ---------------------------------
+   5. FAQ
+   --------------------------------- */
+
+.faq {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.faq-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  box-shadow: var(--shadow-1);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] summary {
+  color: var(--accent-primary);
+}
+
+.faq-item > div {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ---------------------------------
+   6. ADDRESS BAND TWEAKS
+   --------------------------------- */
+
+.pf-section--students .address-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pf-section--students .addr-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Make the icon a reasonable size on this page */
+.pf-section--students .addr-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------
+   7. RESPONSIVE
+   --------------------------------- */
+
+@media (max-width: 720px) {
+  .taped-card__content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .taped-card::before,
+  .taped-card::after {
+    width: 48px;
+  }
+
+  .belt-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .pf-section--students .address-band {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
