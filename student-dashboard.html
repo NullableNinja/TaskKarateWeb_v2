@@ -44,33 +44,25 @@
        • Instructor Mode Toggle (hidden unless assistant/instructor)
        ********************************************************************** -->
 <!-- **********************************************************************
-     [3] DASHBOARD HEADER AREA — CLEAN + CORRECT
+     [3] FLOATING ELEMENTS (no header bar)
+     Student identity floats top-left, controls float top-right
      ********************************************************************** -->
-<header class="hub-header">
 
-  <!-- ---------------------------------------
-       LEFT: Student Identity Block
-       --------------------------------------- -->
-  <div class="hero-left">
-    <div class="hero-avatar" id="heroInitials">AA</div>
-
-    <div class="hero-info">
-      <h1 class="hero-name" id="heroName">Student Name</h1>
-      <p class="hero-rank" id="heroRank">Rank</p>
-      <p class="hero-role" id="heroRole"><!-- Filled by JS --></p>
+  <!-- Floating Student Identity (Top-Left) -->
+  <div class="floating-identity">
+    <div class="hero-left">
+      <div class="hero-avatar" id="heroInitials">AA</div>
+      <div class="hero-info">
+        <h1 class="hero-name" id="heroName">Student Name</h1>
+        <p class="hero-rank" id="heroRank">Rank</p>
+        <p class="hero-role" id="heroRole"><!-- Filled by JS --></p>
+      </div>
     </div>
   </div>
 
-  <!-- Progress meters moved to Status tab for cleaner header -->
-
-  <!-- ---------------------------------------
-       RIGHT: Logout + Instructor Mode
-       --------------------------------------- -->
-  <div class="header-right">
-    <!-- Logout -->
+  <!-- Floating Controls (Top-Right) -->
+  <div class="floating-controls">
     <button id="logoutBtn" class="logout-btn">Logout</button>
-
-    <!-- Instructor Mode Toggle -->
     <div id="instructorToggleWrapper" class="instructor-toggle-wrapper hidden">
       <label class="toggle-label">Instructor Mode</label>
       <div id="instructorToggle" class="toggle-switch">
@@ -78,9 +70,6 @@
       </div>
     </div>
   </div>
-
-</header>
-  <!-- END HEADER -->
 
 
   <!-- **********************************************************************
