@@ -1,0 +1,222 @@
+/* ==========================================================
+   Task Karate – Student Hub
+   student-dashboard-achievements.css
+   ----------------------------------------------------------
+   ACHIEVEMENTS TAB:
+   - Badge grid (bronze/silver/gold/platinum)
+   - Gold Star wall
+   - Achievement modal enhancements
+   ========================================================== */
+
+.dashboard-root .badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.dashboard-root .badge-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 12px 14px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.dashboard-root .badge-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.8);
+}
+
+/* Badge level styling */
+.badge-level--bronze {
+  border-color: rgba(205, 127, 50, 0.6);
+  background: linear-gradient(135deg, rgba(205, 127, 50, 0.1), rgba(15, 23, 42, 0.9));
+}
+
+.badge-level--silver {
+  border-color: rgba(192, 192, 192, 0.6);
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(15, 23, 42, 0.9));
+}
+
+.badge-level--gold {
+  border-color: rgba(255, 215, 0, 0.6);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(15, 23, 42, 0.9));
+}
+
+.badge-level--platinum {
+  border-color: rgba(229, 228, 226, 0.8);
+  background: linear-gradient(135deg, rgba(229, 228, 226, 0.2), rgba(15, 23, 42, 0.9));
+}
+
+.dashboard-root .badge-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 8px;
+}
+
+.dashboard-root .badge-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.dashboard-root .badge-category {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.dashboard-root .badge-progress {
+  font-size: 0.8rem;
+  color: #facc15; /* tie progress to Achievements gold */
+}
+
+/* Gold Star Wall */
+.dashboard-root .goldstar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.dashboard-root .goldstar-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid rgba(250, 204, 21, 0.5);
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.dashboard-root .goldstar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.8);
+  border-color: rgba(250, 204, 21, 0.8);
+}
+
+.dashboard-root .goldstar-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 8px;
+}
+
+.dashboard-root .goldstar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #facc15;
+}
+
+.dashboard-root .goldstar-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   [18] ACHIEVEMENT MODAL ENHANCEMENTS
+   ========================================================== */
+
+/* Achievement click indicators */
+.achievement-clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.achievement-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+}
+
+.achievement-clickable::after {
+  content: "👆";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.achievement-clickable:hover::after {
+  opacity: 0.7;
+}
+
+/* Achievement modal specific styles */
+.achievement-modal .achievement-icon-display {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.achievement-modal .goldstar-icon-display {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.achievement-details {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.achievement-level {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #facc15;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.achievement-category {
+  font-size: 0.9rem;
+  color: var(--tk-blue);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.achievement-description {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 12px;
+  background: rgba(56, 189, 248, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid var(--tk-blue);
+}
+
+.goldstar-event {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #facc15;
+  margin-bottom: 8px;
+}
+
+.goldstar-category {
+  font-size: 0.9rem;
+  color: var(--tk-blue);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.goldstar-date,
+.goldstar-location {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.goldstar-note {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 12px;
+  background: rgba(250, 204, 21, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #facc15;
+}

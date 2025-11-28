@@ -1,0 +1,37 @@
+/* ==========================================================
+   Task Karate – Student Hub
+   student-dashboard-training.css
+   ----------------------------------------------------------
+   TRAINING TAB:
+   - Training cards grid
+   ========================================================== */
+
+.dashboard-root .training-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.dashboard-root .training-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  padding: 12px 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+.dashboard-root .training-card h3 {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+}
+
+.dashboard-root .training-card .notes {
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.dashboard-root .training-card .tag {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--tk-blue);
+}

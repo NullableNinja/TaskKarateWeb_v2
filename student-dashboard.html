@@ -11,187 +11,170 @@
 
   <!-- ============================================================
        [1] CORE STYLES
-       main.css      – global / reset / layout
-       student-dashboard.css – dashboard visuals
        ============================================================ -->
   <link rel="stylesheet" href="./assets/styles/main.css" />
-  <link rel="stylesheet" href="./assets/styles/student-dashboard.css" />
+  <link rel="stylesheet" href="./assets/styles/student-dashboard-core.css" />
+  <link rel="stylesheet" href="./assets/styles/student-dashboard-status.css" />
+  <link rel="stylesheet" href="./assets/styles/student-dashboard-training.css" />
+  <link rel="stylesheet" href="./assets/styles/student-dashboard-messages.css" />
+  <link rel="stylesheet" href="./assets/styles/student-dashboard-achievements.css" />
+  <link rel="stylesheet" href="./assets/styles/student-dashboard-news.css" />
 </head>
 
-<!-- ======================================================================
-     [2] BODY ROOT
-     dashboard-root gives us theme variables + Paper-Fu baseline
-     ====================================================================== -->
 <body class="dashboard-root">
-
   <!-- Background Layer (geometric Paper-Fu pattern) -->
   <div class="bg-geo"></div>
 
   <!-- FX Root (confetti, animations injected by JS) -->
   <div id="fx-root"></div>
 
-  <!-- Navigation Bar -->
+  <!-- Navigation Bar (loaded from partial) -->
   <div id="site-header"></div>
-
 
   <!-- **********************************************************************
        [3] DASHBOARD HEADER AREA
-       Includes:
-       • Avatar + Name + Rank
-       • Stripe/Degree Progress Meter
-       • XP Meter
-       • Logout Button
-       • Instructor Mode Toggle (hidden unless assistant/instructor)
        ********************************************************************** -->
-<!-- **********************************************************************
-     [3] FLOATING ELEMENTS (no header bar)
-     Student identity floats top-left, controls float top-right
-     ********************************************************************** -->
+  <header class="dashboard-header">
 
-  <!-- Floating Student Identity (Top-Left) -->
-  <div class="floating-identity">
-    <div class="hero-left">
-      <div class="hero-avatar" id="heroInitials">AA</div>
-      <div class="hero-info">
-        <h1 class="hero-name" id="heroName">Student Name</h1>
-        <p class="hero-rank" id="heroRank">Rank</p>
-        <p class="hero-role" id="heroRole"><!-- Filled by JS --></p>
+    <!-- Floating Student Identity (Top-Left) -->
+    <div class="floating-identity">
+      <div class="hero-left">
+        <div class="hero-avatar" id="heroInitials">AA</div>
+        <div class="hero-info">
+          <h1 class="hero-name" id="heroName">Student Name</h1>
+          <p class="hero-rank" id="heroRank">Rank</p>
+          <p class="hero-role" id="heroRole"><!-- Filled by JS --></p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Floating Controls (Top-Right) -->
-  <div class="floating-controls">
-    <button id="logoutBtn" class="logout-btn">Logout</button>
-    <div id="instructorToggleWrapper" class="instructor-toggle-wrapper hidden">
-      <label class="toggle-label">Instructor Mode</label>
-      <div id="instructorToggle" class="toggle-switch">
-        <div class="toggle-knob"></div>
+    <!-- ********************************************************************
+         [Floating Tab Bar] — NEW ORDER: Status, Messages, Achievements,
+         Training, News
+         ******************************************************************** -->
+    <div class="floating-tab-bar" aria-label="Student hub sections">
+
+      <!-- STATUS -->
+      <button class="floating-tab-btn floating-tab-btn--status is-active"
+              type="button" data-tab="status">
+        <span class="floating-tab-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3L5 6v5c0 4.06 2.67 7.79 7 9 4.33-1.21 7-4.94 7-9V6l-7-3z" />
+          </svg>
+        </span>
+        <span class="floating-tab-label">Status</span>
+      </button>
+
+      <!-- MESSAGES -->
+      <button class="floating-tab-btn floating-tab-btn--messages"
+              type="button" data-tab="messages">
+        <span class="floating-tab-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 4h16v10H7l-3 3V4z" />
+          </svg>
+        </span>
+        <span class="floating-tab-label">Messages</span>
+      </button>
+
+      <!-- ACHIEVEMENTS -->
+      <button class="floating-tab-btn floating-tab-btn--achievements"
+              type="button" data-tab="achievements">
+        <span class="floating-tab-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3 5 5 .7-3.6 3.5.9 5.1L12 14.8 6.7 16.3l.9-5.1L4 7.7 9 7l3-5z" />
+          </svg>
+        </span>
+        <span class="floating-tab-label">Achievements</span>
+      </button>
+
+      <!-- TRAINING -->
+      <button class="floating-tab-btn floating-tab-btn--training"
+              type="button" data-tab="training">
+        <span class="floating-tab-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 3h6l1 2h3v16H5V5h3l1-2zm0 6h6v2H9V9zm0 4h6v2H9v-2z" />
+          </svg>
+        </span>
+        <span class="floating-tab-label">Training</span>
+      </button>
+
+      <!-- NEWS -->
+      <button class="floating-tab-btn floating-tab-btn--news"
+              type="button" data-tab="news">
+        <span class="floating-tab-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 5h16v14H5a1 1 0 0 1-1-1V5zm3 3v2h5V8H7zm0 4v2h5v-2H7zm8-4h3v6h-3V8z" />
+          </svg>
+        </span>
+        <span class="floating-tab-label">News</span>
+      </button>
+
+    </div>
+    <!-- END FLOATING TAB BAR -->
+
+    <!-- Floating Controls (Top-Right) -->
+    <div class="floating-controls">
+      <button id="logoutBtn" class="logout-btn" type="button">
+        <span class="logout-icon">
+          <svg class="logout-icon-svg" viewBox="0 0 24 24">
+            <path d="M13 3h-2v10h2V3zm4.12 1.88l-1.41 1.41A7 7 0 1112 5V3a9 9 0 105.12 1.88z"/>
+          </svg>
+        </span>
+        Logout
+      </button>
+
+      <!-- Instructor toggle wrapper (hidden but kept for future DB mode) -->
+      <div id="instructorToggleWrapper" class="instructor-toggle-wrapper hidden">
+        <label class="toggle-label">Instructor Mode</label>
+        <div id="instructorToggle" class="toggle-switch">
+          <div class="toggle-knob"></div>
+        </div>
       </div>
     </div>
-  </div>
-
+  </header>
+  <!-- END DASHBOARD HEADER -->
 
   <!-- **********************************************************************
-       [4] FLOATING STUDENT STAT CAPSULE
-       Always visible under header.
-       Shows attendance + streak + IS3 + belts earned.
+       [4] QUICKBAR (Replaces old stat capsule)
        ********************************************************************** -->
-  <section class="stat-capsule" id="statCapsule">
-
-    <div class="stat-item">
-      <p class="stat-label">Total Classes</p>
-      <p class="stat-value" id="capsuleTotalClasses">0</p>
-    </div>
-
-    <div class="stat-item">
-      <p class="stat-label">This Month</p>
-      <p class="stat-value" id="capsuleMonthClasses">0</p>
-    </div>
-
-    <div class="stat-item">
-      <p class="stat-label">Streak</p>
-      <p class="stat-value" id="capsuleStreak">0 days</p>
-    </div>
-
-    <div class="stat-item">
-      <p class="stat-label">Belts Earned</p>
-      <p class="stat-value" id="capsuleBelts">0</p>
-    </div>
-
-    <div class="stat-item">
-      <p class="stat-label">IS3 Rank</p>
-      <p class="stat-value" id="capsuleIS3">—</p>
-    </div>
-
+  <section id="quickbarRoot" class="quickbar-root">
+    <!-- Populated by dashboard-core.js → renderQuickbar() -->
   </section>
-  <!-- END CAPSULE -->
-
 
   <!-- **********************************************************************
-       [5] TAB NAVIGATION BAR
-       Xbox-style segmented menu
-       Tabs trigger render functions in student-dashboard.js
+       [5] LEGACY HUB TABS (kept but inert for safety)
        ********************************************************************** -->
-  <nav class="hub-tabs" aria-label="Student hub sections">
-
-    <!-- STATUS TAB -->
-    <button class="hub-tab hub-tab--status is-active" type="button" data-tab="status">
-      <span class="hub-tab-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
-          <path d="M12 3L5 6v5c0 4.06 2.67 7.79 7 9 4.33-1.21 7-4.94 7-9V6l-7-3z"></path>
-        </svg>
-      </span>
-      <span class="hub-tab-label">Status</span>
-    </button>
-
-    <!-- TRAINING TAB -->
-    <button class="hub-tab hub-tab--training" type="button" data-tab="training">
-      <span class="hub-tab-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
-          <path d="M9 3h6l1 2h3v16H5V5h3l1-2zm0 6h6v2H9V9zm0 4h6v2H9v-2z"></path>
-        </svg>
-      </span>
-      <span class="hub-tab-label">Training</span>
-    </button>
-
-    <!-- MESSAGES TAB -->
-    <button class="hub-tab hub-tab--messages" type="button" data-tab="messages">
-      <span class="hub-tab-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
-          <path d="M4 4h16v10H7l-3 3V4z"></path>
-        </svg>
-      </span>
-      <span class="hub-tab-label">Messages</span>
-    </button>
-
-    <!-- ACHIEVEMENTS TAB -->
-    <button class="hub-tab hub-tab--achievements" type="button" data-tab="achievements">
-      <span class="hub-tab-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
-          <path d="M12 2l3 5 5 .7-3.6 3.5.9 5.1L12 14.8 6.7 16.3l.9-5.1L4 7.7 9 7l3-5z"></path>
-        </svg>
-      </span>
-      <span class="hub-tab-label">Achievements</span>
-    </button>
-
-    <!-- NEWS TAB -->
-    <button class="hub-tab hub-tab--news" type="button" data-tab="news">
-      <span class="hub-tab-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" class="hub-tab-icon-svg">
-          <path d="M4 5h16v14H5a1 1 0 0 1-1-1V5zm3 3v2h5V8H7zm0 4v2h5v-2H7zm8-4h3v6h-3V8z"></path>
-        </svg>
-      </span>
-      <span class="hub-tab-label">News</span>
-    </button>
-
-  </nav>
-  <!-- END TABS -->
-
+  <nav class="hub-tabs legacy-hub-tabs" aria-hidden="true"></nav>
 
   <!-- **********************************************************************
        [6] MAIN CONTENT AREA
-       JS fills this container dynamically based on selected tab
        ********************************************************************** -->
   <main id="hubContent" class="hub-content">
     <!-- Dynamic content rendered here -->
   </main>
 
-
   <!-- **********************************************************************
-       [7] SCRIPTS
-       Navigation bar loading + dashboard functionality
+       [7] PARTIAL LOADING + SCRIPTS
        ********************************************************************** -->
   <script>
     // Load navigation bar from partials
     fetch('./partials/navigation-bar.html')
       .then(response => response.text())
       .then(html => {
-        document.getElementById('site-header').innerHTML = html;
+        const headerEl = document.getElementById('site-header');
+        if (headerEl) {
+          headerEl.innerHTML = html;
+        }
       })
       .catch(error => console.error('Error loading navigation:', error));
   </script>
-  <script src="./assets/js/student-dashboard.js"></script>
 
+  <script src="./assets/js/dashboard-core.js"></script>
+  <script src="./assets/js/dashboard-editor.js"></script>
+  <script src="./assets/js/dashboard-status.js"></script>
+  <script src="./assets/js/dashboard-training.js"></script>
+  <script src="./assets/js/dashboard-messages.js"></script>
+  <script src="./assets/js/dashboard-achievements.js"></script>
+  <script src="./assets/js/dashboard-news.js"></script>
 </body>
 </html>

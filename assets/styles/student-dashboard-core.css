@@ -1,0 +1,827 @@
+/* ==========================================================
+   Task Karate – Student Hub
+   student-dashboard-core.css (FULL UPDATED VERSION)
+   ========================================================== */
+
+/* ==========================================================
+   [1] ROOT TOKENS & BODY
+   ========================================================== */
+
+.dashboard-root {
+  --tk-blue: #38bdf8;
+  --tk-blue-soft: rgba(56, 189, 248, 0.35);
+  --panel-bg: rgba(15, 23, 42, 0.86);
+  --panel-border: rgba(148, 163, 184, 0.35);
+  --panel-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.45);
+
+  --pad-panel-y: 18px;
+  --pad-panel-x: 22px;
+  --gap-panel: 20px;
+}
+
+.dashboard-root {
+  color: var(--text-main);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding-top: 60px; /* space for nav/header */
+}
+
+/* Optional: keep header as simple wrapper */
+.dashboard-header {
+  position: relative;
+  z-index: 5;
+}
+
+/* ==========================================================
+   [2] FLOATING ELEMENTS (Identity, Controls)
+   ========================================================== */
+
+.floating-identity {
+  position: fixed;
+  top: 80px;
+  left: 32px;
+  z-index: 10;
+
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 12px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+
+  transition: all 0.3s ease;
+}
+
+.floating-identity:hover {
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Hero identity (Logan card) */
+
+.hero-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Bebas Neue", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+
+  background: radial-gradient(circle at 30% 20%, var(--avatar-color, #38bdf8), #0ea5e9);
+  color: #0f172a;
+  border: 2px solid rgba(15, 23, 42, 0.9);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.85);
+}
+
+.hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-name {
+  margin: 0;
+  font-family: "Bebas Neue", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-rank {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.hero-role {
+  margin: 4px 0 0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+
+  background: rgba(148, 163, 184, 0.16);
+  color: #e5e7eb;
+}
+
+/* Role color accents */
+.hero-role--senior {
+  background: rgba(56, 189, 248, 0.18);
+  color: #bae6fd;
+}
+.hero-role--assistant {
+  background: rgba(34, 197, 94, 0.18);
+  color: #bbf7d0;
+}
+.hero-role--junior {
+  background: rgba(250, 204, 21, 0.18);
+  color: #fef9c3;
+}
+
+/* Floating controls (logout, etc.) */
+
+.floating-controls {
+  position: fixed;
+  top: 80px;
+  right: 32px;
+  z-index: 10;
+
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 10px 14px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+
+  transition: all 0.3s ease;
+}
+
+.floating-controls:hover {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Hide unused instructor toggle for now */
+.instructor-toggle-wrapper {
+  display: none;
+}
+
+/* ==========================================================
+   [3] (OLD) FLOATING TABBAR SHELL (unused)
+   ========================================================== */
+
+.floating-tabbar {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  justify-content: center;
+
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(14px);
+  padding: 10px 14px;
+
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
+}
+
+@media (max-width: 720px) {
+  .floating-tabbar {
+    top: 135px;
+    padding: 8px 10px;
+    max-width: 95%;
+  }
+}
+
+/* ==========================================================
+   [4] STAT CAPSULE
+   ========================================================== */
+
+.stat-capsule {
+  position: relative;
+  z-index: 4;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 16px;
+
+  padding: 14px 24px;
+  margin: 24px auto 24px;
+
+  width: min(980px, 96%);
+  background: rgba(15,23,42,0.92);
+  border: 1px solid rgba(148,163,184,0.35);
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(255,255,255,0.05);
+
+  backdrop-filter: blur(16px);
+}
+
+/* Paper-Fu second card layer */
+.stat-capsule::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
+  transform: translate(8px,8px);
+  opacity: 0.9;
+  z-index: -1;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.45);
+}
+
+/* Responsive capsule */
+@media (max-width: 720px) {
+  .stat-capsule {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    gap: 12px;
+    margin: 16px auto 16px;
+  }
+
+  .stat-item {
+    width: calc(50% - 12px);
+  }
+
+  .floating-identity {
+    position: static;
+    margin: 10px auto 0;
+  }
+
+  .floating-controls {
+    position: static;
+    margin: 8px auto 0;
+  }
+}
+
+/* ==========================================================
+   [5] MAIN HUB CONTENT WRAPPER
+   ========================================================== */
+
+.hub-content {
+  padding: 20px 24px 32px;
+}
+
+/* ==========================================================
+   [6] PANELS — Paper-Fu double-layer system
+   ========================================================== */
+
+.panel {
+  position: relative;
+  z-index: 1;
+
+  background: var(--panel-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-border);
+  padding: var(--pad-panel-y) var(--pad-panel-x);
+  margin-bottom: var(--gap-panel);
+
+  box-shadow: var(--panel-shadow);
+  backdrop-filter: blur(14px);
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: rgba(15, 23, 42, 0.95);
+  transform: translate(6px, 6px);
+  opacity: 0.9;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+.panel-title {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+}
+
+.panel-subtitle {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   [7] LOGIN PAGE — Student Tiles + PIN modal
+   ========================================================== */
+
+.student-login-page #studentResults {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 20px 0;
+}
+
+.student-login-page .login-tile {
+  background: rgba(15, 23, 42, 0.88);
+  border-radius: 18px;
+  padding: 16px 18px;
+  min-width: 170px;
+
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+
+  cursor: pointer;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease;
+  text-align: left;
+}
+
+.student-login-page .login-tile:hover {
+  transform: translateY(-4px);
+  border-color: #38bdf8;
+  box-shadow: 0 14px 30px rgba(56, 189, 248, 0.35);
+}
+
+.student-login-page .login-tile.is-selected {
+  transform: translateY(-4px);
+  border-color: #22c55e;
+  box-shadow: 0 18px 36px rgba(34, 197, 94, 0.4);
+  background: radial-gradient(
+    circle at top left,
+    rgba(34, 197, 94, 0.22),
+    rgba(15, 23, 42, 0.95)
+  );
+}
+
+/* Tile avatar */
+.student-login-page .login-tile__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Bebas Neue", system-ui;
+  font-size: 1.6rem;
+
+  background: radial-gradient(circle at 30% 20%, #38bdf8, #0ea5e9);
+  color: #0f172a;
+  border: 2px solid rgba(15, 23, 42, 0.9);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.8);
+}
+
+/* Staff highlight avatar */
+.student-login-page .login-tile__avatar--staff {
+  background: radial-gradient(circle at 30% 20%, #facc15, #eab308);
+}
+
+.student-login-page .login-tile__meta strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.student-login-page .login-tile__meta p {
+  margin: 0;
+}
+
+.student-login-page .login-tile__role {
+  margin-top: 2px;
+  color: #f97316;
+}
+
+/* ==========================================================
+   [8] PIN MODAL
+   ========================================================== */
+
+.student-login-page .pin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.18s ease;
+  z-index: 40;
+}
+
+.student-login-page .pin-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pin-modal-open {
+  overflow: hidden;
+}
+
+.student-login-page .pin-modal {
+  width: 100%;
+  max-width: 420px;
+
+  background: rgba(15, 23, 42, 0.98);
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.8);
+  padding: 20px 22px;
+}
+
+.student-login-page .pin-modal-header h2 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+}
+
+.student-login-page .pin-form {
+  margin-top: 10px;
+}
+
+.student-login-page .pin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.student-login-page .btn.btn--ghost {
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 14px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+/* ==========================================================
+   [9] INSTRUCTOR EDITOR — SLIDE-IN PANEL
+   ========================================================== */
+
+.instructor-editor-backdrop {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.2s ease;
+  z-index: 2000;
+}
+
+.instructor-editor-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.instructor-editor-panel {
+  width: min(420px, 100%);
+  max-width: 100%;
+  background: rgba(15, 23, 42, 0.98);
+  border-left: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: -12px 0 30px rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  flex-direction: column;
+
+  transform: translateX(100%);
+  transition: transform 0.22s ease-out;
+}
+
+.instructor-editor-panel.is-open {
+  transform: translateX(0);
+}
+
+.instructor-editor-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.instructor-editor-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.instructor-editor-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.15s ease;
+}
+.instructor-editor-close:hover {
+  opacity: 1;
+}
+
+.instructor-editor-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Disable scrolling in root when editor open */
+.dashboard-root.editor-open {
+  overflow: hidden;
+}
+
+/* ==========================================================
+   [10] INSTRUCTOR MODE VISIBILITY, EDIT BUTTONS, BANNER
+   ========================================================== */
+
+.instructor-only {
+  display: none;
+  margin-bottom: 8px;
+}
+
+.dashboard-root.instructor-mode-active .instructor-only {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.instructor-edit-btn {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  border: 1px dashed rgba(148,163,184,0.7);
+  background: rgba(15,23,42,0.85);
+  color: #e5e7eb;
+
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.08s ease;
+}
+
+.instructor-edit-btn:hover {
+  background: rgba(56,189,248,0.15);
+  border-color: rgba(56,189,248,0.9);
+  transform: translateY(-1px);
+}
+
+.instructor-banner {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 1500;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  background: rgba(56,189,248,0.16);
+  border: 1px solid rgba(56,189,248,0.7);
+  color: #e5e7eb;
+
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  box-shadow: 0 10px 24px rgba(15,23,42,0.75);
+
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.instructor-banner.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ==========================================================
+   [11] FLOATING TAB BAR — FINAL FILLED STYLE
+   ========================================================== */
+
+.floating-tab-bar {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+
+  display: flex;
+  gap: 14px;
+  align-items: center;
+
+  padding: 10px 16px;
+  border-radius: 20px;
+
+  background: rgba(15,23,42,0.75);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(148,163,184,0.28);
+
+  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
+}
+
+/* Buttons — FILLED style */
+.floating-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 20px;
+  border-radius: 14px;
+
+  background: rgba(30,41,59,0.9);
+  border: 1px solid transparent;
+
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  color: #e5e7eb;
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.floating-tab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+/* Inactive pastel backgrounds (FILLED) */
+.floating-tab-btn--status       { background: rgba(56,189,248,0.22); }
+.floating-tab-btn--training     { background: rgba(168, 85, 247, 0.22); }
+.floating-tab-btn--messages     { background: rgba(34, 197, 94, 0.22); }
+.floating-tab-btn--achievements { background: rgba(250,204,21,0.25); }
+.floating-tab-btn--news         { background: rgba(239,68,68,0.22); }
+
+/* ACTIVE */
+.floating-tab-btn.is-active.floating-tab-btn--status {
+  background: #38bdf8;
+  color: #0f172a;
+}
+.floating-tab-btn.is-active.floating-tab-btn--training {
+  background: #22c55e;
+  color: #0f172a;
+}
+.floating-tab-btn.is-active.floating-tab-btn--messages {
+  background: #f97316;
+  color: #0f172a;
+}
+.floating-tab-btn.is-active.floating-tab-btn--achievements {
+  background: #facc15;
+  color: #0f172a;
+}
+.floating-tab-btn.is-active.floating-tab-btn--news {
+  background: #ef4444;
+  color: #0f172a;
+}
+
+/* ICON */
+.floating-tab-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  opacity: 0.85;
+}
+
+.floating-tab-btn.is-active .floating-tab-icon {
+  opacity: 1;
+}
+
+/* MOBILE */
+@media (max-width: 820px) {
+  .floating-tab-bar {
+    position: static;
+    transform: none;
+    margin: 10px auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================
+   FIX: Prevent floating tab bar from overlapping stat capsule
+   ========================================================== */
+
+.floating-tab-bar + .stat-capsule,
+.stat-capsule {
+  margin-top: 140px !important;
+}
+
+/* Prevent top overlap with floating tab bar */
+.dashboard-root .hub-content {
+  padding-top: 32px; /* adjust 32→48 if you want more breathing room */
+}
+
+
+/* ==========================================================
+   FIXED LOGOUT BUTTON — A1 (small until hover)
+   ========================================================== */
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 6px 14px;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border: 1px solid rgba(239,68,68,0.55);
+
+  box-shadow:
+    0 3px 9px rgba(239,68,68,0.35),
+    inset 0 0 6px rgba(0,0,0,0.35);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+
+  color: #fff;
+  cursor: pointer;
+
+  transform: scale(0.9);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 6px 18px rgba(239,68,68,0.65),
+    inset 0 0 8px rgba(0,0,0,0.45);
+}
+
+.logout-icon {
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  background: rgba(15,23,42,0.9);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
+}
+
+.logout-icon-svg {
+  width: 14px;
+  height: 14px;
+  fill: #fca5a5;
+}
+
+/* ==========================================================
+   END OF FILE
+   ========================================================== */

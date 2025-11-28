@@ -1,246 +1,209 @@
-/* =====================================================================
-   FILE: student-login.css
-   PURPOSE: Task Karate – Student Login + PIN Modal
-   PAGES: student-login.html  (body has class="student-login-page")
-   NOTE: Palette intentionally matches dashboard for a unified app feel.
-   ===================================================================== */
-
-/* ==========================================================
-   [1] ROOT TOKENS + BASE TYPOGRAPHY (LOGIN PAGE ONLY)
-   ========================================================== */
-
-.student-login-page {
-  --tk-blue: #38bdf8;
-  --tk-blue-soft: rgba(56, 189, 248, 0.35);
-  --panel-bg: rgba(15, 23, 42, 0.78);
-  --panel-border: rgba(148, 163, 184, 0.35);
-  --text-main: #e5e7eb;
-  --text-muted: #9ca3af;
-
-  color: var(--text-main);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-    
-  /* Account for fixed navigation bar */
-  padding-top: 70px;
+/* ============================================================
+   [1] GLOBAL LAYOUT WRAPPER
+   ============================================================ */
+.login-wrapper {
+  max-width: 900px;
+  margin: 5rem auto;
+  padding: var(--space-4);
 }
 
-/* Slight boost to the login shell to match the “app” vibe */
-.student-login-page .login-shell {
-  background: rgba(15, 23, 42, 0.92);
-  border-radius: 22px;
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  box-shadow:
-    0 14px 32px rgba(0, 0, 0, 0.75),
-    0 0 0 1px rgba(255, 255, 255, 0.02);
-  padding: 22px 22px 18px;
+/* ============================================================
+   [2] PAPER-FU HERO LOGIN CARD
+   ============================================================ */
+.login-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-med);
 }
 
-/* Header polish */
-.student-login-page .login-header .eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.75rem;
-  color: var(--text-muted);
+.login-header {
+  margin-bottom: var(--space-4);
 }
 
-/* ==========================================================
-   [2] SEARCH RESULTS — STUDENT TILES GRID
-   ========================================================== */
-
-/* Container that student-login.js populates (#studentResults) */
-.student-login-page #studentResults {
+/* ============================================================
+   [3] SEARCH + INSTRUCTOR TOGGLE ROW
+   ============================================================ */
+.login-toolbar {
   display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  padding: 20px 0;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  align-items: center;
 }
 
-/* Individual tile: big, tappable, console-style card */
-.student-login-page .login-tile {
-  background: rgba(15, 23, 42, 0.88);
-  border-radius: 18px;
-  padding: 16px 18px;
-  min-width: 170px;
+.login-search {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neutral-700);
+  background: var(--neutral-900);
+  color: var(--text-primary);
+}
 
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(12px);
-
+/* ============================================================
+   [4] NINTENDO-STYLE INSTRUCTOR TOGGLE
+   ============================================================ */
+.instructor-switch {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   cursor: pointer;
-  transition:
-    transform 0.16s ease,
-    box-shadow 0.16s ease,
-    border-color 0.16s ease,
-    background 0.16s ease;
-  text-align: left;
 }
 
-/* Hover effect */
-.student-login-page .login-tile:hover {
-  transform: translateY(-4px);
-  border-color: #38bdf8;
-  box-shadow: 0 14px 30px rgba(56, 189, 248, 0.35);
+.instructor-switch input {
+  display: none;
 }
 
-/* Active/selected tile (after click) */
-.student-login-page .login-tile.is-selected {
-  transform: translateY(-4px);
-  border-color: #22c55e;
-  box-shadow: 0 18px 36px rgba(34, 197, 94, 0.4);
-  background: radial-gradient(
-    circle at top left,
-    rgba(34, 197, 94, 0.22),
-    rgba(15, 23, 42, 0.95)
-  );
+.instructor-track {
+  width: 48px;
+  height: 24px;
+  background: var(--neutral-700);
+  border-radius: var(--radius-full);
+  position: relative;
+  transition: background var(--transition-fast);
 }
 
-/* Avatar / initials square */
-.student-login-page .login-tile__avatar {
+.instructor-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--transition-fast);
+}
+
+.instructor-switch input:checked + .instructor-track {
+  background: var(--task-blue-light);
+}
+
+.instructor-switch input:checked + .instructor-track .instructor-thumb {
+  transform: translateX(24px);
+}
+
+.instructor-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* ============================================================
+   [5] ROSTER GRID (VERTICAL SCROLL)
+   ============================================================ */
+.login-roster-scroll {
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.login-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* ============================================================
+   [6] STUDENT TILES (Switch-like Cards)
+   ============================================================ */
+.login-tile {
+  width: 100%;
+  padding: var(--space-4);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  transition: all var(--transition-fast);
+}
+
+.login-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hard);
+}
+
+.login-tile.is-selected {
+  border-color: var(--task-blue-light);
+  box-shadow: 0 0 10px rgba(59, 123, 208, 0.6);
+}
+
+/* Avatar */
+.login-tile-avatar {
   width: 48px;
   height: 48px;
-  border-radius: 14px;
-  margin-bottom: 10px;
-
+  border-radius: var(--radius-full);
+  background: var(--neutral-700);
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-family: "Bebas Neue", system-ui;
-  font-size: 1.6rem;
-
-  background: radial-gradient(circle at 30% 20%, #38bdf8, #0ea5e9);
-  color: #0f172a;
-  border: 2px solid rgba(15, 23, 42, 0.9);
-  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.8);
 }
 
-/* Staff highlight (for assistant/instructor roles) */
-.student-login-page .login-tile__avatar--staff {
-  background: radial-gradient(circle at 30% 20%, #facc15, #eab308);
+.avatar-initials {
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
-/* Meta block: name / rank / helper label */
-.student-login-page .login-tile__meta strong {
-  display: block;
+/* Text */
+.login-tile-name {
+  font-weight: 600;
   font-size: 1rem;
-  margin-bottom: 2px;
 }
 
-.student-login-page .login-tile__meta p {
-  margin: 0;
-  font-size: 0.82rem;
+.login-tile-rank {
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
 
-.student-login-page .login-tile__role {
-  margin-top: 2px;
-  color: #f97316;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+/* ============================================================
+   [7] BIG "ENTER DOJO" BUTTON
+   ============================================================ */
+.enter-btn {
+  margin-top: var(--space-6);
+  width: 100%;
+  padding: var(--space-4);
+  font-size: 1.2rem;
+  border-radius: var(--radius-lg);
 }
 
-/* ==========================================================
-   [3] PIN MODAL — BACKDROP + CARD
-   Triggered by “Enter Dojo” button via student-login.js
-   ========================================================== */
-
-/* Full-screen dimmed background */
-.student-login-page .pin-modal-backdrop {
+/* ============================================================
+   [8] PIN MODALS
+   ============================================================ */
+.pin-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(10px);
-  display: flex;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
   align-items: center;
   justify-content: center;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.18s ease;
-  z-index: 40;
+  z-index: var(--z-modal);
 }
 
-/* When JS adds .is-open, modal becomes interactive */
-.student-login-page .pin-modal-backdrop.is-open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Lock scrolling when modal is open (body gets this class) */
-.pin-modal-open {
-  overflow: hidden;
-}
-
-/* Modal card */
-.student-login-page .pin-modal {
-  width: 100%;
-  max-width: 420px;
-  background: rgba(15, 23, 42, 0.98);
-  border-radius: 20px;
-  border: 1px solid rgba(148, 163, 184, 0.55);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.8);
-  padding: 20px 22px;
-}
-
-/* Modal header: student name + helper line */
-.student-login-page .pin-modal-header h2 {
-  margin: 0 0 4px;
-  font-size: 1.3rem;
-}
-
-.student-login-page .pin-modal-header p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-/* Form block inside the modal */
-.student-login-page .pin-form {
-  margin-top: 10px;
-}
-
-.student-login-page .pin-form .form-label {
-  font-size: 0.8rem;
-}
-
-/* Actions: Cancel / Enter buttons row */
-.student-login-page .pin-actions {
+.pin-modal-backdrop.is-open {
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 14px;
 }
 
-/* Status text under the form (same #loginStatus element) */
-.student-login-page .login-status {
-  margin-top: 8px;
+.pin-modal {
+  padding: var(--space-6);
+  width: 350px;
+  border-radius: var(--radius-lg);
+  background: var(--neutral-900);
+  color: var(--text-primary);
 }
 
-/* ==========================================================
-   [4] BUTTON VARIANTS (FOR MODAL FOOTER)
-   ========================================================== */
-
-/* “Ghost” button for Cancel, sits next to main .btn--primary */
-.student-login-page .btn.btn--ghost {
-  background: transparent;
-  border-radius: 999px;
-  padding: 8px 14px;
-  border: 1px solid rgba(148, 163, 184, 0.7);
-  color: #e5e7eb;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition:
-    background 0.14s ease,
-    border-color 0.14s ease,
-    transform 0.1s ease;
+.pin-input {
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neutral-700);
+  background: var(--neutral-800);
+  margin-bottom: var(--space-4);
 }
 
-.student-login-page .btn.btn--ghost:hover {
-  background: rgba(30, 64, 175, 0.2);
-  border-color: #38bdf8;
-  transform: translateY(-1px);
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
 }
-
-/* The primary button (.btn--primary) should already exist in main.css;
-   we’re just trusting that and not redefining it here to avoid conflicts. */

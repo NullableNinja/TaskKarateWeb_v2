@@ -1,0 +1,143 @@
+/* ==========================================================
+   Task Karate – Student Hub
+   student-dashboard-news.css
+   ----------------------------------------------------------
+   NEWS TAB:
+   - News cards
+   - News modal popup
+   ========================================================== */
+
+.dashboard-root .news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.dashboard-root .news-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+.dashboard-root .news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.8);
+}
+
+.dashboard-root .news-title {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+}
+
+.dashboard-root .news-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.dashboard-root .news-tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  background: var(--tk-blue-soft);
+  color: var(--tk-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.dashboard-root .news-summary {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+/* News Modal */
+.news-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.news-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.news-modal {
+  background: var(--panel-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-border);
+  padding: 24px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.7);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
+}
+
+.news-modal-backdrop.is-open .news-modal {
+  transform: scale(1);
+}
+
+.news-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.news-modal-title {
+  font-size: 1.3rem;
+  margin: 0;
+  color: #e5e7eb;
+}
+
+.news-modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.news-modal-close:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.news-modal-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.news-modal-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--panel-border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

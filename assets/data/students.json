@@ -95,6 +95,7 @@
       "friendRequestsIncoming": [],
       "friendRequestsOutgoing": []
     },
+
     {
       "id": "logan-perez",
       "name": "Logan Perez",
@@ -161,6 +162,7 @@
       "friendRequestsIncoming": [],
       "friendRequestsOutgoing": []
     },
+
     {
       "id": "naomi-wu",
       "name": "Naomi Wu",
@@ -207,6 +209,7 @@
       "friendRequestsIncoming": [],
       "friendRequestsOutgoing": []
     },
+
     {
       "id": "ann-yehle",
       "name": "Ann Yehle",
@@ -272,7 +275,7 @@
         },
         {
           "event": "Summer Skills Week",
-          "category": "Event Support",
+          "category": "La Crosse",
           "location": "La Crosse",
           "date": "2024-06-22",
           "note": "Organized drills and coached students all week."
@@ -282,6 +285,7 @@
       "friendRequestsIncoming": [],
       "friendRequestsOutgoing": []
     },
+
     {
       "id": "grace-loizzi",
       "name": "Grace Loizzi",
@@ -327,6 +331,7 @@
       "friendRequestsIncoming": [],
       "friendRequestsOutgoing": []
     },
+
     {
       "id": "joseph-mattison",
       "name": "Joseph Mattison",
@@ -372,6 +377,7 @@
       "friendRequestsIncoming": [],
       "friendRequestsOutgoing": []
     },
+
     {
       "id": "anne-markos",
       "name": "Anne Markos",
@@ -416,8 +422,376 @@
       "friends": ["ann-yehle", "grace-loizzi"],
       "friendRequestsIncoming": [],
       "friendRequestsOutgoing": []
+    },
+    {
+      "id": "mr-tea",
+      "name": "Mr. Tea",
+      "rank": "Black Belt",
+      "rankType": "degree",
+      "yearsRequired": 2,
+      "yearsAtRank": 1,
+      "totalClasses": 430,
+      "uniformSize": "Adult Large",
+      "beltSize": "Size 5",
+      "pin": "1234",
+      "birthday": "1985-09-22",
+      "nextStripeLabel": "2nd Degree Black Belt",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Tea Leaf Palm Strike",
+        "trainingGoals": 6,
+        "perfectDays": 18,
+        "highFives": 70,
+        "dojoFriends": 15,
+        "formsMastered": 7,
+        "perfectAttendance": false,
+        "energyLevel": "Calm but Deadly",
+        "motivationScore": 88
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+    {
+      "id": "sir-kixalot",
+      "name": "Sir Kixalot",
+      "rank": "Blue Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 10,
+      "classesSinceStripe": 4,
+      "totalClasses": 85,
+      "uniformSize": "Adult Medium",
+      "beltSize": "Size 3",
+      "pin": "1234",
+      "birthday": "2008-04-14",
+      "nextStripeLabel": "Blue w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Royal Spinning Crescent Kick",
+        "trainingGoals": 4,
+        "perfectDays": 9,
+        "highFives": 34,
+        "dojoFriends": 11,
+        "formsMastered": 2,
+        "perfectAttendance": false,
+        "energyLevel": "Knightly",
+        "motivationScore": 90
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+
+    {
+      "id": "grandma-uppercut",
+      "name": "Grandma Uppercut",
+      "rank": "Orange Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 6,
+      "classesSinceStripe": 3,
+      "totalClasses": 41,
+      "uniformSize": "Adult Small",
+      "beltSize": "Size 2",
+      "pin": "1234",
+      "birthday": "1959-02-10",
+      "nextStripeLabel": "Orange w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Grand Slam Uppercut",
+        "trainingGoals": 5,
+        "perfectDays": 20,
+        "highFives": 112,
+        "dojoFriends": 19,
+        "formsMastered": 1,
+        "perfectAttendance": true,
+        "energyLevel": "Grandma Nuclear",
+        "motivationScore": 99
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+
+    {
+      "id": "some-guy-named-steve",
+      "name": "Some Guy Named Steve",
+      "rank": "White Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 4,
+      "classesSinceStripe": 1,
+      "totalClasses": 7,
+      "uniformSize": "Adult Medium",
+      "beltSize": "Size 2",
+      "pin": "1234",
+      "birthday": "1992-07-18",
+      "nextStripeLabel": "White w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "…Wait Which One?",
+        "trainingGoals": 1,
+        "perfectDays": 0,
+        "highFives": 3,
+        "dojoFriends": 0,
+        "formsMastered": 0,
+        "perfectAttendance": false,
+        "energyLevel": "Confused",
+        "motivationScore": 54
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+
+    {
+      "id": "wavey-davey",
+      "name": "Wavey Davey",
+      "rank": "Yellow Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 5,
+      "classesSinceStripe": 2,
+      "totalClasses": 22,
+      "uniformSize": "Adult Medium",
+      "beltSize": "Size 3",
+      "pin": "1234",
+      "birthday": "2009-01-12",
+      "nextStripeLabel": "Yellow w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Wave Master Hammer Kick",
+        "trainingGoals": 3,
+        "perfectDays": 4,
+        "highFives": 25,
+        "dojoFriends": 6,
+        "formsMastered": 1,
+        "perfectAttendance": false,
+        "energyLevel": "Wobbling",
+        "motivationScore": 80
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+    {
+      "id": "el-pollo-rojo",
+      "name": "El Pollo Rojo",
+      "rank": "Green Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 8,
+      "classesSinceStripe": 6,
+      "totalClasses": 79,
+      "uniformSize": "Adult Medium",
+      "beltSize": "Size 3",
+      "pin": "1234",
+      "birthday": "2008-11-27",
+      "nextStripeLabel": "Green w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Fiery Chicken Jump Kick",
+        "trainingGoals": 6,
+        "perfectDays": 14,
+        "highFives": 60,
+        "dojoFriends": 10,
+        "formsMastered": 3,
+        "perfectAttendance": false,
+        "energyLevel": "Spicy",
+        "motivationScore": 85
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+
+    {
+      "id": "lady-hurrikane",
+      "name": "Lady HurriKane",
+      "rank": "Blue Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 10,
+      "classesSinceStripe": 3,
+      "totalClasses": 72,
+      "uniformSize": "Adult Medium",
+      "beltSize": "Size 3",
+      "pin": "1234",
+      "birthday": "2007-03-04",
+      "nextStripeLabel": "Blue w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Twister Hurricane Kick",
+        "trainingGoals": 7,
+        "perfectDays": 16,
+        "highFives": 48,
+        "dojoFriends": 12,
+        "formsMastered": 2,
+        "perfectAttendance": false,
+        "energyLevel": "Windstorm",
+        "motivationScore": 93
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+
+    {
+      "id": "butterbeast",
+      "name": "Butterbeast",
+      "rank": "Purple Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 10,
+      "classesSinceStripe": 7,
+      "totalClasses": 112,
+      "uniformSize": "Adult Large",
+      "beltSize": "Size 5",
+      "pin": "1234",
+      "birthday": "1994-06-09",
+      "nextStripeLabel": "Purple w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Butter Smash",
+        "trainingGoals": 4,
+        "perfectDays": 11,
+        "highFives": 102,
+        "dojoFriends": 20,
+        "formsMastered": 2,
+        "perfectAttendance": false,
+        "energyLevel": "Melty",
+        "motivationScore": 82
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+
+    {
+      "id": "ronin-reroll",
+      "name": "Ronin Reroll",
+      "rank": "Red Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 12,
+      "classesSinceStripe": 5,
+      "totalClasses": 156,
+      "uniformSize": "Adult Medium",
+      "beltSize": "Size 4",
+      "pin": "1234",
+      "birthday": "2006-12-19",
+      "nextStripeLabel": "Red w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Dice Roll Palm Strike",
+        "trainingGoals": 5,
+        "perfectDays": 12,
+        "highFives": 44,
+        "dojoFriends": 14,
+        "formsMastered": 3,
+        "perfectAttendance": false,
+        "energyLevel": "Chaotic Good",
+        "motivationScore": 87
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+
+    {
+      "id": "brohan-the-flex-monk",
+      "name": "Brohan the Flex Monk",
+      "rank": "Brown Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 12,
+      "classesSinceStripe": 9,
+      "totalClasses": 212,
+      "uniformSize": "Adult Large",
+      "beltSize": "Size 4",
+      "pin": "1234",
+      "birthday": "1999-05-17",
+      "nextStripeLabel": "Brown w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Flexing Backfist",
+        "trainingGoals": 8,
+        "perfectDays": 19,
+        "highFives": 88,
+        "dojoFriends": 18,
+        "formsMastered": 4,
+        "perfectAttendance": false,
+        "energyLevel": "BRO",
+        "motivationScore": 91
+      },
+      "badges": [],
+      "buddies": [],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": [],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
     }
+
   ],
+
   "news": [
     {
       "title": "Winter Gear Orders",

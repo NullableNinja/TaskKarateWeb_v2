@@ -118,7 +118,7 @@
       setupLogout();
 
       // Instructor Mode (only for assistants/instructors)
-      setupInstructorMode(state.activeStudent);
+      setupInstructorMode(state.activeStudent, session);
 
     } catch (err) {
       console.error("Error loading student data:", err);
@@ -382,37 +382,36 @@
   }
 
   /**
-   * Setup the instructor toggle based on roles.
-   * Only assistants / instructors should see the toggle.
+   * Setup the instructor mode based on the login session.
+   * - If session.isInstructor is true → Instructor Mode is ON, not toggleable.
+   * - If false → toggle is hidden and instructor-only tools remain locked.
    */
-  function setupInstructorMode(student) {
-    if (!student) return;
-
-    const roles = Array.isArray(student.roles) ? student.roles : [];
-
-    const isStaff =
-      roles.includes("assistant") ||
-      roles.includes("instructor") ||
-      roles.includes("senior-assistant") ||
-      roles.includes("junior-instructor");
-
-    if (!instructorToggleWrapper || !instructorToggle) return;
-
-    if (!isStaff) {
-      // Keep toggle hidden for standard students
-      instructorToggleWrapper.classList.add("hidden");
+  function setupInstructorMode(student, session) {
+    if (!dashboardRoot || !instructorToggleWrapper || !instructorToggle) {
       return;
     }
 
-    // Make toggle visible for staff
-    instructorToggleWrapper.classList.remove("hidden");
+    const isInstructorSession = !!(session && session.isInstructor);
 
-    // Basic click handler
-    instructorToggle.addEventListener("click", () => {
-      instructorMode = !instructorMode;
-      setInstructorMode(instructorMode);
-    });
+    if (!isInstructorSession) {
+      // Hide the toggle entirely for standard logins
+      instructorToggleWrapper.classList.add("hidden");
+      setInstructorMode(false);
+      return;
+    }
+
+    // Instructor session: show the pill as "on" and lock it
+    instructorToggleWrapper.classList.remove("hidden");
+    instructorMode = true;
+
+    // Visually show as active and non-interactive
+    instructorToggle.classList.add("active");
+    instructorToggle.setAttribute("aria-pressed", "true");
+    instructorToggle.style.pointerEvents = "none";
+
+    setInstructorMode(true);
   }
+
 
   /**
    * Flip instructor mode visual state.

@@ -1,0 +1,605 @@
+/* ==========================================================
+   Task Karate – Student Hub
+   student-dashboard-status.css
+   ----------------------------------------------------------
+   STATUS TAB:
+   - Hero profile card (Switch-style)
+   - Training Overview Panel (NEW!)
+   - Rank progress panel
+   - Training HUD tile grid (modular)
+   - Achievements strip
+   - Gear placeholder
+   - Birthday callout + confetti
+   ========================================================== */
+
+/* Scope everything to the dashboard root */
+.dashboard-root .status-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ==========================================================
+   HERO PANEL — PROFILE + QUICK STATS
+   ========================================================== */
+
+.dashboard-root .status-hero-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dashboard-root .status-hero-main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.dashboard-root .status-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dashboard-root .status-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Bebas Neue", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 2.1rem;
+  letter-spacing: 0.08em;
+
+  background: radial-gradient(circle at 30% 20%, var(--tk-blue, #38bdf8), #0ea5e9);
+  color: #0f172a;
+  border: 2px solid rgba(15, 23, 42, 0.75);
+  box-shadow:
+    0 0 0 1px rgba(148, 163, 184, 0.35),
+    0 10px 24px rgba(0, 0, 0, 0.6);
+}
+
+.dashboard-root .status-identity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboard-root .status-student-name {
+  font-family: "Bebas Neue", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1.9rem;
+  letter-spacing: 0.08em;
+}
+
+.dashboard-root .status-rank-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dashboard-root .status-rank-chip,
+.dashboard-root .status-is3-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.dashboard-root .status-rank-chip {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(59, 130, 246, 0.26));
+  border: 1px solid rgba(125, 211, 252, 0.9);
+  color: #e0f2fe;
+}
+
+.dashboard-root .status-is3-chip {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.26), rgba(56, 189, 248, 0.18));
+  border: 1px solid rgba(129, 140, 248, 0.9);
+  color: #e0e7ff;
+}
+
+.dashboard-root .status-subline {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.dashboard-root .status-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dashboard-root .hero-stat {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.7);
+}
+
+.dashboard-root .hero-stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.dashboard-root .hero-stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Secondary row of quick meta items */
+.dashboard-root .status-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: 0.8rem;
+}
+
+.dashboard-root .status-hero-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.dashboard-root .meta-label {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.dashboard-root .meta-value {
+  font-size: 0.9rem;
+}
+
+/* ==========================================================
+   TRAINING OVERVIEW STRIP (NEW)
+   ========================================================== */
+
+.dashboard-root .status-quick-panel {
+  margin-bottom: 8px;
+  padding: var(--pad-panel-y) var(--pad-panel-x);
+  background: var(--panel-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+}
+
+.dashboard-root .status-quick-stats {
+  margin-top: 16px;
+}
+
+.dashboard-root .status-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.dashboard-root .status-strip {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.25s;
+}
+
+.dashboard-root .status-strip:hover {
+  background: rgba(255,255,255,0.07);
+}
+
+.dashboard-root .status-strip--highlight {
+  background: rgba(56,189,248,0.10);
+  border-color: rgba(56,189,248,0.35);
+}
+
+.dashboard-root .status-strip-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+}
+
+.dashboard-root .status-strip-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.dashboard-root .status-strip-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* ==========================================================
+   MID GRID — RANK PROGRESS + TRAINING HUD
+   ========================================================== */
+
+.dashboard-root .status-mid-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 2fr);
+  gap: 18px;
+}
+
+.dashboard-root .status-progress-panel .panel-header-inline,
+.dashboard-root .status-hud-panel .panel-header-inline,
+.dashboard-root .status-achievements-panel .panel-header-inline,
+.dashboard-root .status-gear-panel .panel-header-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dashboard-root .status-progress-percent {
+  min-width: 52px;
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.dashboard-root .status-progress-bar {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  overflow: hidden;
+}
+
+.dashboard-root .status-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #22c55e, #facc15, #ef4444);
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+  transform-origin: left center;
+  transition: width 260ms ease-out;
+}
+
+.dashboard-root .status-progress-text {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-root .status-progress-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  font-size: 0.8rem;
+}
+
+.dashboard-root .status-progress-meta .meta-label {
+  margin-bottom: 1px;
+}
+
+/* ==========================================================
+   TRAINING HUD GRID
+   ========================================================== */
+
+.dashboard-root .status-hud-panel {
+  position: relative;
+}
+
+.dashboard-root .status-hud-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.dashboard-root .hud-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 10px;
+  border-radius: 14px;
+
+  background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+.dashboard-root .hud-chip-icon-wrapper {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle at 30% 20%, rgba(248, 250, 252, 0.95), rgba(209, 213, 219, 0.75));
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.9),
+    0 8px 18px rgba(0, 0, 0, 0.7);
+}
+
+.dashboard-root .hud-chip-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dashboard-root .hud-chip-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.dashboard-root .hud-chip-value {
+  font-size: 1.05rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.dashboard-root .status-hud-empty {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+
+/* ==========================================================
+   DETAIL GRID — Belt / IS3 / Sizes / Years
+   ========================================================== */
+
+.dashboard-root .status-detail-panel {
+  padding: var(--pad-panel-y) var(--pad-panel-x);
+  background: var(--panel-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+}
+
+.dashboard-root .status-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.dashboard-root .detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboard-root .detail-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.dashboard-root .detail-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+
+
+
+/* ==========================================================
+   ACHIEVEMENTS STRIP
+   ========================================================== */
+
+.dashboard-root .status-achievements-panel {
+  position: relative;
+}
+
+.dashboard-root .status-achievements-row {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.dashboard-root .status-achievements-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.dashboard-root .status-achievements-row::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.dashboard-root .status-achievements-row::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.5);
+  border-radius: 999px;
+}
+
+.dashboard-root .badge-card {
+  min-width: 220px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.14), rgba(15, 23, 42, 0.96));
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+}
+
+.dashboard-root .badge-card.level-bronze {
+  border-color: rgba(245, 158, 11, 0.7);
+}
+
+.dashboard-root .badge-card.level-silver {
+  border-color: rgba(156, 163, 175, 0.9);
+}
+
+.dashboard-root .badge-card.level-gold {
+  border-color: rgba(250, 204, 21, 0.9);
+}
+
+.dashboard-root .badge-card.level-diamond {
+  border-color: rgba(56, 189, 248, 0.9);
+}
+
+.dashboard-root .badge-medal {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  font-size: 1.2rem;
+  background: radial-gradient(circle at 30% 20%, #fefcbf, #fbbf24);
+  color: #1f2937;
+}
+
+.dashboard-root .badge-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboard-root .badge-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.dashboard-root .badge-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.dashboard-root .badge-dot {
+  opacity: 0.6;
+}
+
+.dashboard-root .badge-description {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.dashboard-root .status-achievements-empty {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================
+   GEAR PANEL (PLACEHOLDER)
+   ========================================================== */
+
+.dashboard-root .status-gear-panel .gear-empty {
+  margin-top: 6px;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================
+   BIRTHDAY CALLOUT + CONFETTI
+   ========================================================== */
+
+.dashboard-root .birthday-callout {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.2),
+    rgba(234, 179, 8, 0.1)
+  );
+  border: 2px solid rgba(245, 158, 11, 0.4);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fbbf24;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+  animation: birthday-pulse 2s ease-in-out infinite;
+}
+
+@keyframes birthday-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px rgba(245, 158, 11, 0.45);
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  width: 8px;
+  height: 14px;
+  background: #fbbf24;
+  opacity: 0;
+  transform: translate3d(0, -20px, 0);
+  animation: confetti-fall 3.2s linear forwards;
+  z-index: 9999;
+}
+
+.confetti-piece:nth-child(3n) {
+  background: #38bdf8;
+}
+
+.confetti-piece:nth-child(4n) {
+  background: #a855f7;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 110vh, 0) rotateZ(360deg);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 960px) {
+  .dashboard-root .status-mid-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dashboard-root .status-hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-root .status-hero-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dashboard-root .status-hero-meta {
+    flex-direction: column;
+  }
+}

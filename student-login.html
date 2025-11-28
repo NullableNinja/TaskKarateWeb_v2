@@ -2,178 +2,136 @@
 <html lang="en" data-theme="dark">
 <head>
   <!-- ============================================================
-       [1] META + BASE CONFIG
+       [1] META + BASE SETUP
        ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Task Karate – Student Login</title>
+  <title>Task Karate — Student Login</title>
 
   <!-- ============================================================
-       [2] CORE STYLESHEETS
-       NOTE: student-dashboard.css ALSO contains login tile + modal styles
-       when the BODY has .student-login-page
+       [2] GLOBAL STYLES (Paper-Fu / Switch Hybrid)
        ============================================================ -->
   <link rel="stylesheet" href="./assets/styles/main.css" />
   <link rel="stylesheet" href="./assets/styles/student-login.css" />
 </head>
 
-<!-- ============================================================
-     [3] BODY CLASS — REQUIRED FOR LOGIN THEME
-     ============================================================ -->
-<body class="student-login-page">
+<body class="login-page">
+  <!-- Background -->
+  <div class="bg-geo"></div>
 
-  <!-- Background Geometry Field -->
-  <div class="bg-geo" aria-hidden="true"></div>
-
-  <!-- Navigation Bar -->
-  <div id="site-header"></div>
+  <!-- Navigation partial -->
+  <header id="site-header"></header>
 
   <!-- ============================================================
-       [4] MAIN LAYOUT CONTAINER
+       [3] MAIN LOGIN PANEL (Paper-Fu Layered Card)
        ============================================================ -->
-  <main class="pf-section">
-    <div class="container">
-      <div class="login-shell">
-
-        <!-- ============================================================
-             [5] LOGIN HEADER
-             ============================================================ -->
-        <header class="login-header">
-          <div>
-            <p class="eyebrow">Task Karate · La Crosse</p>
-            <h1 class="heading-2">Select Your Profile</h1>
-            <p class="muted text-sm">
-              Search your name, tap your tile, then enter your PIN to enter the dojo hub.
-            </p>
-          </div>
-        </header>
-
-        <!-- ============================================================
-             [6] LOGIN BODY
-             Handles:
-             - Searching students
-             - Showing tiles
-             - Clicking "Enter Dojo" (opens modal)
-             ============================================================ -->
-        <section class="login-body">
-          <form id="loginForm" class="login-form" autocomplete="off">
-
-            <!-- SEARCH FIELD -->
-            <div class="form-row">
-              <label for="studentSearchInput" class="form-label">Search for your name</label>
-              <input
-                id="studentSearchInput"
-                type="text"
-                class="form-input"
-                placeholder="Start typing your first or last name…"
-                autocomplete="off"
-              />
-            </div>
-
-            <!-- MATCH RESULTS (TILES INJECTED BY JS) -->
-            <div id="studentResults" class="login-results" aria-live="polite">
-              <!-- JS renders tiles here -->
-            </div>
-
-            <!-- ENTER DOJO BUTTON → triggers modal -->
-            <button
-              id="enterDojoBtn"
-              class="btn btn--primary btn--full"
-              type="button"
-            >
-              Enter Dojo
-            </button>
-
-            <!-- Inline error text -->
-            <p
-              id="loginStatus"
-              class="login-status muted text-sm"
-              aria-live="polite"
-            ></p>
-          </form>
-
-          <!-- HELP TEXT -->
-          <aside class="login-hint">
-            <p class="text-xs muted">
-              <strong>Need help?</strong> Ask an instructor if you're not sure which profile or PIN to use.
-            </p>
-          </aside>
-        </section>
-      </div>
-    </div>
-  </main>
-
-  <!-- ============================================================
-       [7] PIN MODAL (Option A — Compact Console Modal)
-       Shown only after selecting a tile and tapping Enter Dojo
-       ============================================================ -->
-  <div
-    id="pinModal"
-    class="pin-modal-backdrop"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="pinModalTitle"
-  >
-    <div class="pin-modal">
-      <header class="pin-modal-header">
-        <h2 id="pinModalTitle">Enter PIN</h2>
-        <p class="muted text-sm" id="pinModalStudentName">
-          For: <span>Student Name</span>
-        </p>
+  <main class="login-wrapper">
+    <section class="login-card pf-washi pf-elevate-3">
+      <!-- Header -->
+      <header class="login-header">
+        <h1 class="heading-2">Enter the Dojo</h1>
+        <p class="muted text-sm">Tap your profile to begin your training journey.</p>
       </header>
 
-      <form id="pinForm" class="pin-form" autocomplete="off">
-        <label for="pinModalInput" class="form-label">PIN</label>
-        <input
-          id="pinModalInput"
-          type="password"
-          inputmode="numeric"
-          maxlength="6"
-          class="form-input"
-          placeholder="Enter your 4–6 digit PIN…"
+      <!-- Search + Instructor Row -->
+      <div class="login-toolbar">
+        <input 
+          id="studentSearchInput" 
+          class="login-search" 
+          type="text" 
+          placeholder="Search students…" 
           autocomplete="off"
         />
 
-        <p
-          id="pinModalStatus"
-          class="login-status muted text-sm"
-          aria-live="polite"
-        ></p>
+        <!-- Instructor Toggle -->
+        <label class="instructor-switch">
+          <input type="checkbox" id="instructorLoginToggle" />
+          <span class="instructor-track">
+            <span class="instructor-thumb"></span>
+          </span>
+          <span class="instructor-label">Instructor Login</span>
+        </label>
+      </div>
 
-        <div class="pin-actions">
-          <button
-            type="button"
-            id="pinCancelBtn"
-            class="btn btn--ghost"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            class="btn btn--primary"
-          >
-            Enter Dojo
-          </button>
+      <!-- Status text -->
+      <p id="loginStatus" class="login-status muted text-sm"></p>
+
+      <!-- ========================================================
+           [4] STUDENT ROSTER (Scrollable Vertical Grid)
+           ======================================================== -->
+      <div class="login-roster-scroll">
+        <div id="studentResults" class="login-grid">
+          <!-- JS injects tiles here -->
+        </div>
+      </div>
+
+      <!-- Big Enter Button (Keyboard-friendly) -->
+      <button id="enterDojoBtn" class="btn btn--primary enter-btn">
+        Enter Dojo
+      </button>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       [5] STUDENT PIN MODAL
+       ============================================================ -->
+  <div id="pinModal" class="pin-modal-backdrop" aria-hidden="true">
+    <div class="pin-modal pf-washi pf-elevate-2">
+      <h2 class="modal-title">Enter Your PIN</h2>
+      <p id="pinModalStudentName" class="muted text-sm"></p>
+
+      <form id="pinForm" autocomplete="off">
+        <input 
+          id="pinModalInput"
+          class="pin-input"
+          type="password" 
+          maxlength="6" 
+          placeholder="Your PIN…" 
+          autocomplete="off"
+        />
+
+        <p id="pinModalStatus" class="modal-status muted text-sm"></p>
+
+        <div class="modal-actions">
+          <button type="button" id="pinCancelBtn" class="btn btn--ghost">Cancel</button>
+          <button type="submit" class="btn btn--primary">Enter Dojo</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- ============================================================
-       [8] SCRIPTS
-       Navigation bar loading + authentication + login functionality
+       [6] INSTRUCTOR DOJO PIN MODAL
        ============================================================ -->
-  <script>
-    // Load navigation bar from partials
-    fetch('./partials/navigation-bar.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('site-header').innerHTML = html;
-      })
-      .catch(error => console.error('Error loading navigation:', error));
-  </script>
-  <script src="./assets/js/auth-guard.js"></script>
+  <div id="instructorPinModal" class="pin-modal-backdrop" aria-hidden="true">
+    <div class="pin-modal pf-washi pf-elevate-2">
+      <h2 class="modal-title">Instructor Access</h2>
+      <p class="muted text-sm">Enter the Dojo Admin PIN.</p>
+
+      <form id="instructorPinForm" autocomplete="off">
+        <input 
+          id="instructorPinInput"
+          class="pin-input"
+          type="password" 
+          maxlength="8" 
+          placeholder="Dojo PIN…" 
+          autocomplete="off"
+        />
+
+        <p id="instructorPinStatus" class="modal-status muted text-sm"></p>
+
+        <div class="modal-actions">
+          <button type="button" id="instructorPinCancelBtn" class="btn btn--ghost">Cancel</button>
+          <button type="submit" class="btn btn--primary">Unlock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       [7] SCRIPTS
+       ============================================================ -->
+  <script src="./assets/js/partials.js"></script>
   <script src="./assets/js/student-login.js"></script>
 
 </body>
