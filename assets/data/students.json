@@ -13,6 +13,17 @@
       "pin": "1234",
       "beltSince": "2024-06-01",
       "birthday": "2013-03-15",
+      "joinDate": "2022-01-15",
+      "lastClassDate": "2025-11-25T10:15:00Z",
+      "attendanceDates": [
+        "2025-11-25",
+        "2025-11-24",
+        "2025-11-23",
+        "2025-11-18",
+        "2025-11-11",
+        "2025-11-04",
+        "2025-10-28"
+      ],
       "nextStripeLabel": "Green w/ 2nd Stripe",
       "roles": ["student"],
       "funStats": {
@@ -97,6 +108,48 @@
     },
 
     {
+      "id": "thomas-bryant",
+      "name": "Thomas Bryant",
+      "rank": "White Belt",
+      "rankType": "stripe",
+      "classesPerStripe": 4,
+      "classesSinceStripe": 1,
+      "totalClasses": 9,
+      "uniformSize": "Adult Medium",
+      "beltSize": "Size 2",
+      "pin": "4321",
+      "birthday": "2010-07-21",
+      "joinDate": "2025-09-01",
+      "lastClassDate": "2025-11-30T18:00:00Z",
+      "attendanceDates": ["2025-11-30","2025-11-25","2025-11-18"],
+      "nextStripeLabel": "White w/ 2nd Stripe",
+      "roles": ["student"],
+      "funStats": {
+        "favoriteTechnique": "Snap Punch",
+        "trainingGoals": 2,
+        "perfectDays": 1,
+        "highFives": 5,
+        "dojoFriends": 2,
+        "formsMastered": 0,
+        "perfectAttendance": false,
+        "energyLevel": "Steady",
+        "motivationScore": 68
+      },
+      "badges": [],
+      "buddies": [
+        { "name": "Emma Thompson", "rank": "Green Belt", "streak": 2, "status": "Training partner" },
+        { "name": "Logan Perez", "rank": "Brown Belt", "streak": 3, "status": "On the mats" }
+      ],
+      "messages": [],
+      "assignments": [],
+      "practice": [],
+      "goldStars": [],
+      "friends": ["emma-thompson","logan-perez"],
+      "friendRequestsIncoming": [],
+      "friendRequestsOutgoing": []
+    },
+
+    {
       "id": "logan-perez",
       "name": "Logan Perez",
       "rank": "Brown Belt",
@@ -109,6 +162,16 @@
       "pin": "1234",
       "beltSince": "2023-09-15",
       "birthday": "2012-08-09",
+      "joinDate": "2018-06-20",
+      "lastClassDate": "2025-11-23T15:35:00Z",
+      "attendanceDates": [
+        "2025-11-23",
+        "2025-11-16",
+        "2025-11-09",
+        "2025-10-26",
+        "2025-10-12",
+        "2025-09-28"
+      ],
       "nextStripeLabel": "Brown w/ 2nd Stripe",
       "roles": ["student"],
       "funStats": {
@@ -176,6 +239,15 @@
       "pin": "1234",
       "beltSince": "2024-03-10",
       "birthday": "2013-11-05",
+      "joinDate": "2023-02-08",
+      "lastClassDate": "2025-11-24T16:00:00Z",
+      "attendanceDates": [
+        "2025-11-24",
+        "2025-11-17",
+        "2025-11-10",
+        "2025-10-27",
+        "2025-10-13"
+      ],
       "nextStripeLabel": "Purple w/ 2nd Stripe",
       "roles": ["student"],
       "badges": [

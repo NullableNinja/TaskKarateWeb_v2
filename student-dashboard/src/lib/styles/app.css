@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "./global-background.css";
+
+:root {
+  --font-title: 'Bebas Neue', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* Dashboard core tokens (adapted from legacy student-dashboard-core.css) */
+.dashboard-root {
+  --tk-blue: #38bdf8;
+  --tk-blue-soft: rgba(56, 189, 248, 0.35);
+  --panel-bg: rgba(15, 23, 42, 0.86);
+  --panel-border: rgba(148, 163, 184, 0.35);
+  --panel-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.45);
+
+  --pad-panel-y: 18px;
+  --pad-panel-x: 22px;
+  --gap-panel: 20px;
+}
+
+body .dashboard-root {
+  color: var(--text-main);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding-top: 60px;
+}
+
+/* Panels — Paper-Fu double-layer system (original look) */
+.panel {
+  position: relative;
+  z-index: 1;
+  background: var(--panel-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-border);
+  padding: var(--pad-panel-y) var(--pad-panel-x);
+  margin-bottom: var(--gap-panel);
+  box-shadow: var(--panel-shadow);
+  backdrop-filter: blur(14px);
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(15, 23, 42, 0.88);
+  /* Remove transform for better text alignment */
+  opacity: 0.82;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.panel-title { 
+  margin: 0 0 8px; 
+  font-size: 1.2rem; 
+  font-weight: 800; 
+  letter-spacing: 0.02em;
+}
+.panel-subtitle { margin: 0 0 12px; font-size: 0.85rem; color: var(--text-muted); }
+
+/* Birthday confetti animation */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(var(--end-x, 50%)) rotate(var(--rotation, 360deg));
+    opacity: 0;
+  }
+}
+

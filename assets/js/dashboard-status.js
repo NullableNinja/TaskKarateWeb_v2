@@ -146,7 +146,7 @@ function getStatusHudItems(s) {
   return items;
 }
 
-// Render the HUD chip grid HTML.
+// Render the HUD chip grid HTML (Status tab panel).
 function renderHudGrid(hudItems) {
   if (!hudItems || !hudItems.length) {
     return `
@@ -174,6 +174,65 @@ function renderHudGrid(hudItems) {
         )
         .join("")}
     </div>
+  `;
+}
+
+// ---------------------------------------------------------
+// [1C] GLOBAL FUN STATS STRIP (UNDER HEADER TABS)
+// ---------------------------------------------------------
+//
+// Uses the same HUD item definitions, but renders a compact
+// 3–6 chip strip into #funStatsStrip so it appears on every
+// tab under the profile/tabs row.
+// ---------------------------------------------------------
+function renderFunStatsStrip() {
+  const container = document.getElementById("funStatsStrip");
+  const s = state.activeStudent;
+  if (!container || !s) return;
+
+  const allItems = getStatusHudItems(s);
+  const stripItems = allItems.slice(0, 6); // keep it tight
+
+  if (!stripItems.length) {
+    container.innerHTML = `
+      <section class="panel funstrip-panel">
+        <div class="funstrip-empty muted">
+          Add some fun stats to your profile to see them here.
+        </div>
+      </section>
+    `;
+    return;
+  }
+
+  container.innerHTML = `
+    <section class="panel funstrip-panel">
+      <header class="funstrip-header">
+        <div>
+          <h2 class="funstrip-title">Fun Stats</h2>
+          <p class="funstrip-subtitle">
+            Custom highlights picked by you and your instructors.
+          </p>
+        </div>
+      </header>
+
+      <div class="funstrip-grid">
+        ${stripItems
+          .map(
+            (item) => `
+          <article class="funstrip-chip">
+            <div class="funstrip-icon-wrapper">
+              <span class="icon ${item.iconClass || ""} icon-md icon-white" aria-hidden="true"></span>
+            </div>
+            <div class="funstrip-text">
+              <div class="funstrip-label">${item.label}</div>
+              <div class="funstrip-value">${item.value}</div>
+            </div>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -227,7 +286,7 @@ function renderAchievementsSection(s) {
 }
 
 // ---------------------------------------------------------
-// [3] MAIN RENDER FUNCTION
+// [3] MAIN RENDER FUNCTION — FULLY UPDATED WITH PROFILE PANEL
 // ---------------------------------------------------------
 
 function renderStatus() {
@@ -235,12 +294,12 @@ function renderStatus() {
   const s = state.activeStudent;
   if (!container || !s) return;
 
+  // Training progress calculations
   const progressPercent = calculateProgressPercent(s);
   const progressText = getProgressText(s);
   const hudItems = getStatusHudItems(s);
-  const achievementsHtml = renderAchievementsSection(s);
 
-  // Birthday call-out (confetti handled in dashboard-core.js)
+  // Birthday FX
   let birthdayCallout = "";
   if (s.birthday) {
     const today = new Date();
@@ -253,12 +312,14 @@ function renderStatus() {
       const firstName = s.name ? s.name.split(" ")[0] : "there";
       birthdayCallout = `
         <div class="birthday-callout">
-          🎉 Happy Birthday, ${firstName}! Thanks for spending part of your special day with us at the dojo.
+          🎉 Happy Birthday, ${firstName}!
+          Thanks for spending part of your special day with us at the dojo.
         </div>
       `;
     }
   }
 
+  // Student stat shortcuts
   const totalClasses = s.totalClasses ?? 0;
   const perfectDays = s.funStats?.perfectDays ?? 0;
   const motivationScore =
@@ -271,194 +332,176 @@ function renderStatus() {
   const classesPerStripe = s.classesPerStripe ?? 0;
   const nextStripeLabel = s.nextStripeLabel || "To be announced";
 
+  // ====== PROFILE CALCULATIONS =======
+  const initials = (s.displayName || s.name)
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+
+  const isInstructor = s.roles?.includes("instructor");
+  const isAssistant = s.roles?.includes("assistant");
+  const userRoleText = isInstructor
+    ? "Instructor"
+    : isAssistant
+    ? "Assistant Instructor"
+    : "Student";
+
+  // IS3 rank + medallion
+  const is3Level = s.is3Level ?? 0;
+  const is3Medal = getIs3Medallion(is3Level);
+  const is3MedalSvg = is3Medal ? getMedallionSvg(is3Medal) : "";
+  const is3Color = getIs3Color(is3Level);
+
+  // ======================================================
+  // PAGE RENDER
+  // ======================================================
+
   container.innerHTML = `
     ${birthdayCallout}
 
-    <div class="status-layout">
+    <div class="status-grid">
 
-      <!-- ===================================================
-           QUICK TRAINING OVERVIEW STRIP
-           Sits directly under the profile nav tabs
-           =================================================== -->
-      <section class="panel status-quick-panel">
+      <!-- ================================================
+           PROFILE PANEL (LEFT SIDE)
+           ================================================ -->
+      <section class="panel pf-layer pf-elevate-2 profile-card">
+
+        <div class="profile-top">
+          <div class="profile-avatar">${initials}</div>
+          <div class="profile-info">
+            <h2 class="profile-name">${s.displayName || s.name}</h2>
+            <p class="profile-role">${userRoleText}</p>
+          </div>
+        </div>
+
+        <div class="rank-pill-row">
+
+          <!-- TK Rank Pill -->
+          <div class="rank-pill tk-pill">
+            ${s.rank || "Rank Unknown"}
+          </div>
+
+          <!-- IS3 Pill -->
+          <div class="rank-pill is3-pill" style="background:${is3Color}">
+            <span>IS3 • Student Level ${is3Level}</span>
+            <div class="is3-medallion">${is3MedalSvg}</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================
+           TRAINING OVERVIEW PANEL (RIGHT SIDE)
+           ================================================ -->
+      <section class="panel pf-layer pf-elevate-2 training-overview-card">
         <header class="panel-header-inline">
           <div>
             <h2 class="panel-title">Training Overview</h2>
-            <p class="panel-subtitle">
-              Snapshot of your classes, goals, and motivation.
-            </p>
+            <p class="panel-subtitle">Snapshot of your classes, goals, and motivation.</p>
           </div>
         </header>
 
-        <div class="status-quick-stats">
-          <div class="status-quick-grid">
-            <article class="status-strip">
-              <div class="status-strip-label">Total Classes</div>
-              <div class="status-strip-value">${totalClasses}</div>
-              <div class="status-strip-meta">
-                <span>All-time</span>
-              </div>
-            </article>
+        <div class="status-quick-grid">
+          <article class="status-strip">
+            <div class="status-strip-label">Total Classes</div>
+            <div class="status-strip-value">${totalClasses}</div>
+            <div class="status-strip-meta"><span>All-time</span></div>
+          </article>
 
-            <article class="status-strip">
-              <div class="status-strip-label">Perfect Days</div>
-              <div class="status-strip-value">${perfectDays}</div>
-              <div class="status-strip-meta">
-                <span>Days that hit every goal</span>
-              </div>
-            </article>
+          <article class="status-strip">
+            <div class="status-strip-label">Perfect Days</div>
+            <div class="status-strip-value">${perfectDays}</div>
+            <div class="status-strip-meta"><span>Days that hit every goal</span></div>
+          </article>
 
-            <article class="status-strip status-strip--highlight">
-              <div class="status-strip-label">Motivation</div>
-              <div class="status-strip-value">${motivationScore}</div>
-              <div class="status-strip-meta">
-                <span>How fired up you feel</span>
-              </div>
-            </article>
+          <article class="status-strip status-strip--highlight">
+            <div class="status-strip-label">Motivation</div>
+            <div class="status-strip-value">${motivationScore}</div>
+            <div class="status-strip-meta"><span>How fired up you feel</span></div>
+          </article>
 
-            <article class="status-strip">
-              <div class="status-strip-label">Training Goals</div>
-              <div class="status-strip-value">${trainingGoals}</div>
-              <div class="status-strip-meta">
-                <span>Goals you're working on</span>
-              </div>
-            </article>
-          </div>
+          <article class="status-strip">
+            <div class="status-strip-label">Training Goals</div>
+            <div class="status-strip-value">${trainingGoals}</div>
+            <div class="status-strip-meta"><span>Goals you're working on</span></div>
+          </article>
         </div>
       </section>
 
-      <!-- ===================================================
-           MIDDLE GRID — RANK PROGRESS + TRAINING HUD
-           =================================================== -->
-      <div class="status-mid-grid">
+    </div> <!-- end status-grid -->
 
-        <!-- RANK PROGRESS PANEL -->
-        <section class="panel status-progress-panel">
-          <header class="panel-header-inline">
-            <div>
-              <h2 class="panel-title">Rank Progress</h2>
-              <p class="panel-subtitle">
-                Your journey toward your next stripe or belt.
-              </p>
-            </div>
-            <div class="status-progress-percent">
-              ${Math.round(progressPercent)}%
-            </div>
-          </header>
 
-          <div class="status-progress-bar" aria-hidden="true">
-            <div
-              class="status-progress-fill"
-              style="width: ${Math.max(0, Math.min(100, progressPercent))}%;">
-            </div>
-          </div>
+    <!-- ===================================================
+         BELOW GRID: RANK PROGRESS + HUD + ACH. + GEAR
+         =================================================== -->
 
-          <p class="status-progress-text">${progressText}</p>
+    <div class="status-mid-grid">
 
-          <div class="status-progress-meta">
-            <div>
-              <span class="meta-label">Classes since last stripe</span>
-              <span class="meta-value">${classesSinceStripe}</span>
-            </div>
-            <div>
-              <span class="meta-label">Classes needed per stripe</span>
-              <span class="meta-value">${classesPerStripe}</span>
-            </div>
-            <div>
-              <span class="meta-label">Next stripe</span>
-              <span class="meta-value">${nextStripeLabel}</span>
-            </div>
-          </div>
-
-          <div class="instructor-only">
-            <button
-              type="button"
-              class="instructor-edit-btn"
-              data-panel="status-progress">
-              Edit Rank Details
-            </button>
-          </div>
-        </section>
-
-        <!-- TRAINING HUD PANEL -->
-        <section class="panel status-hud-panel">
-          <header class="panel-header-inline">
-            <div>
-              <h2 class="panel-title">Training HUD</h2>
-              <p class="panel-subtitle">
-                Favorite moves, goals, and fun training stats.
-              </p>
-            </div>
-          </header>
-
-          ${renderHudGrid(hudItems)}
-
-          <div class="instructor-only">
-            <button
-              type="button"
-              class="instructor-edit-btn"
-              data-panel="status-trainingstats">
-              Customize HUD Tiles
-            </button>
-          </div>
-        </section>
-      </div>
-
-      <!-- ===================================================
-           ACHIEVEMENTS STRIP
-           =================================================== -->
-      <section class="panel status-achievements-panel">
+      <!-- RANK PROGRESS PANEL -->
+      <section class="panel status-progress-panel">
         <header class="panel-header-inline">
           <div>
-            <h2 class="panel-title">Achievements</h2>
-            <p class="panel-subtitle">
-              Highlight moments from your training journey.
-            </p>
+            <h2 class="panel-title">Rank Progress</h2>
+            <p class="panel-subtitle">Your journey toward your next stripe or belt.</p>
           </div>
+          <div class="status-progress-percent">${Math.round(progressPercent)}%</div>
         </header>
 
-        ${achievementsHtml}
+        <div class="status-progress-bar">
+          <div class="status-progress-fill" style="width:${progressPercent}%;"></div>
+        </div>
+
+        <p class="status-progress-text">${progressText}</p>
+
+        <div class="status-progress-meta">
+          <div><span class="meta-label">Classes since last stripe</span><span class="meta-value">${classesSinceStripe}</span></div>
+          <div><span class="meta-label">Classes needed per stripe</span><span class="meta-value">${classesPerStripe}</span></div>
+          <div><span class="meta-label">Next stripe</span><span class="meta-value">${nextStripeLabel}</span></div>
+        </div>
       </section>
 
-      <!-- ===================================================
-           GEAR (FUTURE FEATURE)
-           Keeps data-panel="status-gear" hook
-           so dashboard-editor.js stays compatible.
-           =================================================== -->
-      <section class="panel status-gear-panel">
+      <!-- TRAINING HUD -->
+      <section class="panel status-hud-panel">
         <header class="panel-header-inline">
           <div>
-            <h2 class="panel-title">Gear & Equipment</h2>
-            <p class="panel-subtitle">
-              Pads, weapons & upgrades tracking (coming soon).
-            </p>
+            <h2 class="panel-title">Training HUD</h2>
+            <p class="panel-subtitle">Favorite moves, goals, and fun training stats.</p>
           </div>
         </header>
 
-        <div class="gear-empty">
-          <p class="muted">
-            This feature will unlock in a future update once instructors enable it.
-          </p>
-        </div>
-
-        <div class="instructor-only">
-          <button
-            type="button"
-            class="instructor-edit-btn"
-            data-panel="status-gear">
-            Configure Gear
-          </button>
-        </div>
+        ${renderHudGrid(hudItems)}
       </section>
+
     </div>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="panel status-achievements-panel">
+      <header class="panel-header-inline">
+        <div>
+          <h2 class="panel-title">Achievements</h2>
+          <p class="panel-subtitle">Highlight moments from your training journey.</p>
+        </div>
+      </header>
+
+      ${renderAchievementsSection(s)}
+    </section>
+
+    <!-- GEAR (future) -->
+    <section class="panel status-gear-panel">
+      <header class="panel-header-inline">
+        <h2 class="panel-title">Gear & Equipment</h2>
+        <p class="panel-subtitle">Pads, weapons & upgrades (coming soon).</p>
+      </header>
+
+      <p class="muted gear-empty">This feature will unlock in a future update.</p>
+    </section>
   `;
 
   if (typeof wireInstructorEditButtons === "function") {
     wireInstructorEditButtons();
   }
 
-  // If it's actually their birthday today, trigger the confetti FX
-  if (birthdayCallout) {
-    checkAndTriggerBirthday(s);
-  }
+  if (birthdayCallout) checkAndTriggerBirthday(s);
 }
+

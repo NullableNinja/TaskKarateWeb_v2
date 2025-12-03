@@ -23,6 +23,34 @@
 }
 
 /* ============================================================
+   [3.5] TIP OF THE DAY BOX
+   ============================================================ */
+.tip-of-day-box {
+  margin: var(--space-4) 0;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(34, 197, 94, 0.1));
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.tip-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.tip-text {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ============================================================
    [3] SEARCH + INSTRUCTOR TOGGLE ROW
    ============================================================ */
 .login-toolbar {

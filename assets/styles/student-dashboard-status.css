@@ -580,6 +580,53 @@
   }
 }
 
+
+/* ============================================================
+   RANK PILLS
+   ============================================================ */
+
+.rank-pill-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.rank-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 22px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* TK Belt Pill */
+.tk-pill {
+  background: var(--tk-blue);
+}
+
+/* IS3 pill (background injected inline by getIs3Color) */
+.is3-pill {
+  display: flex;
+  align-items: center;
+}
+
+/* Medallion wrapper */
+.is3-medallion {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
 /* ==========================================================
    RESPONSIVE
    ========================================================== */

@@ -1,530 +1,494 @@
-/* ===========================
-   MODERN NAVIGATION BAR - Paper-Fu Style
-   ---------------------------
-   - Enhanced with custom SVG icons
-   - Improved Paper-Fu aesthetic
-   - Smooth animations and transitions
-   - Mobile-first responsive design
-   =========================== */
+/* ==========================================================
+   TASK KARATE – Navigation Bar (Paper-Fu + Bebas Neue)
+   FINAL CONSOLIDATED CSS — CLEAN, ORGANIZED, IDIOT-PROOF
+   ========================================================== */
+
+:root {
+  --tk-blue-light: #37a9ff;
+  --tk-blue-mid:   #1f5ea1;
+  --tk-blue-dark:  #103560;
+
+  --nav-radius: 14px;
+  --shadow-offset: 4px;
+}
+
+/* ----------------------------------------------------------
+   FLOATING LOGO (Fixed Position, Independent of Nav Bar)
+   ---------------------------------------------------------- */
+
+.tk-logo-floating {
+  position: fixed;
+  top: 8px;
+  left: 20px;
+  z-index: 9500;
+  pointer-events: none;
+}
+
+.tk-logo-floating img {
+  height: 68px;
+  width: auto;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.9));
+}
+
+/* Hide built-in navbar logo */
+.nav-brand {
+  display: none !important;
+}
+
+/* ----------------------------------------------------------
+   NAVBAR SHELL
+   ---------------------------------------------------------- */
 
 .navbar {
-  /* Keep nav bar visible at top */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
-  /* Flexbox layout for logo + links */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  padding: 12px 24px;
 
-  /* Spacing inside bar - compact */
-  padding: 4px 20px;
+  z-index: 9000;
 
-  /* Ensure it stays above page content */
-  z-index: 1000;
-
-  /* Enhanced glass-like background with TASK blue tint */
   background: linear-gradient(
     180deg,
-    rgba(31, 94, 161, 0.25) 0%,
-    rgba(14, 26, 35, 0.75) 100%
+    rgba(3,7,18,0.97),
+    rgba(6,11,25,0.97)
   );
-  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid rgba(148,163,184,0.15);
 
-  /* Modern border with gradient */
-  border-bottom: 1px solid rgba(31, 94, 161, 0.3);
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 12px 32px rgba(0,0,0,0.85),
+    inset 0 1px 0 rgba(255,255,255,0.08);
 
-  /* Smooth transitions */
-  transition: all 0.3s ease;
+  backdrop-filter: blur(18px) saturate(140%);
 }
 
-/* Scrolled state - more opaque */
+/* soft fade under the navbar to kill the hard line */
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(6,11,25,0.97),
+    rgba(6,11,25,0.6),
+    rgba(6,11,25,0.25),
+    rgba(6,11,25,0)
+  );
+}
+
 .navbar.scrolled {
   background: linear-gradient(
     180deg,
-    rgba(31, 94, 161, 0.35) 0%,
-    rgba(14, 26, 35, 0.85) 100%
+    rgba(2,6,23,0.98),
+    rgba(1,3,12,0.98)
   );
-  box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 14px 38px rgba(0,0,0,1);
 }
 
-/* ===========================
-   BRAND / LOGO
-   =========================== */
-.navbar .nav-brand {
-  position: relative;
-  z-index: 1100;
-}
 
-.navbar .nav-brand img.logo {
-  height: 45px;
-  width: auto;
-  display: block;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
 
-.navbar .nav-brand:hover img.logo {
-  transform: scale(1.05) rotate(-2deg);
-  filter: drop-shadow(0 6px 12px rgba(31, 94, 161, 0.6));
-}
 
-/* ===========================
-   NAV LINKS (UL container)
-   =========================== */
-.navbar .nav-links {
+/* ----------------------------------------------------------
+   NAV LINKS WRAPPER
+   ---------------------------------------------------------- */
+
+.nav-links {
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: 12px;
   list-style: none;
   margin: 0;
   padding: 0;
-  align-items: center;
-  flex-wrap: nowrap;
+
+  margin-left: auto; /* RIGHT-JUSTIFY BUTTONS */
 }
 
-/* ===========================
-   NAV LINKS (individual <a>)
-   =========================== */
-.navbar .nav-links a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 8px 14px;
+/* ----------------------------------------------------------
+   MAIN NAV BUTTONS (Paper-Fu)
+   ---------------------------------------------------------- */
 
-  /* Paper-Fu rounded style */
-  border-radius: 12px;
-
-  /* Typography - High contrast white */
-  font-weight: 700;
-  font-size: 0.9rem;
+.nav-link {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
-  color: #fff;
-  letter-spacing: 0.01em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 
-  /* Clean background - no patterns */
-  background: rgba(31, 94, 161, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  
-  /* Paper-Fu shadow layers */
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 10;   /* ensure content stays above pseudo layers */
 
-  /* Smooth transitions */
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 6px 22px;
+  min-width: 140px; /* uniform width */
+  border-radius: var(--nav-radius);
+
+  color: #f1f5f9;
+  background: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* SVG icon styling */
-.navbar .nav-links a svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-  transition: transform 0.25s ease;
-}
+/* ---- Paper-Fu FRONT SHADOW ---- */
 
-/* Hover effect - Paper-Fu lift with TASK blue glow */
-.navbar .nav-links a:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(31, 94, 161, 0.4) 0%,
-    rgba(23, 62, 104, 0.3) 100%
-  );
-  border-color: rgba(31, 94, 161, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 4px 12px rgba(31, 94, 161, 0.4),
-    0 2px 4px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.navbar .nav-links a:hover svg {
-  transform: scale(1.1);
-}
-
-/* Active state */
-.navbar .nav-links a.active {
-  background: linear-gradient(
-    135deg,
-    rgba(31, 94, 161, 0.5) 0%,
-    rgba(23, 62, 104, 0.4) 100%
-  );
-  border-color: rgba(31, 94, 161, 0.6);
-  box-shadow: 
-    0 2px 8px rgba(31, 94, 161, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-/* Karate strike underline effect */
-.navbar .nav-links a::after {
+.nav-link::before {
   content: "";
   position: absolute;
-  left: 50%;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--task-400), transparent);
-  border-radius: 2px;
-  transform: translateX(-50%);
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  inset: 0;
+  border-radius: var(--nav-radius);
 
-.navbar .nav-links a:hover::after {
-  width: 80%;
-}
+  background: rgba(12, 33, 68, 0.95);
+  transform: translate(var(--shadow-offset), var(--shadow-offset));
 
-/* ===========================
-   DROPDOWN MENU
-   =========================== */
-.navbar .dropdown {
-  position: relative;
-}
-
-.navbar .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  
-  /* Paper-Fu layered panel */
-  background: linear-gradient(
-    180deg,
-    rgba(31, 94, 161, 0.15) 0%,
-    rgba(14, 26, 35, 0.95) 100%
-  );
-  backdrop-filter: blur(16px) saturate(140%);
-  
-  border-radius: 12px;
-  border: 1px solid rgba(31, 94, 161, 0.3);
-  
-  margin: 0;
-  padding: 8px;
-  list-style: none;
-  
-  /* Paper-Fu shadow layers */
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.4),
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  
-  min-width: 200px;
-  z-index: 1001;
-  
-  /* Animation */
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1;
   pointer-events: none;
 }
 
-.navbar .dropdown:hover .dropdown-menu {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
+/* ---- Main Surface ---- */
 
-.navbar .dropdown-menu li {
-  margin: 0;
-  padding: 0;
-}
-
-.navbar .dropdown-menu a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  margin: 2px 0;
-  
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #fff;
-  
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  
-  transition: all 0.2s ease;
-}
-
-.navbar .dropdown-menu a:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(31, 94, 161, 0.4) 0%,
-    rgba(23, 62, 104, 0.3) 100%
-  );
-  border-color: rgba(31, 94, 161, 0.4);
-  transform: translateX(4px);
-  box-shadow: 
-    0 2px 8px rgba(31, 94, 161, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-/* Dropdown arrow indicator */
-.navbar .dropdown > a::before {
+.nav-link::after {
   content: "";
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 6px;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 5px solid currentColor;
-  transition: transform 0.25s ease;
+  position: absolute;
+  inset: 0;
+  border-radius: var(--nav-radius);
+
+  background: linear-gradient(135deg, var(--tk-blue-mid), var(--tk-blue-dark));
+  z-index: 2;
+  pointer-events: none;
 }
 
-.navbar .dropdown:hover > a::before {
-  transform: rotate(180deg);
+/* ---- Top Content Layer ---- */
+
+.nav-link span,
+.nav-link svg {
+  position: relative;
+  z-index: 10;
 }
 
-/* ===========================
-   HAMBURGER MENU (Mobile)
-   =========================== */
-.navbar .hamburger {
+/* ---- Icon Styling – FORCE IT ON TOP ---- */
+
+.navbar svg,
+.navbar svg * {
+  display: inline-block !important;
+}
+
+.nav-link svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+/* ---- Hover ---- */
+
+.nav-link:hover::after {
+  background: linear-gradient(135deg, var(--tk-blue-light), var(--tk-blue-mid));
+}
+
+/* ---- Active Page ---- */
+
+.nav-link.active::after {
+  background: linear-gradient(135deg, #4fc3ff, var(--tk-blue-mid));
+  box-shadow: 0 0 12px rgba(55,171,255,0.45);
+}
+
+/* ----------------------------------------------------------
+   DROPDOWN CONTAINER + HOVER BRIDGE
+   ---------------------------------------------------------- */
+
+.dropdown {
+  position: relative;
+}
+
+/* Invisible bridge to stop accidental closing */
+.dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 170px;
+  height: 18px;
+  background: transparent;
+  z-index: 5;
+}
+
+.dropdown-menu {
+  background: transparent !important;
+  border: none;
+  padding: 6px 0;
+  margin: 0;
+
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+
   display: none;
   flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0.06) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  padding: 8px;
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.25s ease;
-  z-index: 1101;
-}
+  gap: 6px;
 
-.navbar .hamburger:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(31, 94, 161, 0.3) 0%,
-    rgba(23, 62, 104, 0.2) 100%
-  );
-  transform: scale(1.05);
-}
-
-.navbar .hamburger span {
-  display: block;
-  width: 24px;
-  height: 3px;
-  background: #fff;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* Hamburger animation when active */
-.navbar .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.navbar .hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.navbar .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* ===========================
-   MOBILE NAVIGATION
-   =========================== */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 8px 16px;
-    height: auto;
-  }
-
-  .navbar .nav-brand img.logo {
-    height: 35px;
-  }
-
-  /* Show hamburger on mobile */
-  .navbar .hamburger {
-    display: flex;
-  }
-
-  /* Hide nav links by default */
-  .navbar .nav-links {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    gap: 4px;
-    
-    background: linear-gradient(
-      180deg,
-      rgba(31, 94, 161, 0.2) 0%,
-      rgba(14, 26, 35, 0.98) 100%
-    );
-    backdrop-filter: blur(16px) saturate(140%);
-    
-    padding: 16px;
-    border-radius: 0 0 16px 16px;
-    border: 1px solid rgba(31, 94, 161, 0.3);
-    border-top: none;
-    
-    box-shadow: 
-      0 8px 24px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    
-    z-index: 1000;
-  }
-
-  /* Show when toggled */
-  .navbar .nav-links.active {
-    display: flex;
-  }
-
-  /* Full width links on mobile */
-  .navbar .nav-links a {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* Dropdown adjustments for mobile */
-  .navbar .dropdown-menu {
-    position: static;
-    display: none;
-    margin: 4px 0;
-    padding: 8px;
-    background: rgba(0, 0, 0, 0.3);
-  }
-
-  .navbar .dropdown.active .dropdown-menu {
-    display: block;
-  }
-
-  .navbar .dropdown > a::before {
-    margin-left: auto;
-  }
-}
-
-/* ===========================
-   TABLET ADJUSTMENTS
-   =========================== */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .navbar .nav-links {
-    gap: 6px;
-  }
-
-  .navbar .nav-links a {
-    padding: 8px 14px;
-    font-size: 0.9rem;
-  }
-}
-/* ===========================
-   NAV ACTIONS (for theme toggle)
-   =========================== */
-.navbar .nav-actions {
-  display: flex !important;
-  align-items: center;
-  margin-left: 8px;
-  z-index: 100;
-}
-
-.navbar .nav-actions li {
-  list-style: none;
-  display: block !important;
-}
-
-/* ===========================
-   THEME TOGGLE IN NAVIGATION
-   =========================== */
-.navbar .theme-toggle {
-  position: relative;
-  width: 50px;
-  height: 26px;
-  background: rgba(31, 94, 161, 0.7);
-  border-radius: 13px;
-  cursor: pointer !important;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin-left: 8px;
-  pointer-events: auto !important;
   z-index: 1000;
 }
 
-.navbar .theme-toggle:hover {
-  background: rgba(31, 94, 161, 0.9);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 4px 12px rgba(31, 94, 161, 0.4),
-    0 2px 4px rgba(0, 0, 0, 0.3);
+.dropdown:hover .dropdown-menu,
+.dropdown.dropdown-open .dropdown-menu {
+  display: flex;
 }
 
-.navbar .theme-toggle-slider {
+/* ----------------------------------------------------------
+   CLEAN SUBMENU BUTTONS (SECONDARY PAPER-FU)
+   ---------------------------------------------------------- */
+
+.nav-link--sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+
+  position: relative;
+  padding: 5px 14px;
+  min-width: 160px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  border-radius: 10px;
+  text-decoration: none;
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+/* Submenu shadow */
+
+.nav-link--sub::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: rgba(12,33,68,0.9);
+  transform: translate(2px,2px);
+  z-index: 1;
+}
+
+/* Submenu surface */
+
+.nav-link--sub::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  z-index: 2;
+}
+
+/* Submenu content */
+
+.nav-link--sub svg,
+.nav-link--sub span {
+  position: relative;
+  z-index: 10;
+}
+
+.nav-link--sub svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor;
+}
+
+/* Submenu hover */
+
+.nav-link--sub:hover::after {
+  background: linear-gradient(135deg, var(--tk-blue-light), var(--tk-blue-mid));
+}
+
+.theme-toggle {
+  position: relative;
+  z-index: 6000 !important;   /* FORCES THE TOGGLE ABOVE ALL NAV PSEUDO-LAYERS */
+}
+
+.theme-toggle-slider {
   position: absolute;
   top: 2px;
   left: 2px;
   width: 20px;
   height: 20px;
-  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
   border-radius: 50%;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 7000 !important;   /* ABOVE THE TOGGLE SURFACE */
 }
 
-[data-theme="dark"] .navbar .theme-toggle-slider {
-  transform: translateX(24px);
-  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-}
-
-.navbar .theme-toggle-icon {
+.theme-toggle-icon {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   font-size: 12px;
-  transition: opacity 0.3s ease;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+  z-index: 9000 !important;   /* TOP OF THE ENTIRE COMPONENT */
 }
 
-.navbar .theme-toggle-icon.sun {
+.theme-toggle-icon--light {
   left: 6px;
-  opacity: 1;
+  top: 4px;
 }
 
-.navbar .theme-toggle-icon.moon {
+.theme-toggle-icon--dark {
   right: 6px;
-  opacity: 0.4;
+  top: 4px;
 }
 
-[data-theme="dark"] .navbar .theme-toggle-icon.sun {
-  opacity: 0.4;
+
+
+/* ----------------------------------------------------------
+   HAMBURGER MENU
+   ---------------------------------------------------------- */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+
+  padding: 8px 10px;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(10,15,30,0.9));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.85);
+
+  cursor: pointer;
+  z-index: 9200;
 }
 
-[data-theme="dark"] .navbar .theme-toggle-icon.moon {
-  opacity: 1;
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: #e5e7eb;
 }
 
-/* Scroll Progress Indicator - Fixed to BOTTOM of screen */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ----------------------------------------------------------
+   MOBILE
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 8px;
+    right: 8px;
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+
+    padding: 14px;
+    border-radius: 16px;
+
+    background: linear-gradient(135deg, rgba(3,7,18,0.98), rgba(8,15,30,0.98));
+    box-shadow: 0 18px 40px rgba(0,0,0,1);
+
+    display: none;
+    z-index: 9100;
+  }
+
+  .nav-links.nav-links-open {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: static;
+    padding: 6px 0;
+  }
+
+  .dropdown::after {
+    display: none; /* bridge not needed on mobile */
+  }
+}
+
+/* ----------------------------------------------------------
+   THEME TOGGLE
+   ---------------------------------------------------------- */
+
+.nav-actions {
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 52px;
+  height: 24px;
+  border-radius: 30px;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(15,23,42,0.95);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+
+  cursor: pointer;
+}
+
+.theme-toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #ffffff, #dfe0e2);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.8);
+
+  transition: transform 0.25s ease;
+  z-index: 20;
+}
+
+.theme-toggle-icon {
+  position: absolute;
+  z-index: 30;
+}
+
+[data-theme="dark"] .theme-toggle-slider {
+  transform: translateX(26px);
+  background: linear-gradient(135deg, #020617, #111827);
+}
+
+/* ----------------------------------------------------------
+   SCROLL PROGRESS BAR
+   ---------------------------------------------------------- */
+
 .navbar-progress {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4px; /* 15% thicker (3px → 4px) */
-  background: #ffffff; /* Single color - will change dynamically */
-  transition: width 0.3s ease, background-color 0.3s ease;
-  z-index: 9999; /* Highest z-index to ensure it's always on top */
+  height: 4px;
+
+  transform-origin: left;
+  transform: scaleX(0);
+
+  background: linear-gradient(90deg, #22c55e, #38bdf8, #a855f7);
   border-radius: 2px 2px 0 0;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.3); /* Subtle shadow to separate from bottom */
+
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.4);
+  z-index: 9999;
 }

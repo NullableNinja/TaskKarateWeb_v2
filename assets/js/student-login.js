@@ -36,6 +36,38 @@
   let instructorAuthenticated = false;
 
   /* ============================================================
+     [0.5] LOAD AND DISPLAY TIP OF THE DAY
+     ============================================================ */
+  async function loadTipOfDay() {
+    try {
+      console.log('🎯 loadTipOfDay: Starting...');
+      const res = await fetch("/assets/data/tips.json");
+      console.log('🎯 loadTipOfDay: Fetch response status:', res.status);
+      const data = await res.json();
+      console.log('🎯 loadTipOfDay: Data loaded:', data);
+      const tips = data.tips || [];
+      console.log('🎯 loadTipOfDay: Tips count:', tips.length);
+      if (tips.length > 0) {
+        const randomTip = tips[Math.floor(Math.random() * tips.length)];
+        console.log('🎯 loadTipOfDay: Selected tip:', randomTip);
+        const tipEl = document.getElementById("tipOfDay");
+        console.log('🎯 loadTipOfDay: Element found:', !!tipEl);
+        if (tipEl) {
+          tipEl.textContent = randomTip;
+          console.log('🎯 loadTipOfDay: Tip set successfully');
+        }
+      }
+    } catch (err) {
+      console.error("❌ Failed to load tips:", err);
+      const tipEl = document.getElementById("tipOfDay");
+      if (tipEl) {
+        tipEl.textContent = "Every master was once a beginner.";
+        console.log('🎯 loadTipOfDay: Fallback tip set');
+      }
+    }
+  }
+
+  /* ============================================================
      [1] LOAD STUDENTS.JSON
      ============================================================ */
   async function loadStudents() {
@@ -219,6 +251,9 @@ function saveSession(student, opts = {}) {
   /* ============================================================
      [9] INIT
      ============================================================ */
+  console.log('🚀 student-login.js: Initializing...');
+  loadTipOfDay();
   loadStudents();
+  console.log('🚀 student-login.js: Initialization complete');
 
 })();

@@ -1,44 +1,38 @@
-/* ===========================
-   PARTIALS LOADER (Bulletproof)
-   ---------------------------
-   - Explicitly handles root vs /web/ (your structure)
-   - Never requests /web/partials/ again
-   =========================== */
+// ==========================================================
+// Task Karate – Global Partials Loader (STATIC ROOT VERSION)
+// COMPLETE — No prefix detection, no rewriting
+// ==========================================================
+(function () {
+  "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-  function resolvePath(relativePath) {
-    const path = window.location.pathname;
+  // Inject a partial into an element by ID
+  async function injectPartial(targetId, url) {
+    const hostEl = document.getElementById(targetId);
+    if (!hostEl) return;
 
-    // If the page lives in /web/, always go up one level
-    if (path.startsWith("/web/")) {
-      return "../" + relativePath;
+    try {
+      const res = await fetch(url, { cache: "no-cache" });
+      if (!res.ok) throw new Error(res.status + " " + res.statusText);
+
+      hostEl.innerHTML = await res.text();
+
+      // Initialize navbar JS
+      if (typeof window.tkInitNavbar === "function") {
+        window.tkInitNavbar();
+      }
+    } catch (err) {
+      console.error("Failed to load partial:", url, err);
     }
-
-    // Otherwise assume root
-    return relativePath;
   }
 
-  function loadPartial(path, targetId, callback) {
-    const resolved = resolvePath(path);
-    fetch(resolved)
-      .then(response => {
-        if (!response.ok) throw new Error(`Failed to load: ${resolved}`);
-        return response.text();
-      })
-      .then(html => {
-        document.getElementById(targetId).innerHTML = html;
-        console.log(`✅ Loaded partial: ${resolved} → #${targetId}`);
-
-        if (typeof callback === "function") callback();
-      })
-      .catch(err => console.error(`❌ Error loading partial: ${resolved}`, err));
+  function initPartials() {
+    // ALWAYS load navbar from root
+    injectPartial("site-header", "/partials/navigation-bar.html");
   }
 
-  // Load navigation bar (modern version)
-  loadPartial("partials/navigation-bar.html", "site-header", () => {
-    console.log("✅ Navigation bar loaded");
-  });
-
-  // Load footer
-  loadPartial("partials/footer.html", "site-footer");
-});
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPartials);
+  } else {
+    initPartials();
+  }
+})();

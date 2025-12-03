@@ -49,8 +49,7 @@
     </div>
 
     <!-- ********************************************************************
-         [Floating Tab Bar] — NEW ORDER: Status, Messages, Achievements,
-         Training, News
+         [Floating Tab Bar]
          ******************************************************************** -->
     <div class="floating-tab-bar" aria-label="Student hub sections">
 
@@ -135,14 +134,22 @@
   <!-- END DASHBOARD HEADER -->
 
   <!-- **********************************************************************
-       [4] QUICKBAR (Replaces old stat capsule)
+       [4] QUICKBAR
        ********************************************************************** -->
   <section id="quickbarRoot" class="quickbar-root">
     <!-- Populated by dashboard-core.js → renderQuickbar() -->
   </section>
 
   <!-- **********************************************************************
-       [5] LEGACY HUB TABS (kept but inert for safety)
+       [4.5] FUN STATS STRIP (NEW)
+       Appears globally under the tab bar + quickbar, above hubContent
+       ********************************************************************** -->
+  <section id="funStatsStrip" class="funstats-strip">
+    <!-- Populated by dashboard-status.js → renderFunStatsStrip() -->
+  </section>
+
+  <!-- **********************************************************************
+       [5] LEGACY EMPTY TABS (kept inert)
        ********************************************************************** -->
   <nav class="hub-tabs legacy-hub-tabs" aria-hidden="true"></nav>
 
@@ -150,7 +157,7 @@
        [6] MAIN CONTENT AREA
        ********************************************************************** -->
   <main id="hubContent" class="hub-content">
-    <!-- Dynamic content rendered here -->
+    <!-- Dynamic tab content loads here -->
   </main>
 
   <!-- **********************************************************************
@@ -162,9 +169,7 @@
       .then(response => response.text())
       .then(html => {
         const headerEl = document.getElementById('site-header');
-        if (headerEl) {
-          headerEl.innerHTML = html;
-        }
+        if (headerEl) headerEl.innerHTML = html;
       })
       .catch(error => console.error('Error loading navigation:', error));
   </script>

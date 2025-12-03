@@ -23,6 +23,9 @@ let dashboardRoot = null;
 let instructorBanner = null;
 let instructorMode = false;
 
+// Fun stats strip container (global, under header tabs)
+let funStatsStripEl = null;
+
 // Editor refs (dashboard-editor.js)
 let editorBackdrop = null;
 let editorPanel = null;
@@ -126,6 +129,9 @@ async function initDashboardCore() {
     return;
   }
 
+  // Fun stats strip container (under header tabs)
+  funStatsStripEl = document.getElementById("funStatsStrip");
+
   // Build overlay shells
   buildEditorShell();
   buildNewsModalShell();
@@ -166,9 +172,12 @@ async function initDashboardCore() {
     // Birthday FX
     checkAndTriggerBirthday(state.activeStudent);
 
-    // Header + capsule
+    // Header + capsule + fun stats strip
     renderHeader(state.activeStudent);
     renderCapsuleStats();
+    if (typeof renderFunStatsStrip === "function") {
+      renderFunStatsStrip();
+    }
 
     // Floating tab bar only
     setupFloatingTabs();
@@ -651,6 +660,9 @@ function showTab(name) {
     default:
       if (typeof renderStatus === "function") renderStatus();
       renderCapsuleStats();
+      if (typeof renderFunStatsStrip === "function") {
+        renderFunStatsStrip();
+      }
       break;
   }
 }
@@ -762,3 +774,66 @@ function getBeltColorFromRank(rank) {
 
   return "#64748b";
 }
+
+// ============================================================
+// IS3 COLOR TIERS
+// ============================================================
+function getIs3Color(level) {
+  if (level >= 10) return "#5f2a88";    // Pre-instructor
+  if (level >= 7)  return "#3e3370";    // Advanced
+  if (level >= 4)  return "#3b4f7a";    // Intermediate
+  return "#56679a";                     // Beginner
+}
+
+// ============================================================
+// IS3 MEDALLION LOGIC — returns: null | bronze | silver | gold | diamond
+// ============================================================
+function getIs3Medallion(level) {
+  if (level >= 12) return "diamond";
+  if (level >= 9)  return "gold";
+  if (level >= 6)  return "silver";
+  if (level >= 3)  return "bronze";
+  return null;
+}
+
+// ============================================================
+// MEDALLION SVGs — clean Paper-Fu style
+// ============================================================
+function getMedallionSvg(type) {
+  switch (type) {
+
+    case "bronze":
+      return `
+      <svg viewBox="0 0 24 24" width="20" height="20">
+        <circle cx="12" cy="12" r="10" fill="#cd7f32" stroke="#8b4e1e" stroke-width="2"/>
+        <circle cx="12" cy="12" r="6" fill="rgba(255,255,255,0.25)"/>
+      </svg>`;
+
+    case "silver":
+      return `
+      <svg viewBox="0 0 24 24" width="20" height="20">
+        <circle cx="12" cy="12" r="10" fill="#c0c0c0" stroke="#7a7a7a" stroke-width="2"/>
+        <circle cx="12" cy="12" r="6" fill="rgba(255,255,255,0.4)"/>
+      </svg>`;
+
+    case "gold":
+      return `
+      <svg viewBox="0 0 24 24" width="20" height="20">
+        <circle cx="12" cy="12" r="10" fill="#ffd700" stroke="#b08b00" stroke-width="2"/>
+        <circle cx="12" cy="12" r="6" fill="rgba(255,255,255,0.45)"/>
+      </svg>`;
+
+    case "diamond":
+      return `
+      <svg viewBox="0 0 24 24" width="20" height="20">
+        <path d="M12 2 L20 9 L12 22 L4 9 Z" 
+              fill="#ffffff" 
+              stroke="#d0d0d0" 
+              stroke-width="2"/>
+        <path d="M12 2 L12 22" stroke="rgba(200,200,200,0.7)" stroke-width="1"/>
+        <path d="M4 9 L20 9" stroke="rgba(200,200,200,0.7)" stroke-width="1"/>
+      </svg>`;
+  }
+}
+
+

@@ -1,0 +1,144 @@
+<!-- ==========================================================
+     Task Karate – Navigation Bar (Paper-Fu, Bebas Neue)
+     UNIVERSAL PATH VERSION (root + /dashboard/public)
+     ========================================================== -->
+
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Floating Logo -->
+<div class="tk-logo-floating">
+  <img
+    class="tk-logo-img"
+    src="images/logo/Logo.png"
+    alt="Task Karate Logo"
+  />
+</div>
+
+<nav class="navbar">
+
+  <!-- Brand (kept for structure, hidden by CSS unless enabled) -->
+  <div class="nav-brand">
+    <a class="nav-link-brand" data-nav="home" data-href="index.html">
+      <img
+        class="nav-logo-img logo"
+        src="images/logo/Logo.png"
+        alt="Task Karate Logo"
+      />
+    </a>
+  </div>
+
+  <!-- Hamburger (mobile) -->
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Main Navigation -->
+  <ul class="nav-links">
+
+    <!-- HOME -->
+    <li>
+      <a class="nav-link" data-nav="home" data-href="index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 3L2 11h3v10h6v-6h2v6h6V11h3L12 3z"/>
+        </svg>
+        <span>HOME</span>
+      </a>
+    </li>
+
+    <!-- SCHEDULE -->
+    <li>
+      <a class="nav-link" data-nav="schedule" data-href="schedule.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M7 2v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-2V2h-2v2H9V2H7zm12 7H5v10h14V9z"/>
+        </svg>
+        <span>SCHEDULE</span>
+      </a>
+    </li>
+
+    <!-- STUDENTS w/ Submenu -->
+    <li class="dropdown">
+      <a class="nav-link" data-nav="students" data-href="students.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M8 10a3 3 0 110-6 3 3 0 010 6zm8 0a3 3 0 110-6 3 3 0 010 6zM4 20v-1c0-2.21 1.79-4 4-4h0c2.21 0 4 1.79 4 4v1H4zm8 0v-1c0-1.7.84-3.18 2.15-4.1A4 4 0 0120 15a4 4 0 013 1.34V20h-11z"/>
+        </svg>
+        <span>STUDENTS</span>
+      </a>
+
+      <ul class="dropdown-menu">
+
+        <!-- Student Dashboard (Svelte App) -->
+        <li>
+          <a class="nav-link nav-link--sub" data-nav="dashboard" data-href="DASHBOARD_APP">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M3 13h8V3H3v10zm10 8h8V3h-8v18zm-10 0h8v-6H3v6z"/>
+            </svg>
+            <span>STUDENT DASHBOARD</span>
+          </a>
+        </li>
+
+        <!-- Student Resources -->
+        <li>
+          <a class="nav-link nav-link--sub" data-nav="students" data-href="students.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2a7 7 0 017 7c0 4.5-3.5 8-7 13-3.5-5-7-8.5-7-13a7 7 0 017-7zm0 4a3 3 0 100 6 3 3 0 000-6z"/>
+            </svg>
+            <span>STUDENT RESOURCES</span>
+          </a>
+        </li>
+
+        <!-- Class Check-in -->
+        <li>
+          <a class="nav-link nav-link--sub" data-nav="checkin" data-href="checkin.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/>
+            </svg>
+            <span>CLASS CHECK-IN</span>
+          </a>
+        </li>
+
+      </ul>
+    </li>
+
+    <!-- NEWS -->
+    <li>
+      <a class="nav-link" data-nav="news" data-href="news.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M4 4h13a2 2 0 012 2v11h1v2H4a2 2 0 01-2-2V6c0-1.1.9-2 2-2zm1 3v3h7V7H5zm0 5v3h5v-3H5zm9 0h3v3h-3v-3z"/>
+        </svg>
+        <span>NEWS</span>
+      </a>
+    </li>
+
+    <!-- ABOUT -->
+    <li>
+      <a class="nav-link" data-nav="about" data-href="about.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M11 7h2V5h-2v2zm0 12h2v-8h-2v8zm1-17C6.48 2 2 6.48 2 12s4.48 10 10 10
+                   10-4.48 10-10S17.52 2 12 2z"/>
+        </svg>
+        <span>ABOUT</span>
+      </a>
+    </li>
+
+    <!-- ADMIN -->
+    <li>
+      <a class="nav-link" data-nav="admin" data-href="admin-dashboard.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2l7 3v6c0 5-3 9.74-7 11-4-1.26-7-6-7-11V5l7-3zm0 4l-3 1.29v3.71c0 3.08 1.64 6.02 3 7.13
+                   1.36-1.11 3-4.05 3-7.13V7.29L12 6z"/>
+        </svg>
+        <span>ADMIN</span>
+      </a>
+    </li>
+
+  </ul>
+</nav>
+
+<!-- Scroll Progress Bar -->
+<div class="navbar-progress" id="navbarProgress"></div>
