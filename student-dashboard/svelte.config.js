@@ -7,14 +7,15 @@ export default {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: 'index.html',
+      fallback: undefined,
       strict: false
     }),
     paths: {
       base: dev ? '' : '/TaskKarateWeb_v2/student-dashboard'
     },
     prerender: {
-      handleHttpError: 'warn'
+      handleHttpError: 'warn',
+      entries: ['*']
     }
   }
 };
