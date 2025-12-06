@@ -11,7 +11,7 @@ export default {
       strict: false
     }),
     paths: {
-      base: dev ? '' : '/student-dashboard'
+      base: dev ? '' : '/TaskKarateWeb_v2/student-dashboard'
     },
     prerender: {
       handleHttpError: 'warn',
