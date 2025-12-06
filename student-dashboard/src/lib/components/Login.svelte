@@ -3,6 +3,7 @@
   import { tick, onMount } from "svelte";
   import { students, setActiveStudent, loadStudents } from "$lib/stores/students.js";
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   
   import LoginTile from "$lib/components/LoginTile.svelte";
   import PinModal from "$lib/components/PinModal.svelte";
@@ -112,7 +113,7 @@
     if (instructorMode) {
       // Direct login (bypass student PIN)
       setActiveStudent(s);
-      goto('/dashboard', { replaceState: true });
+      goto(`${base}/dashboard`, { replaceState: true });
     } else {
       showStudentPin = true;
       studentPinInput = "";
@@ -126,7 +127,7 @@
     if (studentPinInput === (selectedStudent.pin ?? "")) {
       setActiveStudent(selectedStudent);
       showStudentPin = false;
-      goto('/dashboard', { replaceState: true });
+      goto(`${base}/dashboard`, { replaceState: true });
     } else {
       pinError = "Incorrect PIN — try again.";
     }
