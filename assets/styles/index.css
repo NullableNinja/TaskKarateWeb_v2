@@ -6,14 +6,23 @@
    GLOBAL SPACING TIGHTENING FOR HOME PAGE
    ========================================= */
 .pf-section--home {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+/* Only the FIRST section needs extra space for the navbar */
+.pf-section--home:first-of-type {
+  padding-top: 6rem !important;
 }
 
 @media (min-width: 1024px) {
   .pf-section--home {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 1.75rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  .pf-section--home:first-of-type {
+    padding-top: 6rem !important;
   }
 }
 
@@ -82,13 +91,14 @@ body {
 }
 
 /* ============================================================
-   PROGRAMS SECTION — CLEAN SLATE LAYOUT (Option A)
+   PROGRAMS SECTION — PAPER-FU ENHANCED LAYOUT
    ============================================================ */
 
 .programs-layout {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.75rem;
+  position: relative;
   margin-top: 2rem;
 }
 
@@ -113,14 +123,121 @@ body {
   width: 100%;
   text-align: left;
   justify-content: flex-start;
+  position: relative;
+  overflow: visible;
+  /* Keep tabs straight - no rotation on content */
+  transform: none;
+  transition: all var(--transition-normal);
+}
+
+/* Paper-Fu: Add stacked layers to inactive tabs */
+.programs-tabs .tab:not(.is-active)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: inherit;
+  z-index: -1;
+  transform: translate(3px, 3px) rotate(0.5deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0.7;
+  transition: all var(--transition-normal);
+}
+
+.programs-tabs .tab:not(.is-active)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: inherit;
+  z-index: -2;
+  transform: translate(5px, 5px) rotate(-0.3deg);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0.5;
+  transition: all var(--transition-normal);
+}
+
+/* Expand layers on hover for inactive tabs */
+.programs-tabs .tab:not(.is-active):hover::before {
+  transform: translate(4px, 4px) rotate(0.7deg);
+  opacity: 0.85;
+}
+
+.programs-tabs .tab:not(.is-active):hover::after {
+  transform: translate(6px, 6px) rotate(-0.5deg);
+  opacity: 0.7;
 }
 
 /* Active styling remains consistent with global theme */
 #programs .tab.is-active {
   background: var(--accent-primary);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--accent-primary-soft);
+  transform: translateY(-4px) rotate(0deg) !important;
+  box-shadow: 
+    0 8px 20px var(--accent-primary-soft),
+    0 4px 8px rgba(31, 94, 161, 0.3);
+}
+
+/* Paper-Fu: Stacked layers for active tabs (added via JS) */
+.tab-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--accent-primary);
+  border-radius: inherit;
+  pointer-events: none;
+  transition: all var(--transition-normal);
+}
+
+.tab-layer-1 {
+  z-index: -1;
+  transform: translate(3px, 3px) rotate(0.6deg);
+  box-shadow: 0 4px 10px rgba(31, 94, 161, 0.4);
+  opacity: 0.85;
+}
+
+.tab-layer-2 {
+  z-index: -2;
+  transform: translate(5px, 5px) rotate(-0.4deg);
+  box-shadow: 0 6px 14px rgba(31, 94, 161, 0.5);
+  opacity: 0.7;
+}
+
+/* Expand active tab layers on hover */
+#programs .tab.is-active:hover .tab-layer-1 {
+  transform: translate(4px, 4px) rotate(0.8deg);
+}
+
+#programs .tab.is-active:hover .tab-layer-2 {
+  transform: translate(6px, 6px) rotate(-0.6deg);
+}
+
+/* Paper-Fu: Add tape corner to active tab */
+#programs .tab.is-active::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 12%;
+  width: 50px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  transform: rotate(-3deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
 /* ----------------------------
@@ -171,9 +288,9 @@ body {
   display: block;
   width: 100%;
   max-width: 520px;
-  height: 320px; /* uniform tile height */
+  height: 380px; /* Increased from 320px to show more content */
   object-fit: cover;
-  object-position: top; /* <── the important change */
+  object-position: top; /* Align to top */
   
   margin: 0 auto;
   border-radius: 18px;
@@ -189,7 +306,7 @@ body {
 
 @media (max-width: 600px) {
   .program-img {
-    height: 240px;
+    height: 280px;
   }
 }
 
@@ -198,18 +315,20 @@ body {
 
 
 /* ===========================
-   LIFE ON THE MATS — 3-TILE GRID
+   LIFE ON THE MATS — 3-TILE GRID WITH PAPER-FU
    =========================== */
 
 .photo-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
+  padding: 1rem 0;
 }
 
 @media (min-width: 900px) {
   .photo-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 }
 
@@ -217,17 +336,62 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  position: relative;
+  transform-origin: center center;
+  transition: transform var(--transition-normal);
+}
+
+/* Hover lifts photo straight up - no rotation on content */
+.photo-tile:hover {
+  transform: translateY(-8px);
+  z-index: 10;
 }
 
 .photo-img {
   width: 100%;
   border-radius: 18px;
   object-fit: cover;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 8px solid rgba(255, 255, 255, 0.95);
+  background: white;
+  position: relative;
+}
+
+/* Add tape to each photo - Paper-Fu style */
+.photo-tile::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 70px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+/* Alternate tape position for variety */
+.photo-tile:nth-child(2)::before {
+  left: 60%;
+  transform: translateX(-50%) rotate(4deg);
+}
+
+.photo-tile:nth-child(3)::before {
+  left: 40%;
+  transform: translateX(-50%) rotate(-2deg);
 }
 
 .photo-caption {
   font-size: 0.9rem;
   color: var(--color-text-muted);
+  text-align: center;
 }
 
 /* ===========================
@@ -293,4 +457,172 @@ body {
   .hero-location-text {
     font-size: 1.8rem;
   }
+}
+
+/* ===========================
+   VISUAL ENHANCEMENTS
+   =========================== */
+
+/* Add subtle animation to tab panels */
+.tab-panel {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add active indicator to program tabs */
+.tab.is-active {
+  position: relative;
+}
+
+.tab.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--tk-blue-light), var(--tk-blue-mid));
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(55, 169, 255, 0.4);
+}
+
+/* Enhance photo tiles */
+.photo-tile {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+/* Option 3: Staggered Animation for Photo Grid */
+.photo-tile:nth-child(1) { animation-delay: 0.1s; }
+.photo-tile:nth-child(2) { animation-delay: 0.3s; }
+.photo-tile:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.photo-tile:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.photo-img {
+  transition: transform 0.3s ease;
+}
+
+.photo-tile:hover .photo-img {
+  transform: scale(1.05);
+}
+
+/* Add pulsing effect to CTA buttons */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(55, 169, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(55, 169, 255, 0);
+  }
+}
+
+.btn-primary {
+  animation: pulse 2s infinite;
+}
+
+.btn-primary:hover {
+  animation: none;
+}
+
+/* Option 2: Glowing Border on Active Program Tab */
+.tab.is-active {
+  border-color: var(--tk-blue-light);
+  box-shadow: 0 0 20px rgba(55, 169, 255, 0.3), 0 0 40px rgba(55, 169, 255, 0.15);
+}
+
+/* Enhance hero image with subtle zoom on hover */
+.hero-image-wrapper {
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.hero-image {
+  transition: transform 0.6s ease;
+}
+
+/* Option 4: Parallax Effect on Hero Image */
+@media (min-width: 768px) {
+  .hero-image {
+    will-change: transform;
+  }
+  
+  .hero-panel.parallax .hero-image {
+    transform: translateY(var(--parallax-offset, 0));
+  }
+}
+
+.hero-image-wrapper:hover .hero-image {
+  transform: scale(1.05);
+}
+
+/* Add loading state for images */
+.photo-img[src*="placehold"] {
+  background: linear-gradient(45deg, #1e3a5f 25%, #2d4a6f 25%, #2d4a6f 50%, #1e3a5f 50%, #1e3a5f 75%, #2d4a6f 75%, #2d4a6f);
+  background-size: 20px 20px;
+  animation: barberpole 0.5s linear infinite;
+}
+
+@keyframes barberpole {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 20px 20px;
+  }
+}
+
+/* Add subtle background pattern to panels */
+.pf-panel.card {
+  position: relative;
+  overflow: visible;
+}
+
+/* Paper-Fu: Add tape decoration to photo section */
+.pf-section--home #photos .pf-panel.card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 15%;
+  width: 80px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  transform: rotate(1deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 3px 6px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+/* Removed .pf-panel.card::before - it conflicts with card's own ::before layer */
+
+/* Option 6: Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
 }

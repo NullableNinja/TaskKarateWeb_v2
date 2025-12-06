@@ -85,15 +85,17 @@ footer {
   fill: var(--accent-primary);
 }
 
-/* Back to top button */
+/* Back to Top Button - Paper-Fu Style */
 .back-to-top {
   position: fixed;
   bottom: var(--space-6);
   left: var(--space-6);
-  width: 48px;
-  height: 48px;
-  background: var(--accent-primary);
-  border-radius: var(--radius-full);
+  width: 56px;
+  height: 56px;
+  background: var(--bg-secondary);
+  color: var(--accent-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,29 +103,68 @@ footer {
   opacity: 0;
   visibility: hidden;
   transition: all var(--transition-normal);
-  z-index: var(--z-fixed);
+  z-index: 9500;
   box-shadow: 
     0 4px 12px var(--shadow-color-medium),
-    0 2px 4px var(--shadow-color-soft);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Back panel for Paper-Fu layered depth effect */
+.back-to-top::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    135deg,
+    rgba(31, 94, 161, 0.1) 0%,
+    rgba(31, 94, 161, 0.05) 50%,
+    rgba(31, 94, 161, 0.02) 100%
+  );
+  border-radius: var(--radius-md);
+  z-index: -1;
+  transform: translate(3px, 3px);
+  transition: transform var(--transition-normal);
 }
 
 .back-to-top.visible {
   opacity: 1;
   visibility: visible;
+  animation: slideInLeft 0.4s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .back-to-top:hover {
-  transform: translateY(-2px);
+  transform: translateY(-8px);
   box-shadow: 
-    0 6px 16px var(--shadow-color-hard),
-    0 2px 8px var(--shadow-color-medium);
-  background: var(--accent-primary-light);
+    0 20px 40px var(--shadow-color-hard),
+    0 8px 16px var(--shadow-color-medium),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: var(--accent-primary-soft);
+}
+
+.back-to-top:hover::before {
+  transform: translate(4px, 4px);
+}
+
+.back-to-top:active {
+  transform: translateY(-4px);
 }
 
 .back-to-top svg {
-  width: 20px;
-  height: 20px;
-  fill: var(--text-inverse);
+  width: 24px;
+  height: 24px;
+  color: var(--accent-primary);
+  stroke: var(--accent-primary);
 }
 
 /* Space for floating buttons */

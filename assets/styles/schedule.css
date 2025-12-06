@@ -14,6 +14,11 @@
   padding-bottom: 0.75rem !important;
 }
 
+/* Only the FIRST section needs extra space for the navbar */
+.pf-section--schedule:first-of-type {
+  margin-top: 6rem !important;
+}
+
 .pf-section--schedule .container {
   padding-top: 0.75rem !important;
   padding-bottom: 0.75rem !important;
@@ -25,8 +30,7 @@
 }
 
 .pf-section--schedule .pf-panel.card {
-  padding-top: 1rem !important;
-  padding-bottom: 1.25rem !important;
+  padding: 2rem !important; /* Increased from 1rem top / 1.25rem bottom */
 }
 
 .pf-panel .eyebrow {
@@ -53,7 +57,7 @@
 .info-panel {
   background: var(--bg-secondary);
   border-radius: 16px;
-  padding: 1.25rem 1.5rem;
+  padding: 1.75rem 2rem; /* Increased from 1.25rem 1.5rem */
   border: 1px solid var(--border-subtle);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
   display: grid;
@@ -71,15 +75,29 @@
 }
 
 .info-panel-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 30% 30%, #1d4ed8, #020617);
+  background: var(--classic-blue-500);
   color: #ffffff;
   font-size: 1.35rem;
+  box-shadow: 0 4px 12px rgba(15, 76, 129, 0.3);
+  transition: all 0.3s ease;
+}
+
+.info-panel:hover .info-panel-icon {
+  background: var(--classic-blue-400);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 76, 129, 0.4);
+}
+
+.info-panel-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
 }
 
 /* ---------------------------------

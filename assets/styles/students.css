@@ -15,6 +15,11 @@
   padding-bottom: 0.75rem !important;
 }
 
+/* Only the FIRST section needs extra space for the navbar */
+.pf-section--students:first-of-type {
+  margin-top: 6rem !important;
+}
+
 .pf-section--students .container {
   padding-top: 0.75rem !important;
   padding-bottom: 0.75rem !important;

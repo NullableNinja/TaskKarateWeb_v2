@@ -47,6 +47,14 @@ jobs:
           cp -r partials _site/
           cp *.html _site/ || true
           cp .nojekyll _site/
+          
+          # Add base tag to HTML files for GitHub Pages
+          for htmlfile in _site/*.html; do
+            if [ -f "$htmlfile" ]; then
+              sed -i '/<head>/a\  <base href="/TaskKarateWeb_v2/">' "$htmlfile"
+            fi
+          done
+          
           cp -r student-dashboard/build _site/student-dashboard
 
       - name: Upload artifact

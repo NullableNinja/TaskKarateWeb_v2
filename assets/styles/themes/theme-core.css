@@ -11,7 +11,7 @@ html[data-theme="light"] {
   --bg-primary:       #f5f5f7;
   --bg-secondary:     rgba(255, 255, 255, 0.75); /* More translucent for double-panel effect */
   --bg-tertiary:      rgba(233, 237, 245, 0.6);
-  --bg-inverse:       #111827;
+  --bg-inverse:       var(--bg-navy-50);
   
   /* Double-panel system layers */
   --bg-layer-1:       rgba(255, 255, 255, 0.85); /* Front panel */
@@ -27,12 +27,12 @@ html[data-theme="light"] {
   --text-inverse:     #ffffff;
   --text-muted:       #9ca3af;
 
-  /* Accent colors */
-  --accent-primary:       var(--task-blue);
-  --accent-primary-light: #3b7bd0;
-  --accent-primary-soft:  rgba(31, 94, 161, 0.08);
-  --accent-primary-strong:#184578;
-  --accent-primary-hover: rgba(31, 94, 161, 0.12);
+  /* Accent colors - Classic Blue based */
+  --accent-primary:       var(--classic-blue-500);
+  --accent-primary-light: var(--classic-blue-400);
+  --accent-primary-soft:  rgba(15, 76, 129, 0.08);
+  --accent-primary-strong:var(--classic-blue-600);
+  --accent-primary-hover: rgba(15, 76, 129, 0.12);
 
   /* Border colors */
   --border-color:     rgba(15, 23, 42, 0.12);
@@ -68,20 +68,20 @@ html[data-theme="light"] {
   --info-text:        #1e40af;
 }
 
-/* DARK THEME */
+/* DARK THEME - Warmer backgrounds with Classic Blue */
 html[data-theme="dark"] {
-  /* Background colors */
-  --bg-primary:       #0b0d12;
-  --bg-secondary:     #111827;
-  --bg-tertiary:      #1f2937;
+  /* Background colors - warmer navy tones */
+  --bg-primary:       var(--bg-navy-100);
+  --bg-secondary:     rgba(30, 37, 50, 0.95);
+  --bg-tertiary:      rgba(42, 52, 70, 0.9);
   --bg-inverse:       #f5f5f7;
 
-  /* Double-panel system layers - Dark mode */
-  --bg-layer-1:       rgba(17, 24, 39, 0.95); /* Front panel */
-  --bg-layer-2:       rgba(31, 41, 55, 0.9);  /* Back panel */
-  --bg-layer-3:       rgba(55, 65, 81, 0.85); /* Third layer */
-  --bg-layer-4:       rgba(75, 85, 99, 0.8);  /* Fourth layer */
-  --bg-layer-5:       rgba(107, 114, 128, 0.75); /* Fifth layer */
+  /* Double-panel system layers - Dark mode with warmth */
+  --bg-layer-1:       rgba(30, 37, 50, 0.95); /* Front panel */
+  --bg-layer-2:       rgba(42, 52, 70, 0.9);  /* Back panel */
+  --bg-layer-3:       rgba(55, 68, 90, 0.85); /* Third layer */
+  --bg-layer-4:       rgba(70, 85, 110, 0.8);  /* Fourth layer */
+  --bg-layer-5:       rgba(90, 105, 130, 0.75); /* Fifth layer */
 
   /* Text colors */
   --text-primary:     #e5e7eb;
@@ -90,12 +90,12 @@ html[data-theme="dark"] {
   --text-inverse:     #111827;
   --text-muted:       #4b5563;
 
-  /* Accent colors */
-  --accent-primary:       var(--task-blue);
-  --accent-primary-light: #2f7dd2;
-  --accent-primary-soft:  rgba(59, 130, 246, 0.18);
-  --accent-primary-strong:#93c5fd;
-  --accent-primary-hover: rgba(59, 130, 246, 0.25);
+  /* Accent colors - Classic Blue with brightness adjustment for dark mode */
+  --accent-primary:       var(--classic-blue-400);
+  --accent-primary-light: var(--classic-blue-300);
+  --accent-primary-soft:  rgba(46, 123, 181, 0.18);
+  --accent-primary-strong:var(--classic-blue-200);
+  --accent-primary-hover: rgba(46, 123, 181, 0.25);
 
   /* Border colors */
   --border-color:     rgba(148, 163, 184, 0.35);
@@ -110,7 +110,7 @@ html[data-theme="dark"] {
 
   /* Panel and overlay colors */
   --panel-outline:    rgba(148, 163, 184, 0.18);
-  --panel-glass:      rgba(17, 24, 39, 0.7);
+  --panel-glass:      rgba(30, 37, 50, 0.7);
   --overlay-bg:       rgba(0, 0, 0, 0.6);
 
   /* Status colors (dark variants) */
@@ -146,24 +146,24 @@ html[data-theme="high-contrast"] {
 /* System preference detection */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) {
-    --bg-primary:       #0b0d12;
-    --bg-secondary:     #111827;
-    --bg-tertiary:      #1f2937;
+    --bg-primary:       var(--bg-navy-100);
+    --bg-secondary:     rgba(30, 37, 50, 0.95);
+    --bg-tertiary:      rgba(42, 52, 70, 0.9);
     --bg-inverse:       #f5f5f7;
     --text-primary:     #e5e7eb;
     --text-secondary:   #9ca3af;
     --text-tertiary:    #6b7280;
     --text-inverse:     #111827;
     --text-muted:       #4b5563;
-    --accent-primary:       var(--task-blue);
-    --accent-primary-light: #2f7dd2;
-    --accent-primary-soft:  rgba(59, 130, 246, 0.18);
-    --accent-primary-strong:#93c5fd;
-    --accent-primary-hover: rgba(59, 130, 246, 0.25);
+    --accent-primary:       var(--classic-blue-400);
+    --accent-primary-light: var(--classic-blue-300);
+    --accent-primary-soft:  rgba(46, 123, 181, 0.18);
+    --accent-primary-strong:var(--classic-blue-200);
+    --accent-primary-hover: rgba(46, 123, 181, 0.25);
     --border-color:     rgba(148, 163, 184, 0.35);
     --border-color-light: rgba(148, 163, 184, 0.18);
     --panel-outline:    rgba(148, 163, 184, 0.18);
-    --panel-glass:      rgba(17, 24, 39, 0.7);
+    --panel-glass:      rgba(30, 37, 50, 0.7);
   }
 }
 

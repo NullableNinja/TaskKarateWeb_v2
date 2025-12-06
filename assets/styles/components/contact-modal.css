@@ -1,0 +1,197 @@
+/* ============================================================
+   contact-modal.css — Contact modal with Paper-Fu styling
+   ============================================================ */
+
+/* Modal overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal container - Paper-Fu card */
+.contact-modal {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 0 0 1px var(--border-color);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+/* Paper-Fu stacked layers */
+.contact-modal::before,
+.contact-modal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 0 1px var(--border-color);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.contact-modal::before {
+  transform: translate(3px, 3px) rotate(0.3deg);
+  opacity: 0.85;
+}
+
+.contact-modal::after {
+  transform: translate(6px, 6px) rotate(-0.2deg);
+  opacity: 0.65;
+}
+
+/* Modal header */
+.modal-header {
+  position: relative;
+  padding: 1.5rem 2rem;
+  background: var(--accent-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--text-inverse);
+  letter-spacing: 0.05em;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-inverse);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(90deg);
+}
+
+/* Modal body */
+.modal-body {
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
+}
+
+/* Contact info sections */
+.contact-section {
+  margin-bottom: 1.5rem;
+}
+
+.contact-section:last-child {
+  margin-bottom: 0;
+}
+
+.contact-section h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  color: var(--accent-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.contact-section p {
+  margin: 0.25rem 0;
+  color: var(--text-secondary);
+}
+
+.contact-section a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-section a:hover {
+  color: var(--tk-blue-light);
+  text-decoration: underline;
+}
+
+/* Contact icons */
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.contact-icon::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-40px) rotate(-1deg) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .contact-modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .modal-header {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+}

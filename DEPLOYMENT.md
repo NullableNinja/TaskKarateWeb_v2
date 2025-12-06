@@ -114,16 +114,18 @@ After a few minutes, visit:
 
 ## Configuration Changes Made
 
-The following files have been updated to work with GitHub Pages:
+The website uses relative paths for local development compatibility. When deploying to GitHub Pages, a `<base href="/TaskKarateWeb_v2/">` tag is automatically added to HTML files to make all relative paths work correctly on GitHub Pages.
 
-### Navigation Bar (`partials/navigation-bar.html`)
-- Updated all links to use `/TaskKarateWeb_v2/` base path
-- Dashboard link points to `/TaskKarateWeb_v2/student-dashboard/`
+### Key Files Updated
 
-### HTML Files (index.html, about.html, schedule.html, students.html)
-- Updated CSS links to use `/TaskKarateWeb_v2/assets/`
-- Updated script sources to use `/TaskKarateWeb_v2/assets/js/`
-- Updated favicon paths
+#### Navigation Bar (`partials/navigation-bar.html`)
+- Uses relative links (e.g., `index.html`, `schedule.html`)
+- Base tag added during deployment makes these resolve correctly on GitHub Pages
+
+#### HTML Files (index.html, about.html, schedule.html, students.html)
+- All use relative paths (e.g., `assets/styles/main.css`)
+- Work locally out of the box
+- Base tag added during deployment for GitHub Pages compatibility
 
 ### JavaScript (`assets/js/partials.js`)
 - Updated partial loading path to `/TaskKarateWeb_v2/partials/navigation-bar.html`

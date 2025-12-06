@@ -27,7 +27,7 @@
 
   function initPartials() {
     // ALWAYS load navbar from root
-    injectPartial("site-header", "/TaskKarateWeb_v2/partials/navigation-bar.html");
+    injectPartial("site-header", "partials/navigation-bar.html");
   }
 
   if (document.readyState === "loading") {

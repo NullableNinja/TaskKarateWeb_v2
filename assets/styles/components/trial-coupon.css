@@ -1,0 +1,265 @@
+/* ============================================================
+   trial-coupon.css — Two-week trial coupon popup
+   ============================================================ */
+
+/* Coupon popup container */
+.trial-coupon {
+  position: fixed;
+  top: 20px;
+  right: -400px; /* Start off-screen */
+  width: 320px;
+  z-index: 9998;
+  transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trial-coupon.visible {
+  right: 20px;
+}
+
+/* Coupon card - Paper style */
+.coupon-card {
+  position: relative;
+  background: #FEFDF8; /* Slightly off-white paper color */
+  border-radius: 8px;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: couponFloat 3s ease-in-out infinite;
+}
+
+/* Paper texture overlay */
+.coupon-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.02) 2px,
+      rgba(0, 0, 0, 0.02) 4px
+    );
+  pointer-events: none;
+}
+
+/* Perforated edge (top) */
+.coupon-perforation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: repeating-linear-gradient(
+    90deg,
+    #FEFDF8 0px,
+    #FEFDF8 8px,
+    transparent 8px,
+    transparent 12px
+  );
+  z-index: 1;
+}
+
+/* Coupon header */
+.coupon-header {
+  position: relative;
+  padding: 1.5rem 1.5rem 1rem;
+  text-align: center;
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--tk-blue-mid) 100%);
+}
+
+.coupon-header h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.75rem;
+  color: white;
+  margin: 0 0 0.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.05em;
+}
+
+.coupon-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Coupon body */
+.coupon-body {
+  padding: 1.5rem;
+}
+
+.coupon-offer {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--accent-primary);
+  text-align: center;
+  margin: 0 0 1rem;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.coupon-details {
+  font-size: 0.875rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Coupon code */
+.coupon-code {
+  background: rgba(31, 94, 161, 0.1);
+  border: 2px dashed var(--accent-primary);
+  border-radius: 6px;
+  padding: 0.75rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.coupon-code-label {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.coupon-code-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--accent-primary);
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+/* CTA button */
+.coupon-cta {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.coupon-cta:hover {
+  background: var(--tk-blue-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.coupon-cta:active {
+  transform: translateY(0);
+}
+
+/* Close button */
+.coupon-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.coupon-close:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: rotate(90deg);
+}
+
+/* Tape decoration */
+.coupon-tape {
+  position: absolute;
+  top: -10px;
+  right: 40px;
+  width: 80px;
+  height: 30px;
+  background: rgba(255, 215, 100, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: rotate(-5deg);
+  z-index: 10;
+}
+
+.coupon-tape::before,
+.coupon-tape::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 60%;
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateY(-50%);
+}
+
+.coupon-tape::before {
+  left: 30%;
+}
+
+.coupon-tape::after {
+  right: 30%;
+}
+
+/* Float animation */
+@keyframes couponFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .trial-coupon {
+    width: 280px;
+    top: 10px;
+  }
+  
+  .trial-coupon.visible {
+    right: 10px;
+  }
+  
+  .coupon-offer {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .trial-coupon {
+    width: calc(100% - 40px);
+    left: 20px;
+    right: auto;
+  }
+  
+  .trial-coupon.visible {
+    left: 20px;
+  }
+}

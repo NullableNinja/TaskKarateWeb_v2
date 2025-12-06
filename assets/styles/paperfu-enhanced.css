@@ -1,0 +1,277 @@
+/* ============================================================
+   paperfu-enhanced.css — Authentic Paper-Fu Decorative Elements
+   Inspired by The Artisan Apothecary design
+   ============================================================ */
+
+/* ============================================================
+   TAPE DECORATION SYSTEM - Randomized Positions
+   Using utility classes to add tape to any element
+   ============================================================ */
+
+/* Base tape style - applied via utility class */
+.pf-tape {
+  position: relative;
+}
+
+/* Tape positions - Variant 1: Top Center */
+.pf-tape.tape-v1::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+/* Tape positions - Variant 2: Top Right */
+.pf-tape.tape-v2::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 15%;
+  width: 65px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(4deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+/* Tape positions - Variant 3: Top Left */
+.pf-tape.tape-v3::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 18%;
+  width: 68px;
+  height: 23px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(-5deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+/* Tape positions - Variant 4: Double tape (uses ::after too) */
+.pf-tape.tape-v4::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 25%;
+  width: 55px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(-3deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+.pf-tape.tape-v4::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 25%;
+  width: 55px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(3deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+/* Auto-assign tape variants using nth-child for cards */
+.card:nth-child(6n+1) {
+  position: relative;
+}
+
+.card:nth-child(6n+1)::before {
+  /* Layer 2 stays as is */
+}
+
+.card:nth-child(6n+1) > *:first-child::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+/* Paper-Fu Sticky Note Component */
+.pf-sticky-note {
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(255, 255, 220, 0.95);
+  border: 1px solid rgba(200, 200, 150, 0.3);
+  border-radius: 2px;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  transform: rotate(-1.5deg);
+  font-family: 'Courier New', monospace;
+  color: #333;
+}
+
+/* Tape on sticky note */
+.pf-sticky-note::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  width: 60px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  transform: rotate(5deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Paper-Fu Layered Card Stack (for demo areas) */
+.pf-card-stack {
+  position: relative;
+}
+
+.pf-card-stack::before,
+.pf-card-stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  z-index: -1;
+}
+
+.pf-card-stack::before {
+  transform: translate(-4px, -4px) rotate(-1deg);
+  opacity: 0.6;
+}
+
+.pf-card-stack::after {
+  transform: translate(4px, 4px) rotate(1deg);
+  opacity: 0.4;
+}
+
+/* Enhanced tape variations for different positions */
+.pf-tape-top-left::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 50px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(-4deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.pf-tape-top-right::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  width: 50px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(4deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+/* Organic rotation utility classes */
+.pf-rotate-slight-left {
+  transform: rotate(-0.8deg);
+}
+
+.pf-rotate-slight-right {
+  transform: rotate(0.8deg);
+}
+
+.pf-rotate-left {
+  transform: rotate(-2deg);
+}
+
+.pf-rotate-right {
+  transform: rotate(2deg);
+}
+
+/* Paper texture overlay */
+.pf-paper-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Enhance existing sections with Paper-Fu */
+/* Removed rotation - content stays straight */
+
+/* Contact tiles with organic positioning */
+.contact-tiles {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-tile {
+  position: relative;
+  overflow: visible;
+}
+
+.contact-tile:hover {
+  transform: translateY(-8px) !important;
+  z-index: 10;
+}

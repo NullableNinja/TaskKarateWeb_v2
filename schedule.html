@@ -16,8 +16,12 @@
   />
 
   <!-- Master CSS File (imports all modules) -->
-  <link rel="stylesheet" href="/TaskKarateWeb_v2/assets/styles/main.css" />
-  <link rel="stylesheet" href="/TaskKarateWeb_v2/assets/styles/schedule.css" />
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <link rel="stylesheet" href="assets/styles/schedule.css" />
+  <link rel="stylesheet" href="assets/styles/scrollbar.css" />
+  <link rel="stylesheet" href="assets/styles/animations.css" />
+  <link rel="stylesheet" href="assets/styles/components/contact-modal.css" />
+  <link rel="stylesheet" href="assets/styles/components/trial-coupon.css" />
 </head>
 
 <body>
@@ -47,14 +51,14 @@
             </p>
 
             <div class="flex gap-4 mt-6 flex-wrap">
-              <a href="#" class="btn btn-outline">
+              <a href="#" class="btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                 </svg>
                 Download Kids PDF
               </a>
-              <a href="#" class="btn btn-outline">
+              <a href="#" class="btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
@@ -85,7 +89,12 @@
 
             <div class="info-panels mt-6">
               <div class="info-panel">
-                <div class="info-panel-icon">⏱</div>
+                <div class="info-panel-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
                 <div class="info-panel-title">Class Duration</div>
                 <div class="info-panel-text">
                   Look for the <strong>*</strong> on time bubbles to quickly spot
@@ -94,7 +103,12 @@
               </div>
 
               <div class="info-panel">
-                <div class="info-panel-icon">🥋</div>
+                <div class="info-panel-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 6V12C4 16.5 7.5 20.5 12 22C16.5 20.5 20 16.5 20 12V6L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M12 8V14M9 11L12 14L15 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
                 <div class="info-panel-title">Mat Class</div>
                 <div class="info-panel-text">
                   Mixed kids and adults groundwork/grappling.
@@ -103,7 +117,13 @@
               </div>
 
               <div class="info-panel">
-                <div class="info-panel-icon">🥊</div>
+                <div class="info-panel-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
+                    <path d="M5 15C5 13 7 11 8 11C9 11 11 13 11 15V19H5V15Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M14 11L17 8M17 8L20 11M17 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
                 <div class="info-panel-title">Sparring</div>
                 <div class="info-panel-text">
                   <strong>Gear required.</strong> Ask if you&rsquo;re unsure what you
@@ -1092,7 +1112,9 @@
 
   <!-- Back to Top Button -->
   <div class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
-    <span class="icon icon-arrow-up icon-white"></span>
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 
   <!-- Modal for Class Details -->
@@ -1105,16 +1127,19 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="/TaskKarateWeb_v2/assets/js/partials.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/notifications.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/footer.js"></script>
+  <script src="assets/js/partials.js"></script>
+  <script src="assets/js/notifications.js"></script>
+  <script src="assets/js/footer.js"></script>
 
   <!-- Shared behavior used across pages -->
-  <script src="/TaskKarateWeb_v2/assets/js/theme_toggle.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/scroll-progress.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/back_to_top.js"></script>
+  <script src="assets/js/theme_toggle.js"></script>
+  <script src="assets/js/scroll-progress.js"></script>
+  <script src="assets/js/back_to_top.js"></script>
+  <script src="assets/js/animations-init.js"></script>
+  <script src="assets/js/contact-modal.js"></script>
+  <script src="assets/js/trial-coupon.js"></script>
 
   <!-- Schedule page – modal + interactions -->
-  <script src="/TaskKarateWeb_v2/assets/js/schedule_modal.js"></script>
+  <script src="assets/js/schedule_modal.js"></script>
 </body>
 </html>

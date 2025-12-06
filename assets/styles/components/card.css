@@ -16,39 +16,189 @@
     0 4px 12px var(--shadow-color-medium),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all var(--transition-normal);
-  overflow: hidden;
+  overflow: visible;
+  /* Keep main card straight - no rotation on content */
+  transform: rotate(0deg);
 }
 
-/* Back panel for Paper-Fu depth effect */
+/* Paper-Fu: Multiple stacked layers behind card (3 layers total) */
 .card::before {
   content: "";
   position: absolute;
-  inset: -1px;
-  background: linear-gradient(
-    135deg,
-    rgba(31, 94, 161, 0.1) 0%,
-    rgba(31, 94, 161, 0.05) 50%,
-    rgba(31, 94, 161, 0.02) 100%
-  );
+  /* Match card size exactly including border */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  z-index: -1;
-  transform: translate(4px, 4px);
+  z-index: -2;
+  /* Second layer - offset and rotated */
+  transform: translate(5px, 5px) rotate(1.2deg);
+  box-shadow: 
+    0 6px 16px var(--shadow-color-medium),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: transform var(--transition-normal);
 }
 
-/* Card hover effects - Floating instead of excessive effects */
+/* Third layer - furthest back */
+.card::after {
+  content: "";
+  position: absolute;
+  /* Match card size exactly including border */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  z-index: -3;
+  /* Third layer - more offset and rotated opposite */
+  transform: translate(9px, 9px) rotate(-0.8deg);
+  box-shadow: 0 8px 20px var(--shadow-color-hard);
+  opacity: 0.7;
+  transition: transform var(--transition-normal);
+}
+
+/* Card hover effects - Floating straight up (no rotation) */
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px);
   box-shadow: 
-    0 20px 40px var(--shadow-color-hard),
-    0 8px 16px var(--shadow-color-medium),
+    0 28px 56px var(--shadow-color-hard),
+    0 14px 28px var(--shadow-color-medium),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   border-color: var(--accent-primary-soft);
   transition: all var(--transition-bounce);
 }
 
+/* Second layer expands on hover */
 .card:hover::before {
-  transform: translate(3px, 3px);
+  transform: translate(7px, 7px) rotate(1.5deg);
+}
+
+/* Third layer expands even more on hover */
+.card:hover::after {
+  transform: translate(12px, 12px) rotate(-1.2deg);
+  opacity: 0.85;
+}
+
+/* ============================================================
+   PAPER-FU TAPE DECORATIONS - Randomized positions
+   Using data attributes for reliable randomization
+   ============================================================ */
+
+/* Add tape wrapper inside cards */
+.card-tape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Tape Variant 1: Top Center */
+.card-tape[data-tape-variant="1"]::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Tape Variant 2: Top Right */
+.card-tape[data-tape-variant="2"]::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 15%;
+  width: 65px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(4deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Tape Variant 3: Top Left */
+.card-tape[data-tape-variant="3"]::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 18%;
+  width: 68px;
+  height: 23px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(-5deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Tape Variant 4: Top Right Corner */
+.card-tape[data-tape-variant="4"]::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 22%;
+  width: 60px;
+  height: 21px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(6deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Tape Variant 5: Off-center Left */
+.card-tape[data-tape-variant="5"]::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 35%;
+  width: 66px;
+  height: 23px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(-3deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Tape Variant 6: Far Right */
+.card-tape[data-tape-variant="6"]::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 12%;
+  width: 64px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: rotate(3deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
 /* Main panel interactivity - Floating hover effect */

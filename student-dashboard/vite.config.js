@@ -4,5 +4,5 @@ const dev = process.argv.includes('dev');
 
 export default {
   plugins: [sveltekit()],
-  base: dev ? '' : '/TaskKarateWeb_v2/student-dashboard/'
+  base: dev ? '' : '/student-dashboard/'
 };

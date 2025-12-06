@@ -112,7 +112,7 @@
     if (instructorMode) {
       // Direct login (bypass student PIN)
       setActiveStudent(s);
-      goto('/dashboard');
+      goto('/dashboard', { replaceState: true });
     } else {
       showStudentPin = true;
       studentPinInput = "";
@@ -126,7 +126,7 @@
     if (studentPinInput === (selectedStudent.pin ?? "")) {
       setActiveStudent(selectedStudent);
       showStudentPin = false;
-      goto('/dashboard');
+      goto('/dashboard', { replaceState: true });
     } else {
       pinError = "Incorrect PIN — try again.";
     }

@@ -8,7 +8,7 @@
     name="description"
     content="Learn about Task Karate School in La Crosse, WI—who we are, what we teach, and how we train."
   />
-  <link rel="icon" href="/TaskKarateWeb_v2/images/logo/Logo.png" />
+  <link rel="icon" href="images/logo/Logo.png" />
 
   <!-- Google Fonts -->
   <link
@@ -17,8 +17,12 @@
   />
 
   <!-- Core Styles -->
-  <link rel="stylesheet" href="/TaskKarateWeb_v2/assets/styles/main.css" />
-  <link rel="stylesheet" href="/TaskKarateWeb_v2/assets/styles/about.css" />
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <link rel="stylesheet" href="assets/styles/about.css" />
+  <link rel="stylesheet" href="assets/styles/scrollbar.css" />
+  <link rel="stylesheet" href="assets/styles/animations.css" />
+  <link rel="stylesheet" href="assets/styles/components/contact-modal.css" />
+  <link rel="stylesheet" href="assets/styles/components/trial-coupon.css" />
 </head>
 <body>
   <!-- Background -->
@@ -60,7 +64,7 @@
               <div class="avatar-wrap">
                 <img
                   class="avatar"
-                  src="/TaskKarateWeb_v2/images/staff/RandyThomson.png"
+                  src="images/staff/RandyThomson.png"
                   alt="Randy Thomson, owner and head instructor at Task Karate"
                   loading="lazy"
                   decoding="async"
@@ -114,7 +118,7 @@
                 <!-- CTA -->
                 <div class="cta-row">
                   <a class="btn" href="./schedule.html">View Class Schedule</a>
-                  <a class="btn btn-outline" href="./index.html#trial">2-Week Free Trial</a>
+                  <a class="btn btn-secondary" href="./index.html#trial">2-Week Free Trial</a>
                 </div>
               </div>
             </div>
@@ -132,53 +136,51 @@
             <h2 class="heading-2">What We Teach</h2>
             <div class="hi-grid">
               <div class="hi">
+                <div class="hi-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 6V12C4 16.5 7.5 20.5 12 22C16.5 20.5 20 16.5 20 12V6L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
                 <h3>Karate</h3>
                 <p class="muted">
                   Stances, strikes, blocks, and partner drills that carry into real life—focus, balance, and composure under pressure.
                 </p>
               </div>
               <div class="hi">
+                <div class="hi-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20.5 5.5 21 6 21H9M19 10L21 12M19 10V20C19 20.5 18.5 21 18 21H15M9 21C9.5 21 10 20.5 10 20V16C10 15.5 10.5 15 11 15H13C13.5 15 14 15.5 14 16V20C14 20.5 14.5 21 15 21M9 21H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
                 <h3>IS3 • Eskrima</h3>
                 <p class="muted">
                   Inayan System III stick work to sharpen timing and distance. Structured patterns first, controlled contact once ready.
                 </p>
               </div>
               <div class="hi">
+                <div class="hi-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10L12 5L17 10M7 14L12 19L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
                 <h3>Weapons Skills</h3>
                 <p class="muted">
                   Traditional implements to refine coordination and control. Safe handling and clean mechanics come first.
                 </p>
               </div>
               <div class="hi">
+                <div class="hi-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 21V19C17 17.9 16.1 17 15 17H9C7.9 17 7 17.9 7 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="15" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 11V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
                 <h3>How We Train</h3>
                 <p class="muted">Friendly partners, clear coaching, and steady progress. We keep egos outside and growth inside.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Address -->
-    <section class="pf-section pf-section--about">
-      <div class="container">
-        <div class="pf-stack">
-          <div class="pf-layer bottom"></div>
-          <div class="pf-layer top pf-panel card address-card">
-            <div class="address-band">
-              <div class="addr-left">
-                <svg class="addr-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z" />
-                  <path d="M12 7v5l3 3" />
-                </svg>
-                <div>
-                  <strong>Task Karate School</strong><br />
-                  <span class="muted">1501 St. Andrew Street, Suite 212 • La Crosse, WI 54603</span>
-                </div>
-              </div>
-              <div class="cta-row">
-                <a class="btn btn-secondary btn-small" href="tel:+16087818275">(608) 781-TASK (8275)</a>
-                <a class="btn btn-outline btn-small" href="mailto:taskkarate@gmail.com">taskkarate@gmail.com</a>
               </div>
             </div>
           </div>
@@ -192,18 +194,23 @@
 
   <!-- Back to Top Button -->
   <div class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
-    <span class="icon icon-arrow-up icon-white"></span>
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 
   <!-- JavaScript -->
-  <script src="/TaskKarateWeb_v2/assets/js/partials.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/notifications.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/footer.js"></script>
+  <script src="assets/js/partials.js"></script>
+  <script src="assets/js/notifications.js"></script>
+  <script src="assets/js/footer.js"></script>
 
   <!-- Shared behavior used across pages -->
-  <script src="/TaskKarateWeb_v2/assets/js/theme_toggle.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/mobile_navigation_bar.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/scroll-progress.js"></script>
-  <script src="/TaskKarateWeb_v2/assets/js/back_to_top.js"></script>
+  <script src="assets/js/theme_toggle.js"></script>
+  <script src="assets/js/mobile_navigation_bar.js"></script>
+  <script src="assets/js/scroll-progress.js"></script>
+  <script src="assets/js/back_to_top.js"></script>
+  <script src="assets/js/animations-init.js"></script>
+  <script src="assets/js/contact-modal.js"></script>
+  <script src="assets/js/trial-coupon.js"></script>
 </body>
 </html>

@@ -57,10 +57,47 @@ ul, ol {
 
 /* Root design tokens (neutral + TASK blue) */
 :root {
-  /* Brand colors */
-  --task-blue: #1F5EA1;
-  --task-blue-deep: #12325A;
-  --task-blue-light: #3b7bd0;
+  /* ===================================================================
+     PANTONE CLASSIC BLUE 19-4052 COLOR PALETTE
+     Base: #0F4C81 (Pantone Classic Blue - Color of the Year 2020)
+     Creating a comprehensive palette with tints, shades, and accents
+     ================================================================ */
+  
+  /* Core Classic Blue Scale */
+  --classic-blue-50:   #E8F1F8;  /* Lightest tint - 95% lighter */
+  --classic-blue-100:  #C2DBF0;  /* Very light - 85% lighter */
+  --classic-blue-200:  #9BC5E7;  /* Light - 70% lighter */
+  --classic-blue-300:  #5A9DD4;  /* Medium light - 50% lighter */
+  --classic-blue-400:  #2E7BB5;  /* Medium - 30% lighter */
+  --classic-blue-500:  #0F4C81;  /* PANTONE CLASSIC BLUE (Base) */
+  --classic-blue-600:  #0C3D68;  /* Medium dark - 20% darker */
+  --classic-blue-700:  #0A2E4F;  /* Dark - 40% darker */
+  --classic-blue-800:  #071F37;  /* Very dark - 60% darker */
+  --classic-blue-900:  #04101E;  /* Darkest - 80% darker */
+  
+  /* Warm Background Tones (warmer navy for backgrounds) */
+  --bg-navy-50:   #1E2532;  /* Warm deep navy (shifted from cold #0e1a23) */
+  --bg-navy-100:  #161B26;  /* Darker warm navy */
+  --bg-navy-200:  #0E1219;  /* Deepest warm navy */
+  
+  /* Complementary Accent Colors (opposite on color wheel) */
+  --accent-coral-light: #FF9A7B;  /* Light coral/salmon */
+  --accent-coral:       #FA7A50;  /* Coral accent (complement) */
+  --accent-coral-dark:  #D45730;  /* Deep coral */
+  
+  /* Analogous Colors (adjacent on wheel) */
+  --accent-teal-light:  #4FB3BC;  /* Light teal */
+  --accent-teal:        #2A8C96;  /* Teal/cyan accent */
+  --accent-teal-dark:   #1A5C64;  /* Deep teal */
+  
+  --accent-purple-light:#8B95D6;  /* Light purple */
+  --accent-purple:      #5B6ABF;  /* Purple accent */
+  --accent-purple-dark: #3D4780;  /* Deep purple */
+  
+  /* Brand colors (mapped from Classic Blue palette) */
+  --task-blue: #0F4C81;           /* Main brand - Classic Blue 500 */
+  --task-blue-deep: #0A2E4F;      /* Deep brand - Classic Blue 700 */
+  --task-blue-light: #2E7BB5;     /* Light brand - Classic Blue 400 */
 
   /* Neutral base palette */
   --neutral-50:  #f9fafb;

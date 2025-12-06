@@ -14,8 +14,8 @@
   --ink: #0E2430;
   --muted: #557086;
 
-  --task-400: #1F5EA1;  /* Primary TASK blue */
-  --task-500: #173E68;  /* Darker TASK blue */
+  --task-400: var(--classic-blue-500);  /* Primary TASK blue - Classic Blue */
+  --task-500: var(--classic-blue-600);  /* Darker TASK blue */
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -50,9 +50,13 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font: 16px/1.6 "Inter", system-ui, sans-serif;
-  background: #0e1a23;
+  background: var(--bg-navy-50);
   color: var(--ink);
   overflow-x: hidden;
+}
+
+main {
+  padding-top: 100px;
 }
 
 h1, h2, h3 {

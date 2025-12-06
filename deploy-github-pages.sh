@@ -42,6 +42,15 @@ cp -r partials "$DEPLOY_DIR/"
 cp *.html "$DEPLOY_DIR/" 2>/dev/null || true
 cp .nojekyll "$DEPLOY_DIR/"
 
+# Add base tag to HTML files for GitHub Pages
+echo "Adding base path to HTML files for GitHub Pages..."
+for htmlfile in "$DEPLOY_DIR"/*.html; do
+  if [ -f "$htmlfile" ]; then
+    # Insert base tag after <head>
+    sed -i '/<head>/a\  <base href="/TaskKarateWeb_v2/">' "$htmlfile"
+  fi
+done
+
 # Copy dashboard build
 echo "Copying dashboard build..."
 cp -r student-dashboard/build "$DEPLOY_DIR/student-dashboard"

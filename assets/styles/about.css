@@ -3,23 +3,31 @@
    ============================ */
 
 /* ------------------------------
-   GENERAL PANEL FIX
+   GENERAL PANEL FIX - Lighter, more welcoming
    ------------------------------ */
 
 .pf-section--about .pf-panel {
   background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-color);
   color: var(--text-primary);
-  box-shadow: var(--shadow-2);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 /* ------------------------------
-   HERO
+   HERO - Enhanced warmth
    ------------------------------ */
+
+.about-hero {
+  position: relative;
+}
 
 .about-hero p {
   max-width: 780px;
   margin-bottom: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 /* ------------------------------
@@ -129,35 +137,118 @@ html[data-theme="light"] .ranks {
 }
 
 /* ------------------------------
-   "What We Teach" Feature Boxes
+   "What We Teach" Feature Boxes - Enhanced with Paper-Fu
    ------------------------------ */
 
 .hi-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+  padding: 0.5rem; /* Add padding to prevent clipping */
 }
 
 .hi {
-  padding: 18px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-tertiary);
-  box-shadow: var(--shadow-1);
+  position: relative;
+  padding: 1.75rem 1.5rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
   color: var(--text-primary);
+  transition: all 0.3s ease;
+  overflow: visible;
+  backdrop-filter: blur(8px);
 }
 
-html[data-theme="light"] .hi {
-  background: linear-gradient(180deg, #f9fafc 0%, #edf1f5 100%);
+/* Paper-Fu stacked layers for feature boxes */
+.hi::before,
+.hi::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.hi::before {
+  z-index: -1;
+  transform: translate(3px, 3px) rotate(0.4deg);
+  opacity: 0.7;
+}
+
+.hi::after {
+  z-index: -2;
+  transform: translate(6px, 6px) rotate(-0.3deg);
+  opacity: 0.5;
+}
+
+.hi:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.hi:hover::before {
+  transform: translate(4px, 4px) rotate(0.6deg);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hi:hover::after {
+  transform: translate(7px, 7px) rotate(-0.5deg);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hi-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: var(--classic-blue-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  box-shadow: 
+    0 4px 12px rgba(15, 76, 129, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.hi:hover .hi-icon {
+  background: var(--classic-blue-400);
+  transform: scale(1.05);
+  box-shadow: 
+    0 6px 16px rgba(15, 76, 129, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.hi-icon svg {
+  color: white;
+  stroke-width: 2;
 }
 
 .hi h3 {
-  margin: 0 0 8px;
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  color: #ffffff;
 }
 
 .hi p {
   margin: 0;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ------------------------------
@@ -216,6 +307,11 @@ html[data-theme="light"] .hi {
   margin-bottom: 0.75rem !important;
   padding-top: 0.75rem !important;
   padding-bottom: 0.75rem !important;
+}
+
+/* Only the FIRST section needs extra space for the navbar */
+.pf-section--about:first-of-type {
+  margin-top: 6rem !important;
 }
 
 /* Fix the inner container spacing */
