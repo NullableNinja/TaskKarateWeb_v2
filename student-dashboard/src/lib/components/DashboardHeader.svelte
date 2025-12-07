@@ -4,13 +4,14 @@
   $: student = $activeStudent;
 
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   
   let profileExpanded = false;
 
   function logout() {
     activeStudent.set(null);
     localStorage.removeItem("tkStudentSession");
-    goto('/login');
+    goto(`${base}/login`);
   }
   
   function toggleProfile() {

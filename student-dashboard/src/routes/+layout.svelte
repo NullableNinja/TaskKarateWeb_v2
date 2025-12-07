@@ -10,17 +10,19 @@
   import { activeStudent } from '$lib/stores/students.js';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
 
-  // Client-side guard: if visiting any dashboard route and no active student, redirect to /login
+  // Client-side guard: if visiting any dashboard route and no active student, redirect to login
   onMount(() => {
     const p = get(page);
     const pathname = p.url?.pathname || '';
 
-    const isProtected = pathname.startsWith('/dashboard');
+    // Check if the path (after base) is the dashboard route
+    const isProtected = pathname.includes('/dashboard');
     const hasStudent = !!get(activeStudent);
 
     if (isProtected && !hasStudent) {
-      goto('/login');
+      goto(`${base}/login`);
     }
   });
 </script>
