@@ -10,7 +10,7 @@
 />
 
 <!-- Floating Logo -->
-<div class="tk-logo-floating">
+<div class="tk-logo-floating" id="tk-logo-spin">
   <img
     class="tk-logo-img"
     src="images/logo/Logo.png"
@@ -235,5 +235,47 @@
       img.src = base + "/images/logo/Logo.png";
     });
 
+})();
+
+// ============================================================
+// LOGO SPIN ANIMATION
+// ============================================================
+(function() {
+  "use strict";
+  
+  let isSpinning = false;
+  
+  function initLogoSpin() {
+    const logoContainers = document.querySelectorAll('.tk-logo-floating, .nav-brand');
+    
+    logoContainers.forEach((logoContainer) => {
+      logoContainer.style.cursor = 'pointer';
+      
+      logoContainer.addEventListener('click', (e) => {
+        if (isSpinning) return;
+        
+        const img = logoContainer.querySelector('.tk-logo-img, .nav-logo-img');
+        if (!img) return;
+        
+        e.preventDefault();
+        e.stopPropagation();
+        isSpinning = true;
+        
+        img.classList.add('spinning');
+        
+        setTimeout(() => {
+          img.classList.remove('spinning');
+          isSpinning = false;
+        }, 1200);
+      });
+    });
+  }
+  
+  // Run immediately if DOM is ready, otherwise wait
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLogoSpin);
+  } else {
+    initLogoSpin();
+  }
 })();
 </script>

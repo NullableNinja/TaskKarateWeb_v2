@@ -1,6 +1,7 @@
 <script>
   let hamburgerOpen = false;
   let dropdownOpen = false;
+  let logoSpinning = false;
 
   function toggleHamburger() {
     hamburgerOpen = !hamburgerOpen;
@@ -16,15 +17,25 @@
       dropdownOpen = false;
     }
   }
+
+  // Logo spin animation
+  function spinLogo(e) {
+    e.preventDefault();
+    if (logoSpinning) return;
+    logoSpinning = true;
+    setTimeout(() => {
+      logoSpinning = false;
+    }, 1200); // Match animation duration
+  }
 </script>
 
 <svelte:window on:click={handleClickOutside} />
 
 <!-- Floating Logo -->
 <div class="tk-logo-floating">
-  <a href="../">
+  <a href="../" on:click={spinLogo}>
     <img
-      class="tk-logo-img"
+      class="tk-logo-img {logoSpinning ? 'spinning' : ''}"
       src="/images/logo/Logo.png"
       alt="Task Karate Logo"
     />
@@ -156,9 +167,9 @@
 
 <style>
   :root {
-    --tk-blue-light: #37a9ff;
-    --tk-blue-mid: #1f5ea1;
-    --tk-blue-dark: #103560;
+    --tk-blue-light: #2E7BB5;
+    --tk-blue-mid: #0F4C81;
+    --tk-blue-dark: #0A2E4F;
     --nav-radius: 14px;
     --shadow-offset: 4px;
   }
@@ -169,20 +180,44 @@
     top: 8px;
     left: 20px;
     z-index: 9500;
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: pointer;
   }
 
   .tk-logo-floating img {
     height: 68px;
     width: auto;
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.9));
+    transition: transform 0.1s ease;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  /* Logo spin animation */
+  .tk-logo-img.spinning {
+    animation: logoSpin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @keyframes logoSpin {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    15% {
+      transform: scale(1.4) rotate(0deg);
+    }
+    85% {
+      transform: scale(1.4) rotate(1080deg);
+    }
+    100% {
+      transform: scale(1) rotate(1080deg);
+    }
   }
 
   .nav-brand {
     display: none !important;
   }
 
-  /* ========== NAVBAR SHELL ========== */
+  /* ========== NAVBAR SHELL - Paper-Fu Design ========== */
   .navbar {
     position: fixed;
     top: 0;
@@ -192,10 +227,31 @@
     align-items: center;
     padding: 12px 24px;
     z-index: 9000;
-    background: linear-gradient(180deg, rgba(3, 7, 18, 0.97), rgba(6, 11, 25, 0.97));
-    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(18px) saturate(140%);
+    /* Flat Paper-Fu background - no gradient */
+    background: rgba(30, 37, 50, 0.95);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    /* Clean layered shadow */
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px) saturate(120%);
+  }
+
+  /* Add visible stacked layer behind navbar - Paper-Fu style */
+  .navbar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(30, 37, 50, 0.95);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    z-index: -1;
+    transform: translateY(2px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.35);
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   .navbar::after {
@@ -207,10 +263,9 @@
     height: 40px;
     pointer-events: none;
     background: linear-gradient(
-      rgba(6, 11, 25, 0.97),
-      rgba(6, 11, 25, 0.6),
-      rgba(6, 11, 25, 0.25),
-      rgba(6, 11, 25, 0)
+      rgba(5, 10, 20, 0.4),
+      rgba(5, 10, 20, 0.2),
+      rgba(5, 10, 20, 0)
     );
   }
 
@@ -225,7 +280,7 @@
     margin-left: auto;
   }
 
-  /* ========== MAIN NAV BUTTONS ========== */
+  /* ========== MAIN NAV BUTTONS - Paper-Fu Redesign ========== */
   .nav-link {
     font-family: "Bebas Neue", sans-serif;
     font-size: 0.95rem;
@@ -238,42 +293,72 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 6px 22px;
-    min-width: 140px;
+    padding: 6px 18px;
+    min-width: 120px;
     border-radius: var(--nav-radius);
     color: #f1f5f9;
-    background: none;
+    /* Flat Classic Blue background - match site exactly */
+    background: #0F4C81;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     cursor: pointer;
-    border: none;
     outline: none;
+    overflow: visible;
+    box-shadow: 
+      0 3px 8px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.25s ease;
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Second stacked layer - Paper-Fu style */
   .nav-link::before {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: var(--nav-radius);
-    background: rgba(12, 33, 68, 0.95);
-    transform: translate(var(--shadow-offset), var(--shadow-offset));
-    z-index: 1;
+    background: #0F4C81;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transform: translate(2px, 2px) rotate(0.4deg);
+    z-index: -1;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    opacity: 0.85;
+    transition: all 0.25s ease;
     pointer-events: none;
   }
 
+  /* Third stacked layer - furthest back */
   .nav-link::after {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: var(--nav-radius);
-    background: linear-gradient(135deg, var(--tk-blue-mid), var(--tk-blue-dark));
-    z-index: 2;
+    background: #0F4C81;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transform: translate(4px, 4px) rotate(-0.2deg);
+    z-index: -2;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+    opacity: 0.65;
+    transition: all 0.25s ease;
     pointer-events: none;
   }
 
+  /* Content stays on top */
   .nav-link span,
   .nav-link svg {
     position: relative;
     z-index: 10;
+  }
+
+  /* Icon Styling */
+  .navbar svg,
+  .navbar svg * {
+    display: inline-block !important;
   }
 
   .nav-link svg {
@@ -283,13 +368,42 @@
     fill: currentColor;
   }
 
+  /* Hover - lift up Paper-Fu style */
+  .nav-link:hover {
+    transform: translateY(-3px);
+    background: #2E7BB5;
+    box-shadow: 
+      0 6px 14px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .nav-link:hover::before {
+    transform: translate(3px, 3px) rotate(0.6deg);
+    opacity: 0.9;
+  }
+
   .nav-link:hover::after {
-    background: linear-gradient(135deg, var(--tk-blue-light), var(--tk-blue-mid));
+    transform: translate(5px, 5px) rotate(-0.3deg);
+    opacity: 0.75;
+  }
+
+  /* Active Page - Paper-Fu style */
+  .nav-link.active {
+    background: #2E7BB5;
+    transform: translateY(-2px);
+    box-shadow: 
+      0 5px 10px rgba(46, 123, 181, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .nav-link.active::before {
+    transform: translate(2px, 2px) rotate(0.5deg);
+    opacity: 0.85;
   }
 
   .nav-link.active::after {
-    background: linear-gradient(135deg, #4fc3ff, var(--tk-blue-mid));
-    box-shadow: 0 0 12px rgba(55, 171, 255, 0.45);
+    transform: translate(4px, 4px) rotate(-0.3deg);
+    opacity: 0.7;
   }
 
   /* ========== DROPDOWN ========== */
@@ -327,13 +441,13 @@
     display: flex;
   }
 
-  /* ========== SUBMENU BUTTONS ========== */
+  /* ========== CLEAN SUBMENU BUTTONS - Paper-Fu Redesign ========== */
   .nav-link--sub {
     font-family: "Bebas Neue", sans-serif;
     font-size: 0.9rem;
     letter-spacing: 0.05em;
     position: relative;
-    padding: 5px 14px;
+    padding: 7px 16px;
     min-width: 160px;
     display: flex;
     align-items: center;
@@ -342,27 +456,36 @@
     text-decoration: none;
     color: #f8fafc;
     cursor: pointer;
+    overflow: visible;
+    /* Flat background */
+    background: rgba(30, 37, 50, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 
+      0 3px 8px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
   }
 
+  /* Second layer for submenu */
   .nav-link--sub::before {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: 10px;
-    background: rgba(12, 33, 68, 0.9);
-    transform: translate(2px, 2px);
-    z-index: 1;
+    background: rgba(30, 37, 50, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    transform: translate(2px, 2px) rotate(0.3deg);
+    z-index: -1;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    pointer-events: none;
   }
 
-  .nav-link--sub::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #0f172a, #020617);
-    z-index: 2;
-  }
-
+  /* Content on top */
   .nav-link--sub svg,
   .nav-link--sub span {
     position: relative;
@@ -375,8 +498,18 @@
     fill: currentColor;
   }
 
-  .nav-link--sub:hover::after {
-    background: linear-gradient(135deg, var(--tk-blue-light), var(--tk-blue-mid));
+  /* Submenu hover */
+  .nav-link--sub:hover {
+    background: #0F4C81;
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 12px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .nav-link--sub:hover::before {
+    transform: translate(3px, 3px) rotate(0.5deg);
+    opacity: 0.8;
   }
 
   /* ========== HAMBURGER MENU ========== */
