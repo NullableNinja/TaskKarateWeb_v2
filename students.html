@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="assets/styles/scrollbar.css" />
   <link rel="stylesheet" href="assets/styles/animations.css" />
   <link rel="stylesheet" href="assets/styles/components/contact-modal.css" />
+  <link rel="stylesheet" href="assets/styles/components/belt-modal.css" />
   <link rel="stylesheet" href="assets/styles/components/trial-coupon.css" />
 </head>
 
@@ -117,16 +118,15 @@
             </p>
 
             <div class="belt-grid">
-              <!-- TODO: Replace href values with actual PDFs when ready -->
-              <a class="btn belt-btn belt-white"  href="#" download>White Belt</a>
-              <a class="btn belt-btn belt-gold"   href="#" download>Gold Belt</a>
-              <a class="btn belt-btn belt-orange" href="#" download>Orange Belt</a>
-              <a class="btn belt-btn belt-green"  href="#" download>Green Belt</a>
-              <a class="btn belt-btn belt-purple" href="#" download>Purple Belt</a>
-              <a class="btn belt-btn belt-blue"   href="#" download>Blue Belt</a>
-              <a class="btn belt-btn belt-red"    href="#" download>Red Belt</a>
-              <a class="btn belt-btn belt-brown"  href="#" download>Brown Belt</a>
-              <a class="btn belt-btn belt-black"  href="#" download>Black Belt</a>
+              <button class="btn belt-btn belt-white">White Belt</button>
+              <button class="btn belt-btn belt-gold">Gold Belt</button>
+              <button class="btn belt-btn belt-orange">Orange Belt</button>
+              <button class="btn belt-btn belt-green">Green Belt</button>
+              <button class="btn belt-btn belt-purple">Purple Belt</button>
+              <button class="btn belt-btn belt-blue">Blue Belt</button>
+              <button class="btn belt-btn belt-red">Red Belt</button>
+              <button class="btn belt-btn belt-brown">Brown Belt</button>
+              <button class="btn belt-btn belt-black">Black Belt</button>
             </div>
           </div>
         </div>
@@ -221,6 +221,7 @@
   </div>
 
   <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="assets/js/partials.js"></script>
   <script src="assets/js/notifications.js"></script>
   <script src="assets/js/footer.js"></script>
@@ -230,6 +231,7 @@
   <script src="assets/js/back_to_top.js"></script>
   <script src="assets/js/animations-init.js"></script>
   <script src="assets/js/contact-modal.js"></script>
+  <script src="assets/js/belt-modal.js"></script>
   <script src="assets/js/trial-coupon.js"></script>
 </body>
 </html>

@@ -1,0 +1,805 @@
+/* ==========================================================================
+   CHECK-IN PAGE STYLES
+   ========================================================================== */
+
+/* Fix spacing between sections */
+.pf-section.pf-section--checkin {
+  margin-bottom: 0.75rem;
+}
+
+.pf-section.pf-section--checkin:first-of-type {
+  margin-top: 1.5rem;
+}
+
+/* Compact the pf-panel padding */
+.pf-section--checkin .pf-panel {
+  padding: 1.5rem;
+}
+
+/* Check-in Header */
+.checkin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+#current-date-time {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Day Selector */
+.day-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.selected-day {
+  font-weight: 600;
+  font-size: 1.1rem;
+  min-width: 120px;
+  text-align: center;
+}
+
+.day-selector .btn {
+  padding: 0.5rem;
+  min-width: auto;
+}
+
+/* Time indicator */
+.time-indicator {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+/* Classes List */
+.classes-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.class-card {
+  background: var(--surface-2);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.class-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.class-card:hover {
+  border-color: var(--primary);
+  transform: translateX(4px);
+}
+
+.class-card:hover::before {
+  transform: scaleY(1);
+}
+
+.class-card.checked-in {
+  border-color: var(--success);
+  background: var(--surface-3);
+  opacity: 0.7;
+  cursor: default;
+}
+
+.class-card.checked-in::before {
+  background: var(--success);
+  transform: scaleY(1);
+}
+
+.class-card.status-active {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(66, 153, 225, 0.3);
+}
+
+.class-card.status-soon {
+  border-color: #fbbf24;
+}
+
+.class-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.class-info-main h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+}
+
+.class-time {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.class-badge {
+  background: var(--primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.class-badge.kids { background: var(--belt-orange); }
+.class-badge.teens-adults { background: var(--belt-blue); }
+.class-badge.sparring { background: var(--belt-red); }
+.class-badge.weapons { background: var(--belt-purple); }
+.class-badge.special { background: var(--belt-brown); }
+.class-badge.eskrima { background: var(--belt-black); }
+
+.class-card-body {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.class-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.class-detail svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+}
+
+.class-card-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkin-count {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.checkin-count strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.checkin-btn {
+  padding: 0.5rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkin-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.checked-in-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.checked-in-badge svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Loading State */
+.loading-state {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.spinner {
+  border: 4px solid var(--surface-3);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.empty-state svg {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  opacity: 0.3;
+}
+
+.empty-state h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+/* Recent Check-ins */
+.recent-checkins {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.checkin-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.checkin-item:hover {
+  border-color: var(--primary);
+  transform: translateX(4px);
+}
+
+.checkin-avatar {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 50%;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.checkin-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.checkin-item-name {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.checkin-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.checkin-item-belt {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.checkin-item-meta .role-student-badge,
+.checkin-item-meta .role-helper-badge {
+  margin-top: 0;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.checkin-item-time {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Check-in Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--surface-1);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.checkin-modal-content {
+  max-width: 500px;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.close:hover {
+  color: var(--text-color);
+  transform: scale(1.1);
+}
+
+.checkin-modal-body {
+  margin-top: 1.5rem;
+}
+
+.class-info {
+  background: var(--surface-2);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.class-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.class-info p {
+  color: var(--text-muted);
+}
+
+/* Student Search */
+.student-search {
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface-3);
+}
+
+.pin-input {
+  font-size: 1.5rem;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* Student List/Tiles */
+.student-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.student-tile {
+  background: var(--surface-2);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.student-tile:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.student-tile.selected {
+  border-color: var(--primary);
+  background: var(--surface-3);
+}
+
+.student-tile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 auto 0.75rem;
+}
+
+.student-tile-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+}
+
+.student-tile-belt {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.selected-student-info {
+  background: var(--surface-2);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.selected-student-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.selected-student-details h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+}
+
+.selected-student-details p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Role Selection */
+.role-selection {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.role-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.role-btn {
+  background: var(--surface-2);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.role-btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.role-btn.selected {
+  border-color: var(--primary);
+  background: var(--surface-3);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.role-btn svg {
+  width: 32px;
+  height: 32px;
+  color: var(--primary);
+}
+
+.role-btn span {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.role-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.role-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Role Badges */
+.role-student-badge,
+.role-helper-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.role-student-badge {
+  background: var(--primary);
+  color: white;
+}
+
+.role-helper-badge {
+  background: var(--accent);
+  color: white;
+}
+
+.student-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface-3);
+  border: 2px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+}
+
+.student-suggestions.show {
+  display: block;
+}
+
+.student-suggestion-item {
+  padding: 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.student-suggestion-item:hover {
+  background: var(--surface-2);
+  padding-left: 1.5rem;
+}
+
+.student-suggestion-name {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.student-suggestion-belt {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Success State */
+.checkin-success {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  color: var(--success);
+}
+
+.checkin-success h3 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--success);
+}
+
+.student-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-family: 'Bebas Neue', sans-serif;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.modal-actions .btn {
+  min-width: 120px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .checkin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .day-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filter-buttons {
+    width: 100%;
+  }
+
+  .filter-btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .class-card-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .recent-checkins {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Belt Color Variables (if not already defined) */
+:root {
+  --belt-white: #f5f5f5;
+  --belt-gold: #ffd700;
+  --belt-orange: #ff8c00;
+  --belt-green: #32cd32;
+  --belt-purple: #9370db;
+  --belt-blue: #4169e1;
+  --belt-red: #dc143c;
+  --belt-brown: #8b4513;
+  --belt-black: #1a1a1a;
+  --success: #10b981;
+}

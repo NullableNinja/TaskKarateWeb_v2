@@ -1,0 +1,199 @@
+/* ============================================================
+   belt-modal.css — Belt testing sheet modal viewer
+   ============================================================ */
+
+/* Modal overlay */
+.belt-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.belt-modal-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Modal container */
+.belt-modal {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 0 0 1px var(--border-color);
+  width: 100%;
+  max-width: 1200px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modal header */
+.belt-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(to bottom, 
+    rgba(var(--belt-color-rgb, 156, 163, 175), 0.15), 
+    transparent
+  );
+}
+
+.belt-modal__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.belt-modal__close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.belt-modal__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+/* Modal body with iframe */
+.belt-modal__body {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.belt-modal__iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
+
+/* Loading state */
+.belt-modal__loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Modal footer with actions */
+.belt-modal__footer {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.belt-modal__footer .btn {
+  flex: 1;
+}
+
+/* Belt color theming for modal */
+.belt-modal-overlay[data-belt="white"] .belt-modal__header {
+  --belt-color-rgb: 229, 231, 235;
+}
+
+.belt-modal-overlay[data-belt="gold"] .belt-modal__header {
+  --belt-color-rgb: 251, 191, 36;
+}
+
+.belt-modal-overlay[data-belt="orange"] .belt-modal__header {
+  --belt-color-rgb: 249, 115, 22;
+}
+
+.belt-modal-overlay[data-belt="green"] .belt-modal__header {
+  --belt-color-rgb: 16, 185, 129;
+}
+
+.belt-modal-overlay[data-belt="purple"] .belt-modal__header {
+  --belt-color-rgb: 168, 85, 247;
+}
+
+.belt-modal-overlay[data-belt="blue"] .belt-modal__header {
+  --belt-color-rgb: 59, 130, 246;
+}
+
+.belt-modal-overlay[data-belt="red"] .belt-modal__header {
+  --belt-color-rgb: 239, 68, 68;
+}
+
+.belt-modal-overlay[data-belt="brown"] .belt-modal__header {
+  --belt-color-rgb: 146, 64, 14;
+}
+
+.belt-modal-overlay[data-belt="black"] .belt-modal__header {
+  --belt-color-rgb: 156, 163, 175;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .belt-modal {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .belt-modal__header {
+    padding: 1rem;
+  }
+  
+  .belt-modal__title {
+    font-size: 1.5rem;
+  }
+  
+  .belt-modal__footer {
+    padding: 1rem;
+    flex-direction: column;
+  }
+}

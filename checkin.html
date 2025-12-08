@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Karate – Student Check-In</title>
+  <meta
+    name="description"
+    content="Student check-in system for Task Karate School in La Crosse, WI. Check in for your class quickly and easily."
+  />
+  <link rel="icon" href="images/logo/Logo.png" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Master CSS File (imports all modules) -->
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <link rel="stylesheet" href="assets/styles/checkin.css" />
+  <link rel="stylesheet" href="assets/styles/scrollbar.css" />
+  <link rel="stylesheet" href="assets/styles/animations.css" />
+  <link rel="stylesheet" href="assets/styles/components/contact-modal.css" />
+  <link rel="stylesheet" href="assets/styles/components/trial-coupon.css" />
+</head>
+
+<body>
+  <!-- Background -->
+  <div class="bg-geo" aria-hidden="true"></div>
+
+  <!-- Navigation - Loaded via partials.js -->
+  <div id="site-header"></div>
+
+  <!-- Scroll Progress Indicator with Belt Rank Colors -->
+  <div class="navbar-progress" id="scrollProgress"></div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- HEADER SECTION -->
+    <section class="pf-section pf-section--checkin">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <span class="eyebrow">Student Portal</span>
+            <h1 class="heading-1">Class Check-In</h1>
+            <p class="muted">
+              Select your class and check in to track your attendance. Your progress matters!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODAY'S CLASSES -->
+    <section class="pf-section pf-section--checkin">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <div class="checkin-header">
+              <div>
+                <h2 class="heading-2">Today's Classes</h2>
+                <p class="muted" id="current-date-time">Loading...</p>
+              </div>
+            </div>
+
+            <!-- Classes list -->
+            <div class="classes-list mt-6" id="classes-list">
+              <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading today's classes...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECENT CHECK-INS -->
+    <section class="pf-section pf-section--checkin">
+      <div class="container">
+        <div class="pf-stack">
+          <div class="pf-layer bottom"></div>
+          <div class="pf-layer top pf-panel card">
+            <h2 class="heading-2">Recent Check-Ins</h2>
+            <p class="muted">Students who checked in today</p>
+
+            <div class="recent-checkins mt-6" id="recent-checkins">
+              <p class="text-center muted">No check-ins yet today.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer - Loaded via partials.js -->
+  <div id="site-footer"></div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- Check-In Modal -->
+  <div id="checkinModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content checkin-modal-content">
+      <button class="close" type="button" data-modal-close aria-label="Close">&times;</button>
+      <h2 id="checkinModalTitle">Check In for Class</h2>
+      
+      <div class="checkin-modal-body">
+        <div class="class-info" id="checkinClassInfo">
+          <!-- Class details will be inserted here -->
+        </div>
+
+        <div class="student-search mt-6">
+          <label for="student-search-input" class="form-label">Search for Your Name</label>
+          <input 
+            type="text" 
+            id="student-search-input" 
+            class="form-input" 
+            placeholder="Start typing your name..."
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="student-list mt-4" id="student-list">
+          <!-- Student tiles will be populated here -->
+        </div>
+
+        <div class="role-selection mt-6" id="role-selection" style="display: none;">
+          <div class="selected-student-info mb-4" id="selected-student-info-role">
+            <!-- Selected student info -->
+          </div>
+          <label class="form-label">How would you like to participate?</label>
+          <div class="role-options">
+            <button class="role-btn" id="role-student" data-role="student">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Join as Student</span>
+              <p class="role-description">Participate in the class</p>
+            </button>
+            <button class="role-btn" id="role-helper" data-role="helper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Join as Helper</span>
+              <p class="role-description">Assist the instructor</p>
+            </button>
+          </div>
+        </div>
+
+        <div class="pin-entry mt-6" id="pin-entry" style="display: none;">
+          <div class="selected-student-info mb-4" id="selected-student-info">
+            <!-- Selected student info -->
+          </div>
+          <label for="pin-input" class="form-label">Enter Your 4-Digit PIN</label>
+          <input 
+            type="password" 
+            id="pin-input" 
+            class="form-input pin-input" 
+            placeholder="••••"
+            maxlength="4"
+            pattern="[0-9]*"
+            inputmode="numeric"
+          />
+          <p class="text-sm muted mt-2">Don't know your PIN? Ask the front desk.</p>
+          <button class="btn mt-4 w-full" id="checkin-submit-btn">Check In</button>
+        </div>
+
+        <div class="checkin-success" id="checkin-success" style="display: none;">
+          <div class="success-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 id="success-student-name">Success!</h3>
+          <p class="muted" id="success-message">You're checked in!</p>
+          <div class="student-stats mt-4" id="student-stats"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="assets/js/partials.js"></script>
+  <script src="assets/js/notifications.js"></script>
+  <script src="assets/js/footer.js"></script>
+
+  <!-- Check-in functionality -->
+  <script src="assets/js/checkin.js"></script>
+
+  <!-- Shared behavior used across pages -->
+  <script src="assets/js/theme_toggle.js"></script>
+  <script src="assets/js/scroll-progress.js"></script>
+  <script src="assets/js/back_to_top.js"></script>
+  <script src="assets/js/animations-init.js"></script>
+  <script src="assets/js/contact-modal.js"></script>
+  <script src="assets/js/trial-coupon.js"></script>
+</body>
+</html>

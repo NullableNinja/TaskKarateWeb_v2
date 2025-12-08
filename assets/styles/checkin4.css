@@ -1,0 +1,106 @@
+/* ==========================================================================
+   CHECK-IN PAGE STYLES - LAYOUT 4: WIDE CENTERED
+   ========================================================================== */
+
+/* Import base checkin styles */
+@import 'checkin.css';
+
+/* Wide, airy, centered layout */
+.container {
+  max-width: 900px;
+}
+
+.pf-section.pf-section--checkin {
+  margin-bottom: 1.25rem;
+}
+
+.pf-section.pf-section--checkin:first-of-type {
+  margin-top: 2rem;
+}
+
+.pf-section--checkin .pf-panel {
+  padding: 2.5rem;
+}
+
+.heading-1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.heading-2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.classes-list {
+  gap: 1.5rem;
+}
+
+.class-card {
+  padding: 2rem;
+  border-width: 2px;
+}
+
+.class-card::before {
+  width: 6px;
+}
+
+.class-card-header h3 {
+  font-size: 1.75rem;
+}
+
+.class-time {
+  font-size: 1.1rem;
+}
+
+.class-badge {
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+}
+
+.class-detail {
+  font-size: 1rem;
+}
+
+.class-detail svg {
+  width: 22px;
+  height: 22px;
+}
+
+.checkin-btn {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.recent-checkins {
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.checkin-item {
+  padding: 1.25rem;
+}
+
+.checkin-avatar {
+  width: 55px;
+  height: 55px;
+  min-width: 55px;
+  font-size: 1.3rem;
+}
+
+.checkin-item-name {
+  font-size: 1.05rem;
+}
+
+/* Add more vertical rhythm */
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.mt-6 {
+  margin-top: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}

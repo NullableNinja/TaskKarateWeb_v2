@@ -1,0 +1,85 @@
+/* ==========================================================================
+   CHECK-IN PAGE STYLES - LAYOUT 2: SIDE-BY-SIDE SPLIT
+   ========================================================================== */
+
+/* Import base checkin styles */
+@import 'checkin.css';
+
+/* Override with split layout */
+body {
+  padding-top: 0;
+}
+
+main {
+  padding-top: 8rem;
+}
+
+.checkin-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 1.5rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.checkin-primary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkin-sidebar {
+  position: sticky;
+  top: 8rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pf-section.pf-section--checkin {
+  margin-bottom: 0;
+}
+
+.pf-section.pf-section--checkin .container {
+  max-width: 100%;
+  padding: 0;
+}
+
+.pf-section--checkin .pf-panel {
+  height: 100%;
+}
+
+/* Make recent check-ins more compact in sidebar */
+.checkin-sidebar .recent-checkins {
+  grid-template-columns: 1fr;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.checkin-sidebar .checkin-item {
+  padding: 0.75rem;
+}
+
+.checkin-sidebar .checkin-avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .checkin-wrapper {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkin-sidebar {
+    position: static;
+  }
+  
+  .checkin-sidebar .recent-checkins {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    max-height: none;
+  }
+}

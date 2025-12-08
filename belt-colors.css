@@ -1,0 +1,55 @@
+/* Belt Color Theme Variables */
+
+/* White Belt */
+.belt-white {
+    --belt-color: #e5e7eb;
+    --belt-color-rgb: 229, 231, 235;
+}
+
+/* Gold Belt */
+.belt-gold {
+    --belt-color: #fbbf24;
+    --belt-color-rgb: 251, 191, 36;
+}
+
+/* Orange Belt */
+.belt-orange {
+    --belt-color: #f97316;
+    --belt-color-rgb: 249, 115, 22;
+}
+
+/* Green Belt */
+.belt-green {
+    --belt-color: #10b981;
+    --belt-color-rgb: 16, 185, 129;
+}
+
+/* Blue Belt */
+.belt-blue {
+    --belt-color: #3b82f6;
+    --belt-color-rgb: 59, 130, 246;
+}
+
+/* Purple Belt */
+.belt-purple {
+    --belt-color: #a855f7;
+    --belt-color-rgb: 168, 85, 247;
+}
+
+/* Brown Belt */
+.belt-brown {
+    --belt-color: #92400e;
+    --belt-color-rgb: 146, 64, 14;
+}
+
+/* Red Belt */
+.belt-red {
+    --belt-color: #ef4444;
+    --belt-color-rgb: 239, 68, 68;
+}
+
+/* Black Belt (using light gray for visibility on dark background) */
+.belt-black {
+    --belt-color: #9ca3af;
+    --belt-color-rgb: 156, 163, 175;
+}
