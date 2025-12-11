@@ -78,41 +78,61 @@ body {
   /* Make schedule tables more mobile-friendly */
   .schedule-table {
     min-width: 100%;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .schedule-table th,
   .schedule-table td {
-    padding: 0.5rem 0.4rem;
-    font-size: 0.75rem;
+    padding: 0.4rem 0.3rem;
+    font-size: 0.65rem;
+    line-height: 1.2;
   }
 
   /* Optimize column widths for mobile */
   .schedule-table th.col-belts,
   .schedule-table td.belt-cell {
-    width: 60px;
-    max-width: 60px;
-    padding-left: 0.4rem;
-    padding-right: 0.25rem;
+    width: 50px;
+    max-width: 50px;
+    min-width: 50px;
+    padding-left: 0.3rem;
+    padding-right: 0.2rem;
   }
 
   .schedule-table th:nth-child(2),
   .schedule-table td:nth-child(2) {
-    width: 120px;
-    max-width: 140px;
-    font-size: 0.7rem;
+    width: 100px;
+    max-width: 100px;
+    font-size: 0.6rem;
+    padding-left: 0.3rem;
+  }
+
+  /* Day columns - make them narrower */
+  .schedule-table th:nth-child(n+3),
+  .schedule-table td:nth-child(n+3) {
+    min-width: 55px;
+    max-width: 65px;
   }
 
   /* Smaller belt dots on mobile */
   .belt-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
+  }
+
+  .belt-cell {
+    gap: 2px;
+    padding: 0.3rem 0.2rem !important;
   }
 
   /* More compact time pills */
   .time-pill {
-    padding: 0.25rem 0.6rem;
-    font-size: 0.7rem;
+    padding: 0.2rem 0.45rem;
+    font-size: 0.6rem;
+    min-width: 35px;
+  }
+
+  .time-stack {
+    gap: 0.2rem;
   }
 
   /* Stack info panels vertically */
@@ -122,7 +142,20 @@ body {
   }
 
   .info-panel {
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .info-panel-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .info-panel-title {
+    font-size: 0.95rem;
+  }
+
+  .info-panel-text {
+    font-size: 0.85rem;
   }
 
   /* Better table scrolling hint */
@@ -131,62 +164,80 @@ body {
   }
 
   .table-responsive::after {
-    content: '← Scroll →';
-    position: absolute;
+    content: '← Swipe →';
+    position: sticky;
     bottom: 0.5rem;
     right: 0.5rem;
-    background: rgba(59, 130, 246, 0.9);
+    float: right;
+    background: rgba(59, 130, 246, 0.95);
     color: white;
-    padding: 0.25rem 0.75rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 999px;
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 700;
     pointer-events: none;
-    animation: fadeInOut 3s ease-in-out infinite;
+    animation: fadeInOut 4s ease-in-out infinite;
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+    margin-top: -2.5rem;
   }
 
   @keyframes fadeInOut {
     0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+    15%, 85% { opacity: 1; }
   }
 }
 
 /* Extra small devices */
 @media (max-width: 480px) {
   .schedule-table {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 
   .schedule-table th,
   .schedule-table td {
-    padding: 0.4rem 0.25rem;
+    padding: 0.35rem 0.2rem;
+    font-size: 0.6rem;
   }
 
   .schedule-table th.col-belts,
   .schedule-table .col-belts {
-    width: 50px !important;
-    min-width: 50px !important;
-    max-width: 50px !important;
+    width: 45px !important;
+    min-width: 45px !important;
+    max-width: 45px !important;
   }
 
   .schedule-table th:nth-child(2),
   .schedule-table td:nth-child(2) {
-    width: 90px;
-    max-width: 100px;
+    width: 85px;
+    max-width: 85px;
+    font-size: 0.55rem;
+  }
+
+  /* Day columns - even narrower */
+  .schedule-table th:nth-child(n+3),
+  .schedule-table td:nth-child(n+3) {
+    min-width: 48px;
+    max-width: 52px;
   }
 
   .belt-cell {
-    gap: 3px;
+    gap: 2px;
   }
 
   .belt-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
   }
 
   .time-pill {
-    padding: 0.2rem 0.5rem;
-    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.55rem;
+    min-width: 32px;
+  }
+
+  .time-stack {
+    gap: 0.15rem;
   }
 }
 
