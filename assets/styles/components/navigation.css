@@ -457,6 +457,13 @@
 
   cursor: pointer;
   z-index: 9200;
+  margin-left: auto;
+  transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+  background: linear-gradient(135deg, rgba(25,33,52,0.95), rgba(20,25,40,0.9));
+  border-color: rgba(255,255,255,0.15);
 }
 
 .hamburger span {
@@ -464,6 +471,7 @@
   height: 2px;
   border-radius: 999px;
   background: #e5e7eb;
+  transition: all 0.3s ease;
 }
 
 .hamburger.active span:nth-child(1) {
@@ -497,23 +505,56 @@
     border-radius: 16px;
 
     background: linear-gradient(135deg, rgba(3,7,18,0.98), rgba(8,15,30,0.98));
+    border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 18px 40px rgba(0,0,0,1);
 
     display: none;
     z-index: 9100;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .nav-links.nav-links-open {
     display: flex;
   }
 
+  .nav-link {
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(59, 130, 246, 0.15);
+  }
+
   .dropdown-menu {
     position: static;
     padding: 6px 0;
+    margin-left: 12px;
+    border-left: 2px solid rgba(59, 130, 246, 0.3);
   }
 
   .dropdown::after {
     display: none; /* bridge not needed on mobile */
+  }
+
+  /* Hide theme toggle on mobile to save space */
+  .nav-actions {
+    display: none;
   }
 }
 
