@@ -285,17 +285,29 @@ body {
     padding-bottom: 0.5rem;
     gap: 0.5rem;
     scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
   }
 
   .programs-tabs .tab {
     white-space: nowrap;
     flex-shrink: 0;
     padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
   }
 
-  /* Hide inactive tab paper effect on mobile */
-  .programs-tabs .tab:not(.is-active)::before {
+  /* Hide inactive tab paper effect on mobile - too cluttered */
+  .programs-tabs .tab:not(.is-active)::before,
+  .programs-tabs .tab:not(.is-active)::after {
     display: none;
+  }
+
+  /* Simplify active tab styling on mobile */
+  #programs .tab.is-active {
+    transform: translateY(0) !important;
+  }
+
+  #programs .tab.is-active::before {
+    display: none; /* Remove tape on mobile */
   }
 }
 
@@ -310,13 +322,55 @@ body {
   }
 
   /* Program cards optimization */
-  .program-card {
-    padding: 1.25rem;
+  .program-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
   }
 
-  .program-card-icon {
+  .program-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .program-img {
+    max-width: 100%;
+    height: 300px;
+    border-radius: 12px;
+  }
+
+  /* Photo grid - stack vertically */
+  .photo-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  /* Photo tiles mobile optimization */
+  .photo-tile {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .photo-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 6px solid rgba(255, 255, 255, 0.95);
+  }
+
+  /* Simplify photo tile tape on mobile */
+  .photo-tile::before {
     width: 60px;
-    height: 60px;
+    height: 20px;
+    top: -8px;
+  }
+
+  .photo-caption {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
   }
 
   /* Spotlight cards */
@@ -344,6 +398,16 @@ body {
   .map-container {
     height: 300px;
   }
+
+  /* Contact tiles */
+  .contact-tiles {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-tile {
+    padding: 1.25rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -352,6 +416,32 @@ body {
     border-radius: 12px;
   }
 
+  .hero-location-text {
+    font-size: 1.25rem;
+  }
+
+  /* Programs tabs - better touch spacing */
+  .programs-tabs .tab {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Smaller program images on tiny screens */
+  .program-img {
+    height: 240px;
+  }
+
+  /* Photo optimization for small screens */
+  .photo-img {
+    border: 4px solid rgba(255, 255, 255, 0.95);
+  }
+
+  .photo-tile::before {
+    width: 50px;
+    height: 18px;
+  }
+
+  /* Stack all button groups vertically */
   .flex.gap-3,
   .flex.gap-4 {
     flex-direction: column;

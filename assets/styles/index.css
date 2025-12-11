@@ -102,6 +102,13 @@ body {
   margin-top: 2rem;
 }
 
+@media (max-width: 768px) {
+  .programs-layout {
+    margin-top: 1.5rem;
+    gap: 1.25rem;
+  }
+}
+
 @media (min-width: 900px) {
   .programs-layout {
     display: grid;
@@ -119,6 +126,32 @@ body {
   gap: 0.75rem;
 }
 
+/* Mobile: horizontal scrollable tabs */
+@media (max-width: 900px) {
+  .programs-tabs .tabs-list {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) var(--bg-secondary);
+  }
+
+  .programs-tabs .tabs-list::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .programs-tabs .tabs-list::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 3px;
+  }
+
+  .programs-tabs .tabs-list::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 3px;
+  }
+}
+
 .programs-tabs .tab {
   width: 100%;
   text-align: left;
@@ -128,6 +161,13 @@ body {
   /* Keep tabs straight - no rotation on content */
   transform: none;
   transition: all var(--transition-normal);
+}
+
+@media (max-width: 900px) {
+  .programs-tabs .tab {
+    scroll-snap-align: start;
+    min-width: fit-content;
+  }
 }
 
 /* Paper-Fu: Add stacked layers to inactive tabs */
@@ -273,12 +313,34 @@ body {
   margin-bottom: 0.75rem;
 }
 
+@media (max-width: 768px) {
+  .program-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
 .program-desc {
   font-size: 1rem;
   line-height: 1.65;
   max-width: 700px;
   color: var(--color-text);
   margin-bottom: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  .program-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .program-desc {
+    font-size: 0.9rem;
+  }
 }
 
 /* ----------------------------
@@ -304,9 +366,31 @@ body {
   box-shadow: 0 16px 36px var(--shadow-color-hard);
 }
 
+@media (max-width: 768px) {
+  .program-img {
+    max-width: 100%;
+    height: 300px;
+    border-radius: 12px;
+  }
+}
+
 @media (max-width: 600px) {
   .program-img {
     height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .program-img {
+    height: 240px;
+  }
+}
+
+/* Mobile: prevent hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .program-img:hover {
+    transform: none;
+    box-shadow: 0 10px 28px var(--shadow-color-medium);
   }
 }
 
@@ -325,7 +409,14 @@ body {
   padding: 1rem 0;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .photo-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
@@ -339,6 +430,7 @@ body {
   position: relative;
   transform-origin: center center;
   transition: transform var(--transition-normal);
+  margin: 0; /* Remove default figure margin */
 }
 
 /* Hover lifts photo straight up - no rotation on content */
@@ -347,8 +439,16 @@ body {
   z-index: 10;
 }
 
+/* Mobile: prevent hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .photo-tile:hover {
+    transform: none;
+  }
+}
+
 .photo-img {
   width: 100%;
+  aspect-ratio: 4 / 3;
   border-radius: 18px;
   object-fit: cover;
   box-shadow: 
@@ -357,6 +457,21 @@ body {
   border: 8px solid rgba(255, 255, 255, 0.95);
   background: white;
   position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .photo-img {
+    border-width: 6px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-img {
+    border-width: 4px;
+  }
 }
 
 /* Add tape to each photo - Paper-Fu style */
