@@ -74,65 +74,117 @@ body {
    SCHEDULE PAGE MOBILE FIXES
    --------------------------------- */
 
+/* Hide mobile cards on desktop, show table */
+.schedule-cards-mobile {
+  display: none;
+}
+
+/* Mobile: Show cards, hide table */
 @media (max-width: 768px) {
-  /* Make schedule tables more mobile-friendly */
+  /* Hide the traditional table on mobile */
   .schedule-table {
-    min-width: 100%;
+    display: none;
+  }
+
+  /* Show cards container */
+  .schedule-cards-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  /* Schedule card styling */
+  .schedule-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .schedule-card:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .schedule-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .schedule-card-belts {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .schedule-card-group {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    flex: 1;
+  }
+
+  .schedule-card-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .schedule-card-day {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .schedule-card-day-label {
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .schedule-card-times {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .schedule-card-time {
+    background: #1d4ed8;
+    color: white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .schedule-card-time--hour {
+    background: #5b4dd8;
+    border-color: rgba(191, 219, 254, 0.9);
+  }
+
+  .schedule-card-empty {
+    color: var(--text-secondary);
     font-size: 0.7rem;
+    text-align: center;
+    opacity: 0.5;
   }
 
-  .schedule-table th,
-  .schedule-table td {
-    padding: 0.4rem 0.3rem;
-    font-size: 0.65rem;
-    line-height: 1.2;
-  }
-
-  /* Optimize column widths for mobile */
-  .schedule-table th.col-belts,
-  .schedule-table td.belt-cell {
-    width: 50px;
-    max-width: 50px;
-    min-width: 50px;
-    padding-left: 0.3rem;
-    padding-right: 0.2rem;
-  }
-
-  .schedule-table th:nth-child(2),
-  .schedule-table td:nth-child(2) {
-    width: 100px;
-    max-width: 100px;
-    font-size: 0.6rem;
-    padding-left: 0.3rem;
-  }
-
-  /* Day columns - make them narrower */
-  .schedule-table th:nth-child(n+3),
-  .schedule-table td:nth-child(n+3) {
-    min-width: 55px;
-    max-width: 65px;
-  }
-
-  /* Smaller belt dots on mobile */
+  /* Belt dots in cards */
   .belt-dot {
-    width: 8px;
-    height: 8px;
-  }
-
-  .belt-cell {
-    gap: 2px;
-    padding: 0.3rem 0.2rem !important;
-  }
-
-  /* More compact time pills */
-  .time-pill {
-    padding: 0.2rem 0.45rem;
-    font-size: 0.6rem;
-    min-width: 35px;
-  }
-
-  .time-stack {
-    gap: 0.2rem;
+    width: 10px;
+    height: 10px;
   }
 
   /* Stack info panels vertically */
@@ -157,34 +209,21 @@ body {
   .info-panel-text {
     font-size: 0.85rem;
   }
+}
 
-  /* Better table scrolling hint */
-  .table-responsive {
-    position: relative;
+/* Even smaller screens - single column for days */
+@media (max-width: 480px) {
+  .schedule-card {
+    padding: 0.85rem;
   }
 
-  .table-responsive::after {
-    content: '← Swipe →';
-    position: sticky;
-    bottom: 0.5rem;
-    right: 0.5rem;
-    float: right;
-    background: rgba(59, 130, 246, 0.95);
-    color: white;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    pointer-events: none;
-    animation: fadeInOut 4s ease-in-out infinite;
-    z-index: 5;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
-    margin-top: -2.5rem;
+  .schedule-card-body {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 
-  @keyframes fadeInOut {
-    0%, 100% { opacity: 0; }
-    15%, 85% { opacity: 1; }
+  .schedule-card-group {
+    font-size: 0.9rem;
   }
 }
 
