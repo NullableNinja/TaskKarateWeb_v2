@@ -1,0 +1,639 @@
+/* ============================================================
+   mobile-optimizations.css — Mobile-First Enhancements
+   Comprehensive mobile responsiveness improvements
+   ============================================================ */
+
+/* ---------------------------------
+   PERFORMANCE OPTIMIZATIONS
+   --------------------------------- */
+
+/* Better scrolling performance on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overscroll-behavior-y: none; /* Prevent pull-to-refresh */
+}
+
+/* Smooth momentum scrolling on iOS */
+.table-responsive,
+.modal-body,
+.nav-links {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------------------------------
+   GLOBAL MOBILE IMPROVEMENTS
+   --------------------------------- */
+
+/* Better touch targets on mobile */
+@media (max-width: 768px) {
+  .btn,
+  button,
+  a.btn {
+    min-height: 44px;
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* Reduce panel padding on mobile for more content space */
+  .pf-panel.card {
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  /* Container padding optimization */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Better heading sizes on mobile */
+  .heading-1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .heading-2 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  .heading-3 {
+    font-size: 1.35rem;
+  }
+}
+
+/* ---------------------------------
+   SCHEDULE PAGE MOBILE FIXES
+   --------------------------------- */
+
+@media (max-width: 768px) {
+  /* Make schedule tables more mobile-friendly */
+  .schedule-table {
+    min-width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  /* Optimize column widths for mobile */
+  .schedule-table th.col-belts,
+  .schedule-table td.belt-cell {
+    width: 60px;
+    max-width: 60px;
+    padding-left: 0.4rem;
+    padding-right: 0.25rem;
+  }
+
+  .schedule-table th:nth-child(2),
+  .schedule-table td:nth-child(2) {
+    width: 120px;
+    max-width: 140px;
+    font-size: 0.7rem;
+  }
+
+  /* Smaller belt dots on mobile */
+  .belt-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* More compact time pills */
+  .time-pill {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  /* Stack info panels vertically */
+  .info-panels {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .info-panel {
+    padding: 1.25rem 1.5rem;
+  }
+
+  /* Better table scrolling hint */
+  .table-responsive {
+    position: relative;
+  }
+
+  .table-responsive::after {
+    content: '← Scroll →';
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    background: rgba(59, 130, 246, 0.9);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    pointer-events: none;
+    animation: fadeInOut 3s ease-in-out infinite;
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .schedule-table {
+    font-size: 0.7rem;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 0.4rem 0.25rem;
+  }
+
+  .schedule-table th.col-belts,
+  .schedule-table .col-belts {
+    width: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+  }
+
+  .schedule-table th:nth-child(2),
+  .schedule-table td:nth-child(2) {
+    width: 90px;
+    max-width: 100px;
+  }
+
+  .belt-cell {
+    gap: 3px;
+  }
+
+  .belt-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .time-pill {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+  }
+}
+
+/* ---------------------------------
+   STUDENTS PAGE MOBILE FIXES
+   --------------------------------- */
+
+@media (max-width: 768px) {
+  /* Hero section optimization */
+  .students-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .students-hero__header h1 {
+    font-size: 2rem;
+  }
+
+  /* Taped card mobile layout */
+  .taped-card {
+    margin-top: 0;
+  }
+
+  .taped-card__content {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .taped-card__content .btn {
+    width: 100%;
+  }
+
+  /* Belt grid optimization */
+  .belt-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .belt-btn {
+    padding: 0.875rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* FAQ improvements */
+  .faq-item {
+    padding: 1rem 1.25rem;
+  }
+
+  .faq-item summary {
+    font-size: 0.95rem;
+  }
+
+  /* Address band mobile layout */
+  .address-band {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .cta-row {
+    width: 100%;
+  }
+
+  .cta-row .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .belt-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .microcopy {
+    font-size: 0.85rem;
+  }
+}
+
+/* ---------------------------------
+   INDEX PAGE MOBILE FIXES
+   --------------------------------- */
+
+@media (max-width: 900px) {
+  /* Programs tabs layout - stack on mobile */
+  .programs-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Horizontal scrolling tabs on mobile */
+  .programs-tabs .tabs-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    gap: 0.5rem;
+    scrollbar-width: thin;
+  }
+
+  .programs-tabs .tab {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* Hide inactive tab paper effect on mobile */
+  .programs-tabs .tab:not(.is-active)::before {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hero image height */
+  .hero-image {
+    height: 280px;
+  }
+
+  .hero-location-text {
+    font-size: 1.5rem;
+  }
+
+  /* Program cards optimization */
+  .program-card {
+    padding: 1.25rem;
+  }
+
+  .program-card-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Spotlight cards */
+  .spotlight-cards {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Staff grid */
+  .staff-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .staff-card {
+    padding: 1rem;
+  }
+
+  .staff-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Map container */
+  .map-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image {
+    height: 220px;
+    border-radius: 12px;
+  }
+
+  .flex.gap-3,
+  .flex.gap-4 {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .flex.gap-3 .btn,
+  .flex.gap-4 .btn {
+    width: 100%;
+  }
+}
+
+/* ---------------------------------
+   ABOUT PAGE MOBILE FIXES
+   --------------------------------- */
+
+@media (max-width: 768px) {
+  /* Assistants grid */
+  .assistants-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .assistant-card {
+    padding: 1rem;
+  }
+
+  .assistant-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Values section */
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .assistants-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------
+   NAVIGATION MOBILE FIXES
+   --------------------------------- */
+
+@media (max-width: 900px) {
+  /* Ensure mobile menu is accessible */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--bg-primary);
+    transition: right 0.3s ease;
+    z-index: 9999;
+    padding: 5rem 1.5rem 2rem;
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.875rem 1rem;
+    width: 100%;
+    text-align: left;
+    border-radius: 8px;
+  }
+
+  .nav-link:hover {
+    background: var(--bg-secondary);
+  }
+
+  /* Mobile menu toggle button */
+  .mobile-menu-toggle {
+    display: flex;
+    z-index: 10000;
+  }
+}
+
+/* ---------------------------------
+   MODAL MOBILE IMPROVEMENTS
+   --------------------------------- */
+
+@media (max-width: 768px) {
+  .modal {
+    padding: 0.75rem;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 12px;
+  }
+
+  .modal-header {
+    padding: 1.25rem;
+  }
+
+  .modal-body {
+    padding: 1.25rem;
+  }
+
+  .modal-footer {
+    padding: 1.25rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+
+  /* Belt modal specific */
+  .belt-modal {
+    height: 95vh;
+    border-radius: 0;
+  }
+
+  .belt-modal__title {
+    font-size: 1.35rem;
+  }
+
+  .belt-modal__footer {
+    flex-direction: column;
+  }
+
+  .belt-modal__footer .btn {
+    width: 100%;
+  }
+}
+
+/* ---------------------------------
+   FORM MOBILE IMPROVEMENTS
+   --------------------------------- */
+
+@media (max-width: 640px) {
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-row > * {
+    width: 100%;
+  }
+}
+
+/* ---------------------------------
+   TOUCH IMPROVEMENTS
+   --------------------------------- */
+
+/* Larger touch targets for interactive elements */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  button,
+  .tab,
+  .nav-link,
+  .time-pill {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .btn:hover,
+  .nav-link:hover,
+  .time-pill:hover {
+    transform: none;
+  }
+
+  /* Better tap feedback */
+  .btn:active,
+  .tab:active,
+  .nav-link:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+}
+
+/* ---------------------------------
+   LANDSCAPE MOBILE OPTIMIZATION
+   --------------------------------- */
+
+@media (max-width: 900px) and (max-height: 500px) {
+  /* Reduce vertical spacing in landscape */
+  .pf-section--home,
+  .pf-section--schedule,
+  .pf-section--students {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .hero-image {
+    height: 200px;
+  }
+
+  .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+/* ---------------------------------
+   PRINT OPTIMIZATION FOR MOBILE
+   --------------------------------- */
+
+@media print {
+  /* Hide navigation and unnecessary elements */
+  .navbar,
+  .nav-menu,
+  .mobile-menu-toggle,
+  .back-to-top,
+  .bg-geo,
+  .navbar-progress,
+  footer {
+    display: none !important;
+  }
+
+  /* Optimize content for printing */
+  .pf-panel.card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .pf-section {
+    page-break-inside: avoid;
+  }
+
+  /* Better table printing */
+  .schedule-table {
+    font-size: 10pt;
+  }
+}
+
+/* ---------------------------------
+   ACCESSIBILITY MOBILE IMPROVEMENTS
+   --------------------------------- */
+
+@media (max-width: 768px) {
+  /* Better focus states for keyboard navigation */
+  *:focus-visible {
+    outline: 3px solid var(--accent-primary);
+    outline-offset: 3px;
+  }
+
+  /* Skip to content link */
+  .skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--accent-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    z-index: 10001;
+    transition: top 0.2s;
+  }
+
+  .skip-to-content:focus {
+    top: 0;
+  }
+}

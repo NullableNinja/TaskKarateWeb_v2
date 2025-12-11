@@ -110,6 +110,8 @@
   margin-top: 0 !important;
   scrollbar-width: thin;
   scrollbar-color: #0f3d73 #020617;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  position: relative;
 }
 
 .table-responsive::-webkit-scrollbar {
@@ -123,6 +125,22 @@
 .table-responsive::-webkit-scrollbar-thumb {
   background: #0f3d73;
   border-radius: 8px;
+}
+
+/* Mobile scroll indicator */
+@media (max-width: 768px) {
+  .table-responsive::before {
+    content: '';
+    position: sticky;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to left, var(--bg-secondary), transparent);
+    pointer-events: none;
+    z-index: 1;
+    float: right;
+  }
 }
 
 /* ---------------------------------
