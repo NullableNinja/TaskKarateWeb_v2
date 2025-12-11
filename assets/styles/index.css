@@ -135,6 +135,7 @@ body {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--accent-primary) var(--bg-secondary);
+    padding-bottom: 0.5rem;
   }
 
   .programs-tabs .tabs-list::-webkit-scrollbar {
@@ -150,6 +151,13 @@ body {
     background: var(--accent-primary);
     border-radius: 3px;
   }
+
+  .programs-tabs .tab {
+    scroll-snap-align: start;
+    min-width: fit-content;
+    width: auto;
+    flex: 0 0 auto;
+  }
 }
 
 .programs-tabs .tab {
@@ -161,13 +169,6 @@ body {
   /* Keep tabs straight - no rotation on content */
   transform: none;
   transition: all var(--transition-normal);
-}
-
-@media (max-width: 900px) {
-  .programs-tabs .tab {
-    scroll-snap-align: start;
-    min-width: fit-content;
-  }
 }
 
 /* Paper-Fu: Add stacked layers to inactive tabs */
