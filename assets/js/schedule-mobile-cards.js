@@ -21,12 +21,14 @@
    * Should be called after tables are populated
    */
   function initMobileCards() {
-    // Wait for DOM to be ready and tables to be populated
+    // Wait for tables to be populated by schedule-loader.js
+    // Use a longer delay to ensure data is loaded
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', generateAllCards);
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(generateAllCards, 300);
+      });
     } else {
-      // DOM already loaded, wait a bit for schedule-loader.js to finish
-      setTimeout(generateAllCards, 100);
+      setTimeout(generateAllCards, 300);
     }
 
     // Re-generate cards on resize if crossing mobile breakpoint
@@ -47,9 +49,14 @@
   function generateAllCards() {
     const tables = document.querySelectorAll('.schedule-table');
     
-    tables.forEach(table => {
+    console.log('[Schedule Cards] Generating cards from', tables.length, 'tables');
+    
+    tables.forEach((table, tableIndex) => {
       const container = table.closest('.table-responsive');
-      if (!container) return;
+      if (!container) {
+        console.warn('[Schedule Cards] No container found for table', tableIndex);
+        return;
+      }
 
       // Check if cards already exist
       let cardsContainer = container.querySelector('.schedule-cards-mobile');
@@ -65,15 +72,24 @@
 
       // Generate cards from table rows
       const tbody = table.querySelector('tbody');
-      if (!tbody) return;
+      if (!tbody) {
+        console.warn('[Schedule Cards] No tbody found for table', tableIndex);
+        return;
+      }
 
       const rows = tbody.querySelectorAll('tr');
-      rows.forEach(row => {
+      console.log('[Schedule Cards] Processing', rows.length, 'rows for table', tableIndex);
+      
+      rows.forEach((row, rowIndex) => {
         const card = createCardFromRow(row);
         if (card) {
           cardsContainer.appendChild(card);
+        } else {
+          console.warn('[Schedule Cards] Failed to create card for row', rowIndex);
         }
       });
+      
+      console.log('[Schedule Cards] Created', cardsContainer.children.length, 'cards for table', tableIndex);
     });
   }
 
@@ -143,8 +159,9 @@
       const timesContainer = document.createElement('div');
       timesContainer.className = 'schedule-card-times';
 
-      // Check if cell has time pills
-      const timePills = dayCell.querySelectorAll('.time-pill');
+      // Check for time-stack (multiple times) or single time-pill
+      const timeStack = dayCell.querySelector('.time-stack');
+      const timePills = timeStack ? timeStack.querySelectorAll('.time-pill') : dayCell.querySelectorAll('.time-pill');
       
       if (timePills.length > 0) {
         timePills.forEach(pill => {
@@ -152,19 +169,22 @@
           time.className = 'schedule-card-time';
           
           // Preserve hour marker styling
-          if (pill.classList.contains('time-pill--hour')) {
+          if (pill.classList.contains('time-pill--hour') || pill.getAttribute('data-hour') === 'true') {
             time.classList.add('schedule-card-time--hour');
           }
           
           time.textContent = pill.textContent.trim();
           timesContainer.appendChild(time);
         });
-      } else if (dayCell.textContent.trim() === '—' || dayCell.textContent.trim() === '') {
-        // Empty day
-        const empty = document.createElement('div');
-        empty.className = 'schedule-card-empty';
-        empty.textContent = '—';
-        timesContainer.appendChild(empty);
+      } else {
+        // Empty day - check if cell is truly empty or has content
+        const cellText = dayCell.textContent.trim();
+        if (!cellText || cellText === '—' || cellText === '') {
+          const empty = document.createElement('div');
+          empty.className = 'schedule-card-empty';
+          empty.textContent = '—';
+          timesContainer.appendChild(empty);
+        }
       }
 
       dayContainer.appendChild(timesContainer);
