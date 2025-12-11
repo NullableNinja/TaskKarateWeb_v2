@@ -20,6 +20,11 @@
       if (typeof window.tkInitNavbar === "function") {
         window.tkInitNavbar();
       }
+
+      // Initialize mobile navigation after navbar is loaded
+      if (targetId === "site-header" && typeof window.initMobileNav === "function") {
+        window.initMobileNav();
+      }
     } catch (err) {
       console.error("Failed to load partial:", url, err);
     }
